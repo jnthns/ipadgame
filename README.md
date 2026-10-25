@@ -1,8 +1,8 @@
-# Feudalism — Reconstructed
+# Feudalism — Mechanics First
 
 A personal reverse-engineering study of Vitaly Zaborov’s 2007 Flash game, implemented in **Phaser 3 + TypeScript** with a static, offline-capable PWA build for iPad/iPhone and GitHub Pages.
 
-**Status: playable alpha, not a complete or behavior-identical port.** Original unit/town/hero data and core damage formulas are recovered. Navigation, combat simulation, rendering and controls are reconstructed. See [mechanics and fidelity](docs/MECHANICS.md) and [research provenance](docs/PROVENANCE.md).
+**Active priority: finish original mechanics. Presentation is frozen as a representative slice on a separate branch. Status: playable alpha, not a complete or behavior-identical port.** Original unit/town/hero data and core damage formulas are recovered. Navigation, combat simulation, rendering and controls are reconstructed. See [mechanics and fidelity](docs/MECHANICS.md) and [research provenance](docs/PROVENANCE.md).
 
 ## Run
 
@@ -30,14 +30,14 @@ Open the resulting HTTPS URL in Safari on the iPad or iPhone. Wait for the offli
 
 ## Validation
 
-`npm test` covers damage parity against an unmodified decompiled function across 1,400 inputs, recovered table integrity, original stat/leadership formulas, recruitment transactions, save validation, seeded simulation, reinforcement limits and battle termination for all eight heroes. These are source-level regression tests, **not recorded Flash-vs-browser gameplay replay parity**.
+`npm test` currently passes 42 checks and covers source-oracle damage, targeting, projectile, quest and equipment behavior as well as damage parity against an unmodified decompiled function across 1,400 inputs, recovered table integrity, original stat/leadership formulas, recruitment transactions, save validation, seeded simulation, reinforcement limits and battle termination for all eight heroes. These are source-level regression tests, **not recorded Flash-vs-browser gameplay replay parity**.
 
 ## Reproduce the research
 
-See `tools/acquire.mjs`, `tools/extract-data.mjs`, `tools/export-assets.py`, and `tools/inspect.sh`. The original SWF and raw decompiled scripts remain in ignored `reference/`; only derived tables, a small oracle fixture and selected converted artwork are in the working source. All source paths in the evidence ledger refer to FFDec’s export paths. Research hash: `31b2a89a748d415b249e7efbf41b2c960e6fc1f5f4e07d4b33505192363609ca`.
+See `tools/acquire.mjs`, `tools/extract-data.mjs`, `tools/export-assets.py`, and `tools/inspect.sh`. The original SWF and raw decompiled scripts remain in ignored `reference/`; only derived tables, source-oracle fixtures and representative remaster artwork are in the working source. All source paths in the evidence ledger refer to FFDec’s export paths. Research hash: `31b2a89a748d415b249e7efbf41b2c960e6fc1f5f4e07d4b33505192363609ca`.
 
 ## Known gaps
 
-Original terrain/pathing and animation-event timing, projectile scatter, equipment visuals and dual wield constraints, inventory/loot/enchantments, consumables, horses, delivery quests, world travel/encounters/boats, Flash SharedObject import, and complete original progression remain unfinished. There is no multiplayer, analytics, ad SDK, account system or save sync. See the mechanics ledger for deliberate alpha differences.
+Original movement/reservations, manual hero controls, battlefield terrain import, reinforcement scheduling, consumables, horses, delivery collection, world travel/encounters/boats, Flash SharedObject import, high-level source edge cases and recorded whole-game replay comparison remain unfinished. Inventory, equipment constraints, loot/enchantments, quest rogue generation, attack hit-event timing and projectile behavior now have source-based implementations. There is no multiplayer, analytics, ad SDK, account system or save sync. See the mechanics ledger for deliberate alpha differences.
 
 Original game, artwork and data belong to their respective rights holders. Availability of the original distribution is not an open-source license; this project does not grant rights to third-party content. See NOTICE.md.

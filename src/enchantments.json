@@ -1,0 +1,498 @@
+{
+  "1": {
+    "wpn_bonus": [
+      "HIT"
+    ],
+    "wpn_amount": [
+      10
+    ],
+    "hero_bonus": [],
+    "hero_amount": [],
+    "ID": 1,
+    "prefix": "Piercing ",
+    "suffix": "",
+    "price_bonus": 1.2
+  },
+  "2": {
+    "wpn_bonus": [
+      "CRIT"
+    ],
+    "wpn_amount": [
+      10
+    ],
+    "hero_bonus": [],
+    "hero_amount": [],
+    "ID": 2,
+    "prefix": "Bloody ",
+    "suffix": "",
+    "price_bonus": 1.2
+  },
+  "3": {
+    "wpn_bonus": [
+      "CRIT"
+    ],
+    "wpn_amount": [
+      20
+    ],
+    "hero_bonus": [],
+    "hero_amount": [],
+    "ID": 3,
+    "prefix": "Bleeding ",
+    "suffix": "",
+    "price_bonus": 1.5
+  },
+  "4": {
+    "wpn_bonus": [
+      "CRIT",
+      "rnd"
+    ],
+    "wpn_amount": [
+      10,
+      20
+    ],
+    "hero_bonus": [],
+    "hero_amount": [],
+    "ID": 4,
+    "prefix": "",
+    "suffix": " of Massacre",
+    "price_bonus": 2
+  },
+  "5": {
+    "wpn_bonus": [
+      "CRIT"
+    ],
+    "wpn_amount": [
+      30
+    ],
+    "hero_bonus": [
+      "FLEE"
+    ],
+    "hero_amount": [
+      0.8
+    ],
+    "ID": 5,
+    "prefix": "Creeping ",
+    "suffix": "",
+    "price_bonus": 3
+  },
+  "6": {
+    "wpn_bonus": [
+      "dmg"
+    ],
+    "wpn_amount": [
+      20
+    ],
+    "hero_bonus": [
+      "MAX_HP"
+    ],
+    "hero_amount": [
+      1.2
+    ],
+    "ID": 6,
+    "prefix": "Strong ",
+    "suffix": "",
+    "price_bonus": 2
+  },
+  "7": {
+    "wpn_bonus": [
+      "dmg",
+      "CRIT"
+    ],
+    "wpn_amount": [
+      -5,
+      30
+    ],
+    "hero_bonus": [
+      "MAX_HP"
+    ],
+    "hero_amount": [
+      0.5
+    ],
+    "ID": 7,
+    "prefix": "Cursed ",
+    "suffix": "",
+    "price_bonus": 0.5
+  },
+  "8": {
+    "wpn_bonus": [
+      "dmg",
+      "rnd"
+    ],
+    "wpn_amount": [
+      20,
+      50
+    ],
+    "hero_bonus": [
+      "MAX_HP",
+      "DEF"
+    ],
+    "hero_amount": [
+      0.7,
+      0.5
+    ],
+    "ID": 8,
+    "prefix": "Undead ",
+    "suffix": "",
+    "price_bonus": 2.2
+  },
+  "9": {
+    "wpn_bonus": [
+      "dmg",
+      "rnd"
+    ],
+    "wpn_amount": [
+      100,
+      200
+    ],
+    "hero_bonus": [
+      "MAX_HP",
+      "DEF",
+      "FLEE"
+    ],
+    "hero_amount": [
+      0.1,
+      2.5,
+      0.01
+    ],
+    "ID": 9,
+    "prefix": "Unholy ",
+    "suffix": "",
+    "price_bonus": 10
+  },
+  "10": {
+    "wpn_bonus": [
+      "dmg",
+      "rnd"
+    ],
+    "wpn_amount": [
+      20,
+      30
+    ],
+    "hero_bonus": [
+      "MAX_HP",
+      "DEF",
+      "FLEE"
+    ],
+    "hero_amount": [
+      1.2,
+      1.1,
+      1.02
+    ],
+    "ID": 10,
+    "prefix": "Great ",
+    "suffix": "",
+    "price_bonus": 2.5
+  },
+  "11": {
+    "wpn_bonus": [
+      "dmg",
+      "rnd"
+    ],
+    "wpn_amount": [
+      50,
+      300
+    ],
+    "hero_bonus": [
+      "MAX_HP",
+      "DEF",
+      "FLEE"
+    ],
+    "hero_amount": [
+      0.5,
+      0.5,
+      0.8
+    ],
+    "ID": 11,
+    "prefix": "Glorious ",
+    "suffix": " of Sacrifice",
+    "price_bonus": 5.5
+  },
+  "12": {
+    "wpn_bonus": [
+      "HIT"
+    ],
+    "wpn_amount": [
+      -15
+    ],
+    "hero_bonus": [
+      "MAX_HP",
+      "DEF",
+      "FLEE"
+    ],
+    "hero_amount": [
+      2,
+      1.2,
+      1.04
+    ],
+    "ID": 12,
+    "prefix": "Glorious ",
+    "suffix": " of Comassion",
+    "price_bonus": 5.1
+  },
+  "13": {
+    "wpn_bonus": [
+      "dmg",
+      "rnd"
+    ],
+    "wpn_amount": [
+      50,
+      50
+    ],
+    "hero_bonus": [
+      "DEF",
+      "FLEE"
+    ],
+    "hero_amount": [
+      1.5,
+      0.3
+    ],
+    "ID": 13,
+    "prefix": "Glorious ",
+    "suffix": " of Valor",
+    "price_bonus": 4.3
+  },
+  "14": {
+    "wpn_bonus": [
+      "dmg",
+      "rnd",
+      "HIT",
+      "CRIT"
+    ],
+    "wpn_amount": [
+      -5,
+      -10,
+      -20,
+      -10
+    ],
+    "hero_bonus": [
+      "MAX_HP",
+      "DEF"
+    ],
+    "hero_amount": [
+      3,
+      2
+    ],
+    "ID": 14,
+    "prefix": "Immortal ",
+    "suffix": "",
+    "price_bonus": 10
+  },
+  "15": {
+    "wpn_bonus": [
+      "rnd",
+      "CRIT",
+      "HIT"
+    ],
+    "wpn_amount": [
+      1000,
+      90,
+      100
+    ],
+    "hero_bonus": [
+      "DEF",
+      "FLEE",
+      "MAX_HP"
+    ],
+    "hero_amount": [
+      0,
+      0,
+      0.2
+    ],
+    "ID": 15,
+    "prefix": "Mysterious ",
+    "suffix": " of Death",
+    "price_bonus": 12
+  },
+  "16": {
+    "wpn_bonus": [
+      "HIT"
+    ],
+    "wpn_amount": [
+      5
+    ],
+    "hero_bonus": [],
+    "hero_amount": [],
+    "ID": 16,
+    "prefix": "Marksman's ",
+    "suffix": "",
+    "price_bonus": 1.05
+  },
+  "17": {
+    "wpn_bonus": [
+      "rnd",
+      "CRIT",
+      "HIT"
+    ],
+    "wpn_amount": [
+      20,
+      20,
+      20
+    ],
+    "hero_bonus": [],
+    "hero_amount": [],
+    "ID": 17,
+    "prefix": "Lucky ",
+    "suffix": "",
+    "price_bonus": 1.8
+  },
+  "18": {
+    "wpn_bonus": [
+      "rnd",
+      "CRIT",
+      "HIT"
+    ],
+    "wpn_amount": [
+      50,
+      -5,
+      -5
+    ],
+    "hero_bonus": [
+      "DEF",
+      "FLEE",
+      "MAX_HP"
+    ],
+    "hero_amount": [
+      1.3,
+      0.9,
+      1.3
+    ],
+    "ID": 18,
+    "prefix": "Sleeping ",
+    "suffix": "",
+    "price_bonus": 2
+  },
+  "19": {
+    "wpn_bonus": [
+      "dmg",
+      "CRIT",
+      "HIT"
+    ],
+    "wpn_amount": [
+      50,
+      30,
+      30
+    ],
+    "hero_bonus": [
+      "DEF",
+      "FLEE",
+      "MAX_HP"
+    ],
+    "hero_amount": [
+      0.7,
+      1.02,
+      0.7
+    ],
+    "ID": 19,
+    "prefix": "Suffering ",
+    "suffix": "",
+    "price_bonus": 2
+  },
+  "20": {
+    "wpn_bonus": [
+      "dmg",
+      "rnd",
+      "CRIT",
+      "HIT"
+    ],
+    "wpn_amount": [
+      30,
+      50,
+      20,
+      -10
+    ],
+    "hero_bonus": [
+      "DEF",
+      "FLEE"
+    ],
+    "hero_amount": [
+      1.5,
+      0.7
+    ],
+    "ID": 20,
+    "prefix": "Blind ",
+    "suffix": "",
+    "price_bonus": 2.4
+  },
+  "21": {
+    "wpn_bonus": [
+      "dmg",
+      "rnd",
+      "CRIT",
+      "HIT"
+    ],
+    "wpn_amount": [
+      60,
+      100,
+      40,
+      -30
+    ],
+    "hero_bonus": [
+      "DEF",
+      "FLEE"
+    ],
+    "hero_amount": [
+      1.8,
+      0.4
+    ],
+    "ID": 21,
+    "prefix": "Blind ",
+    "suffix": " of Rage",
+    "price_bonus": 4.4
+  },
+  "22": {
+    "wpn_bonus": [
+      "CRIT",
+      "HIT"
+    ],
+    "wpn_amount": [
+      70,
+      10
+    ],
+    "hero_bonus": [],
+    "hero_amount": [],
+    "ID": 22,
+    "prefix": "Breaking ",
+    "suffix": "",
+    "price_bonus": 3.5
+  },
+  "23": {
+    "wpn_bonus": [
+      "dmg",
+      "rnd",
+      "CRIT"
+    ],
+    "wpn_amount": [
+      100,
+      200,
+      -90
+    ],
+    "hero_bonus": [],
+    "hero_amount": [],
+    "ID": 23,
+    "prefix": "Crushing ",
+    "suffix": "",
+    "price_bonus": 3.5
+  },
+  "24": {
+    "wpn_bonus": [
+      "HIT"
+    ],
+    "wpn_amount": [
+      -40
+    ],
+    "hero_bonus": [
+      "DEF",
+      "FLEE",
+      "MAX_HP"
+    ],
+    "hero_amount": [
+      3,
+      0.1,
+      3
+    ],
+    "ID": 24,
+    "prefix": "Saint ",
+    "suffix": " of Divine Light",
+    "price_bonus": 12
+  }
+}
