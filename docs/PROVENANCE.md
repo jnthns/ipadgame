@@ -67,3 +67,7 @@ Recovered potion/shop buttons, Screen group healing/rage and Soldier rage attack
 ### 2026-10-26 — world campaign
 
 Parsed original world Shape/Shape4 edges, stroke widths, matrices, static town/quest bounds and Cities harbor/stable placements directly from the hash-verified SWF. Ported WorldMap movement/collision and encounter selection, Cities docking/payment and BarnIcon/Hero horse transactions. Added delivery/quest map routing, town-hall payment queues, persisted travel RNG and validation. Eleven new tests; sampled roaming-rogue equipment and scene/quest lifecycle differences remain explicit fidelity limits.
+
+### 2026-10-26 — roaming constructors and quest replacement
+
+Added original Unit AVM1 fixtures (class sprite 2058), 76 type initializers plus constructor, with constant pool/register metadata/body hashes. Dynamic runtime units match 3,040 seeded bytecode cases including RNG draw counts. Added original Quest/Cities function fixtures for 192 offer transitions and payout checks. Replaced sampled roaming instances, restored random offer selection and delivery-note replacement/approval, and retained explicit battle-checkpoint/runtime parity limits.

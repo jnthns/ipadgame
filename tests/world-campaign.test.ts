@@ -47,7 +47,7 @@ test('travel takes real ticks, gates remote services and arrival docks a rented 
 
 test('random encounter formulas produce valid rosters and all source map ranges',()=>{
  for(const scenario of ['rogue','hostile','sea','shore'] as const){const c=newCampaign(),t=new WorldTravel(c),w=world(c);c.hero.LEVEL=50;c.hostile=['Viz'];Object.assign(w,{x:38.3,y:437.15,town:null,target:{x:45,y:440},sailing:scenario==='sea'});if(scenario==='sea')Object.assign(w,{x:790,y:590,target:{x:780,y:590}});if(scenario==='shore')Object.assign(w,{x:254.05,y:498,target:{x:255,y:500}});
-  let calls=0;t.random=()=>{calls++;return scenario==='hostile'&&calls===1?.99:0;};const event=t.step();assert.ok(event?.type==='encounter',scenario);if(event.type!=='encounter')continue;assert.ok(event.enemies.every(k=>Object.hasOwn(data.units,k)));assert.equal(event.enemies.length,scenario==='hostile'?9:1);assert.ok(scenario==='sea'?event.mapId>=53&&event.mapId<=56:event.mapId>=41&&event.mapId<=76);assert.equal(w.target,null);
+  let calls=0;t.random=()=>{calls++;return scenario==='hostile'&&calls===1?.99:0;};const event=t.step();assert.ok(event?.type==='encounter',scenario);if(event.type!=='encounter')continue;assert.ok(event.enemies.every(h=>h.WEAPON_PRI&&h.CON>0&&h.NAME));assert.equal(event.enemies.length,scenario==='hostile'?9:1);assert.ok(scenario==='sea'?event.mapId>=53&&event.mapId<=56:event.mapId>=41&&event.mapId<=76);assert.equal(w.target,null);
  }
 });
 

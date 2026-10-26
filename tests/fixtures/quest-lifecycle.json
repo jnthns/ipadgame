@@ -1,0 +1,34 @@
+{
+  "initQuestBattle": {
+    "source": "function initQuestBattle(city_id)\n   {\n      this.removeDeliverNote();\n      this.deliver_to = \"\";\n      this.avatar_id = this.getQuestAvatarID(city_id);\n      this.curr_city = city_id;\n      this.enemies_amount = _root.d(_global.MAIN_HERO.LEVEL + 5);\n      this.curr_gold = _root.d(this.enemies_amount) * 100 * Math.ceil(_global.MAIN_HERO.LEVEL / 10);\n      if(this.enemies_amount > 20)\n      {\n         this.enemies_amount = 20;\n      }\n   }",
+    "sha256": "1645987ee40fb076b562d781905966f0beb7cf130becb2c8a87076518c77fbf6"
+  },
+  "initQuestFedEx": {
+    "source": "function initQuestFedEx(city_id, nation_id)\n   {\n      this.removeDeliverNote();\n      while((this.deliver_to = this.getCityID(nation_id)) == city_id)\n      {\n      }\n      this.avatar_id = -1;\n      this.curr_city = city_id;\n      this.enemies_amount = 0;\n      this.curr_gold = 200 + 50 * _root.d(10);\n   }",
+    "sha256": "bbec40c182204d06870eee7cae35264e0abadf48529f1f952dbdef401a742d87"
+  },
+  "anyOf": {
+    "source": "function anyOf(arr)\n   {\n      return arr[_root.dice(arr.length)];\n   }",
+    "sha256": "23b6c52ca135ebc156b62a1f476a1a179747428cfa60d6520e4f518ab7ff3dce"
+  },
+  "getCityID": {
+    "source": "function getCityID(nation_id)\n   {\n      switch(nation_id)\n      {\n         case \"Viz\":\n            return this.anyOf([\"Trapezus\",\"Lutetia\",\"Arretium\",\"Ravenna\",\"Lacrimosa\",\"Caesaria\",\"Carthage\",\"Alexandria\"]);\n         case \"Ger\":\n            return this.anyOf([\"Jana\",\"Konstanz\",\"Gerlitz\",\"Sturmburg\",\"Hoffen\",\"Endem\",\"Braunburg\",\"Wanderburg\"]);\n         case \"Rus\":\n            return this.anyOf([\"Dubkee\",\"Dalnevodye\",\"Losevo\",\"Dobrov\",\"Zlatograd\",\"Medvedevo\",\"Grouzeno\",\"RaGorod\"]);\n         case \"Jap\":\n            return this.anyOf([\"Omi\",\"Kozuke\",\"Matsuyama\",\"Fukushima\",\"Izumo\",\"Suo\",\"Nagoya\",\"Echigo\"]);\n         default:\n            return;\n      }\n   }",
+    "sha256": "e15a86039dd52aec30c28cbf8eb7dbb06e95fab0dedf67ec4cb9a3c0dd1d8769"
+  },
+  "getQuestAvatarID": {
+    "source": "function getQuestAvatarID(city_id)\n   {\n      switch(city_id)\n      {\n         case \"Trapezus\":\n         case \"Lutetia\":\n         case \"Arretium\":\n         case \"Ravenna\":\n            return this.anyOf([8,9,10]);\n         case \"Lacrimosa\":\n         case \"Caesaria\":\n            return 11;\n         case \"Carthage\":\n         case \"Alexandria\":\n            return this.anyOf([8,9,10]);\n         case \"Jana\":\n         case \"Konstanz\":\n            return this.anyOf([1,7,8]);\n         case \"Gerlitz\":\n         case \"Sturmburg\":\n            return this.anyOf([1,2,3,5]);\n         case \"Hoffen\":\n         case \"Endem\":\n            return 0;\n         case \"Braunburg\":\n            return this.anyOf([1,2,3,5]);\n         case \"Wanderburg\":\n            return 0;\n         case \"Dubkee\":\n         case \"Dalnevodye\":\n         case \"Losevo\":\n         case \"Dobrov\":\n         case \"Zlatograd\":\n            return this.anyOf([2,5,6,7]);\n         case \"Medvedevo\":\n         case \"Grouzeno\":\n            return 4;\n         case \"RaGorod\":\n            return this.anyOf([2,3,5,6,7]);\n         case \"Omi\":\n         case \"Kozuke\":\n         case \"Matsuyama\":\n            return this.anyOf([12,13]);\n         case \"Fukushima\":\n            return this.anyOf([5,6]);\n         case \"Izumo\":\n            return this.anyOf([12,13]);\n         case \"Suo\":\n            return 11;\n         case \"Nagoya\":\n         case \"Echigo\":\n            return 14;\n         default:\n            return;\n      }\n   }",
+    "sha256": "eee04b9247d9f40cd3bb414e512f8424d2baab3832b3f9ec3dd798707d82503f"
+  },
+  "aproveDeliver": {
+    "source": "function aproveDeliver()\n   {\n      this.cities.push(this.deliver_to);\n      this.rewards.push(this.curr_gold);\n   }",
+    "sha256": "ccb001372d97e68ac75bb8363b0a0a256226e3d8529794d8b9ed668de5649210"
+  },
+  "removeDeliverNote": {
+    "source": "function removeDeliverNote()\n   {\n      var _loc2_ = 0;\n      while(_loc2_ < this.cities.length)\n      {\n         if(this.cities[_loc2_] == this.deliver_to)\n         {\n            this.rewards.splice(_loc2_,1);\n            this.cities.splice(_loc2_,1);\n            break;\n         }\n         _loc2_ = _loc2_ + 1;\n      }\n   }",
+    "sha256": "4854aed657426dd35aff5867e8bf23f70f81abfe6583926cffc0e1ad8f92f2c2"
+  },
+  "checkReward": {
+    "source": "function checkReward()\n   {\n      var _loc4_ = 0;\n      var _loc3_ = 0;\n      while(_loc3_ < _global.QUEST.cities.length)\n      {\n         if(_global.QUEST.cities[_loc3_] == this.city.ID)\n         {\n            _loc4_ = _global.QUEST.rewards[_loc3_];\n            _global.QUEST.rewards.splice(_loc3_,1);\n            _global.QUEST.cities.splice(_loc3_,1);\n            break;\n         }\n         _loc3_ = _loc3_ + 1;\n      }\n      if(_loc4_ > 0)\n      {\n         this.disableAll();\n         this.wnd.gotoAndStop(8);\n         this.wnd.quest_txt.text = \"Nice job, wanderer. You\\'ve done it well!\\n\\nHere\\'s your reward: \" + _loc4_ + \" gp.\";\n         _global.GOLD += _loc4_;\n         return true;\n      }\n      return false;\n   }",
+    "sha256": "ccf60170d8e26d385cc32dbfde4291d9a465f04a9f8801858d465140ad5f19d9"
+  }
+}
