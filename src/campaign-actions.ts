@@ -1,3 +1,4 @@
+import {validateWorld,validateHorse} from './world-campaign';
 import {CONSUMABLES,isConsumable,supplies,type Consumable} from './consumables';
 import {data,parseSave,type Campaign,type Hero,type Item} from './model';
 import enchantments from './enchantments.json';
@@ -11,7 +12,7 @@ export function economy(c:Campaign):Economy{const extended=c as CampaignWithEcon
 export function inventoryItem(ref:StoredItem):ItemData{const base=data.items[ref.key];if(!Object.hasOwn(data.items,ref.key))throw new Error('Unknown inventory item.');const item={...structuredClone(base),ENCH_ID:ref.enchantment};const e=(enchantments as Record<string,{prefix:string;suffix:string;price_bonus:number}>)[ref.enchantment];if(e){item.NAME=e.prefix+item.NAME+e.suffix;item.price=Math.round(item.price*e.price_bonus);}return item;}
 export function addInventory(c:Campaign,item:Item,count=1){if(!Number.isSafeInteger(count)||count<1)return false;const key=itemKey(item);if(!data.items[key])return false;const ench=(item as ItemData).ENCH_ID??0;const inv=economy(c).inventory,entry=inv.find(x=>x.key===key&&x.enchantment===ench);if(entry)entry.count+=count;else inv.push({key,enchantment:ench,count});return true;}
 function removeOne(c:Campaign,index:number){const inv=economy(c).inventory;if(--inv[index].count===0)inv.splice(index,1);}
-export function townServicesOpen(c:Campaign){const town=data.towns[c.town];return !c.hostile.includes(town.NATION)||c.captured.includes(town.ID);}
+export function townServicesOpen(c:Campaign){const town=data.towns[c.town];return (!c.world||!!c.world.town)&&(!c.hostile.includes(town.NATION)||c.captured.includes(town.ID));}
 /** Source Hero.equipItemInfo restrictions. Validation performs no mutations. */
 export function equipmentError(hero:Hero,requested:Slot,item:ItemData):string|null{
  if(requested==='ARMOR'&&item.TYPE!=='Clothes'||requested==='HELMET'&&item.TYPE!=='Helmet'||(requested==='WEAPON_PRI'||requested==='WEAPON_SEC')&&['Clothes','Helmet'].includes(item.TYPE))return 'This item does not fit that slot.';
@@ -32,7 +33,7 @@ export function equipInventory(c:Campaign,index:number,requested:Slot):string|nu
 export function unequipItem(c:Campaign,slot:Slot):string|null{const item=c.hero[slot];if(!item)return 'That slot is empty.';if(slot==='WEAPON_PRI'&&c.hero.WEAPON_SEC?.TYPE==='Shield')return 'Remove the shield before the primary weapon.';if(!addInventory(c,item))return 'This item cannot be stored.';c.hero[slot]=null as unknown as Item;return null;}
 export function collectLoot(c:Campaign,items:Item[]){for(const item of items)addInventory(c,item);}
 export function validateEconomy(c:Campaign){const e=(c as CampaignWithEconomy).economy;if(!e)return;if(e.version!==1||!Array.isArray(e.inventory)||e.inventory.length>2000||e.inventory.some(r=>!r||typeof r.key!=='string'||!Object.hasOwn(data.items,r.key)||!Number.isSafeInteger(r.count)||r.count<1||r.count>1e6||!Number.isSafeInteger(r.enchantment)||r.enchantment<0||r.enchantment>24))throw new Error('Invalid inventory save.');}
-export function readCampaignSave(text:string){const c=parseSave(text);validateEconomy(c);return c;}
+export function readCampaignSave(text:string){const c=parseSave(text);validateEconomy(c);validateWorld(c);validateHorse(c.hero.HORSE);return c;}
 /** Source WorldMap.init clears a nation's hostility once all of its towns are owned. */
 export function settleConquest(c:Campaign,townId:string){if(!c.captured.includes(townId))c.captured.push(townId);const n=data.towns[townId].NATION;if(n!==c.hero.NATION&&!c.hostile.includes(n))c.hostile.push(n);c.hostile=c.hostile.filter(nation=>!Object.values(data.towns).filter(t=>t.NATION===nation).every(t=>c.captured.includes(t.ID)));c.town=townId;}
 

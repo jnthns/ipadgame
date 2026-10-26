@@ -63,3 +63,7 @@ The local suite now passes 78 checks, including extractor reproduction against t
 ### 2026-10-26 — consumables and reserve army abilities
 
 Recovered potion/shop buttons, Screen group healing/rage and Soldier rage attack gates. Added raw original AVM1 bytecode fixtures for Screen reserve volleys, healing comparison and Button172; verified RNG evaluation order, uncapped shower counter and wrong large-scroll stock reference. Port deliberately corrects large-potion stock and rage UI count, and documents original construction/scheduling limits. Added supplies validation/migration, shop transactions, manual battle controls and fixed-tick ability queues; presentation assets unchanged.
+
+### 2026-10-26 — world campaign
+
+Parsed original world Shape/Shape4 edges, stroke widths, matrices, static town/quest bounds and Cities harbor/stable placements directly from the hash-verified SWF. Ported WorldMap movement/collision and encounter selection, Cities docking/payment and BarnIcon/Hero horse transactions. Added delivery/quest map routing, town-hall payment queues, persisted travel RNG and validation. Eleven new tests; sampled roaming-rogue equipment and scene/quest lifecycle differences remain explicit fidelity limits.

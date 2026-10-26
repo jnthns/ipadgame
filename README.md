@@ -30,7 +30,7 @@ Open the resulting HTTPS URL in Safari on the iPad or iPhone. Wait for the offli
 
 ## Validation
 
-`npm test` passes 98 checks locally, including consumable stock/healing/rage, bytecode-verified reserve army abilities, source-derived movement, manual controls, all 80 battlefield layouts, and source-oracle damage, targeting, projectile, quest and equipment behavior as well as damage parity against an unmodified decompiled function across 1,400 inputs, recovered table integrity, original stat/leadership formulas, recruitment transactions, save validation, seeded simulation, reinforcement limits and battle termination for all eight heroes. These are source-level regression tests, **not recorded Flash-vs-browser gameplay replay parity**.
+`npm test` passes 109 checks locally, including consumable stock/healing/rage, bytecode-verified reserve army abilities, source-derived movement, manual controls, all 80 battlefield layouts, and source-oracle damage, targeting, projectile, quest and equipment behavior as well as damage parity against an unmodified decompiled function across 1,400 inputs, recovered table integrity, original stat/leadership formulas, recruitment transactions, save validation, seeded simulation, reinforcement limits and battle termination for all eight heroes. These are source-level regression tests, **not recorded Flash-vs-browser gameplay replay parity**.
 
 ## Reproduce the research
 
@@ -43,3 +43,5 @@ Consumables, horses, delivery collection, world travel/encounters/boats, Flash S
 Original game, artwork and data belong to their respective rights holders. Availability of the original distribution is not an open-source license; this project does not grant rights to third-party content. See NOTICE.md.
 
 Supply controls: keys 1–6 or touch buttons use small/medium/large potions, 33%/66% group heals and rage. Buy supplies from the armory or inventory. Arrow shower/wall require reserve archers; select the ability and tap a battlefield cell. These arrows can hit allies. See [mechanics details](docs/CONSUMABLES_AND_ABILITIES.md).
+
+World travel now moves at the original two pixels per tick, with extracted land/sea collision shapes. Use waypoints when a straight route is blocked. Harbors rent ships for 4,000 gp; stables sell source horses. Delivery and rogue-contract rewards are collected at town halls. See [campaign implementation and limits](docs/WORLD_CAMPAIGN.md).
