@@ -53,3 +53,9 @@ The original root frame contains MochiBot external telemetry loading code (`fram
 - Browser inspection covered hero selection, map rendering and contract initiation. Additional acceptance checks are recorded in `VALIDATION.md`.
 - Actual iOS Safari PWA installation and original SWF gameplay replay comparison have not been performed.
 - GitHub deployment status must be verified separately; existence of a workflow is not proof of publication.
+
+## Movement and battlefield milestone (2026-10-26)
+
+The committed terrain extractor reads the original SWF with a standard-library parser and verifies its SHA-256 before parsing. It uses original display-list placement origins and `Tree.init`, not inferred sprite collision bounds. It recovers all 80 map layouts, 556 collision cells and 21 initial formation markers per map. See `docs/MOVEMENT_AND_TERRAIN.md` for source formations, reservations, manual controls, 31-tick reserve commands, source overlaps and remaining AVM1 ordering uncertainty.
+
+The local suite now passes 78 checks, including extractor reproduction against the retained SWF. A clean checkout skips the single raw-SWF reproduction check unless `reference/feudalism.swf` has been acquired; all committed-fixture tests still run. CI runs tests and the production build on the mechanics-first branch without publishing Pages. Physical iPad validation remains pending.

@@ -25,12 +25,12 @@ Open the resulting HTTPS URL in Safari on the iPad or iPhone. Wait for the offli
 - Choose an original hero; select and travel to towns on the map.
 - Recruit local soldiers, earn gold through contracts, purchase equipment and spend hero skill points.
 - Attack towns to fight garrisons and, where present, a second throne-room battle.
-- Tap the battlefield to move the hero; select Army to give group orders. Hero combat is assisted/automatic in range. Hold/Charge, pause, 2× speed and retreat are available. WASD/arrows move the hero, Space pauses.
+- Tap the battlefield or use the direction pad to move the hero; select Army to give troop orders. Hero attacks are manual: hold Attack while moving when needed. Hold/Charge, pause, 2× speed and retreat are available. WASD/arrows move the hero, Space/0 attacks, Shift switches weapons, and P pauses.
 - Saves occur between battles. Reload/retreat/defeat returns to the pre-battle checkpoint. A successful battle applies casualties and rewards. Progression is supported through level 29; original level 30–39 thresholds are absent in the recovered table and require investigation.
 
 ## Validation
 
-`npm test` currently passes 42 checks and covers source-oracle damage, targeting, projectile, quest and equipment behavior as well as damage parity against an unmodified decompiled function across 1,400 inputs, recovered table integrity, original stat/leadership formulas, recruitment transactions, save validation, seeded simulation, reinforcement limits and battle termination for all eight heroes. These are source-level regression tests, **not recorded Flash-vs-browser gameplay replay parity**.
+`npm test` passes 78 checks locally, including source-derived movement, manual controls, all 80 battlefield layouts, and source-oracle damage, targeting, projectile, quest and equipment behavior as well as damage parity against an unmodified decompiled function across 1,400 inputs, recovered table integrity, original stat/leadership formulas, recruitment transactions, save validation, seeded simulation, reinforcement limits and battle termination for all eight heroes. These are source-level regression tests, **not recorded Flash-vs-browser gameplay replay parity**.
 
 ## Reproduce the research
 
@@ -38,6 +38,6 @@ See `tools/acquire.mjs`, `tools/extract-data.mjs`, `tools/export-assets.py`, and
 
 ## Known gaps
 
-Original movement/reservations, manual hero controls, battlefield terrain import, reinforcement scheduling, consumables, horses, delivery collection, world travel/encounters/boats, Flash SharedObject import, high-level source edge cases and recorded whole-game replay comparison remain unfinished. Inventory, equipment constraints, loot/enchantments, quest rogue generation, attack hit-event timing and projectile behavior now have source-based implementations. There is no multiplayer, analytics, ad SDK, account system or save sync. See the mechanics ledger for deliberate alpha differences.
+Consumables, horses, delivery collection, world travel/encounters/boats, Flash SharedObject import, high-level source edge cases and recorded whole-game replay comparison remain unfinished. Pixel movement/reservations, manual hero controls, all 80 battlefield layouts and periodic reinforcements are now implemented with source-based regression checks; Flash event ordering and documented terrain edge cases remain unverified. Inventory, equipment constraints, loot/enchantments, quest rogue generation, attack hit-event timing and projectile behavior now have source-based implementations. There is no multiplayer, analytics, ad SDK, account system or save sync. See the mechanics ledger for deliberate alpha differences.
 
 Original game, artwork and data belong to their respective rights holders. Availability of the original distribution is not an open-source license; this project does not grant rights to third-party content. See NOTICE.md.

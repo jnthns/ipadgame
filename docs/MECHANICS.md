@@ -10,19 +10,19 @@ Inspected build: Armor Games `feudalism-433.swf`, SHA-256 `31b2a89a748d415b249e7
 |---|---|---|
 | Data | 32 towns, 76 troop definitions,8 heroes, 205 weapons/armor definitions, 24 enchantments | Recovered constructors; standard troop/town tables checked. Six generic rogue constructor exports are deterministic samples; quest rogues are now generated from the original formulas. |
 | Core combat | HP, defense, accuracy, dexterity avoidance, criticals, leadership, equipment enchant effects | Decompiled `Creature.as`, `Weapon.as` and Enchant definitions; damage oracle covers 1,400 cases. |
-| Targeting | Rounded Euclidean distance, melee accessibility checks, ranged hittable-first preference and terrain line of sight | Source functions exercised as regression oracles. Original terrain shapes are not yet imported into the terrain API. |
-| Timing | Windup, concurrent recovery, human/mounted attack hit-event offsets, secondary weapon switching | Recovered sprite timelines; full Flash movie ordering still needs replay comparison. |
+| Targeting | Rounded Euclidean distance, melee accessibility checks, ranged hittable-first preference and terrain line of sight | Source functions exercised as regression oracles. All 80 original battlefield collision layouts are now imported from source SWF placements. |
+| Timing | Windup, concurrent recovery, human/mounted attack hit-event offsets, manual and AI weapon switching | Recovered sprite timelines; full Flash movie ordering still needs replay comparison. |
 | Projectiles | Arrows, scatter, flight/collision avoidance, moving-target misses, grenade splash | Source-derived logic and tests; rendering and simulation remain separate. |
-| Equipment/economy | Buy-to-inventory, stacking, equip/unequip, retain replaced equipment, sale atfloor(price/2), shield/two-handed/ranged/mounted restrictions | 24 item/slot cases compared against original `Hero.equipItemInfo`; transactional purchase/equip/sale tests. |
+| Equipment/economy | Buy-to-inventory, stacking, equip/unequip, retain replaced equipment, sale at `floor(price / 2)`, shield/two-handed/ranged/mounted restrictions | 24 item/slot cases compared against original `Hero.equipItemInfo`; transactional purchase/equip/sale tests. |
 | Loot | Gear dropped on enemy death, enchantment roll, XP/gold, inventory collected on victory | Source `Creature.die`; all 24 enchantment combat modifiers supported. |
-| Quests | Original offers, reward before enemy-countcap, faction-specific rogue stats/gear/skills,5 melee/5 ranged blocks | Original Quest methods executed in a VM: 192 offer cases and 80 rogue cases, including RNG draw counts. Combat quests integrated; delivery offer generator exists but travel/collection UI is unfinished. |
+| Quests | Original offers, reward before enemy-count cap, faction-specific rogue stats/gear/skills, 5 melee/5 ranged blocks | Original Quest methods executed in a VM: 192 offer cases and 80 rogue cases, including RNG draw counts. Combat quests integrated; delivery offer generator exists but travel/collection UI is unfinished. |
 | Conquest | Original normal/elite defender rosters and two-stage sieges; foreign hostility and full-nation hostility clear | Whole encounter is committed only after success, with pre-battle restore on defeat/retreat. This is an explicit alpha checkpoint adaptation. |
 | Saves | Versioned localStorage JSON, export/import, inventory, unarmed hero state, validation | Round trips and malformed/prototype-name records tested. Not compatible with original Flash `.sol` saves; no cross-device sync. |
-| Graphics independence | Fixed 30 Hz simulation;3 rendering presets share the same game state | Complete battle-state/reward comparison across preset-switch schedules. Physical iPad performance not measured. |
+| Graphics independence | Fixed 30 Hz simulation; 3 rendering presets share the same game state | Complete battle-state/reward comparison across preset-switch schedules. Physical iPad performance not measured. |
 
 ## Corrections to early assumptions
 
-The initial alpha used Manhattan distance and instantaneous hits. Source inspection establishes **rounded Euclidean distance**, not Manhattan. Melee damage adds`dice(rnd)`(0throughrnd−1); arrow/grenade damage adds`d(rnd)`(1throughrnd). Arrows make a separate defender avoidance roll on collision. Critical hits **bypass defense** rather than applying a general 2× multiplier.
+The initial alpha used Manhattan distance and instantaneous hits. Source inspection establishes **rounded Euclidean distance**, not Manhattan. Melee damage adds`dice(rnd)` (0 through rnd−1); arrow/grenade damage adds `d(rnd)` (1 through rnd). Arrows make a separate defender avoidance roll on collision. Critical hits **bypass defense** rather than applying a general 2× multiplier.
 
 Source formulas from `Creature.initUnit`, `strike`, `takeDamage` and `Soldier`:
 
@@ -35,18 +35,20 @@ Source formulas from `Creature.initUnit`, `strike`, `takeDamage` and `Soldier`:
 - Ordinary damage=`max(0,raw−DEF)`; critical damage=`raw`.
 - Allied level-zero troops receive`1+(floor(hero.INT/2)+floor(ArtOfWar/2)+sameNationPatriotism)/100`on HP, base damage and variance, after equipment enchantments.
 - Enemy XP=`round(sqrt(price))*3`; gold=`d(price/4)`.
-- Battlefield logical grid 20×8, active team cap 10, reserve queues, hero death loses the encounter.
+- Battlefield logical grid 20×8; original formations can begin with ten soldiers plus the hero. Later reserve commands use a ten-unit threshold and add one unit per team every 31 ticks. Hero death loses the encounter.
 
 ## Not finished — mechanics completion gate
 
-1. **Movement/reservations:** replace instantaneous tile moves and reconstructed delays with the original pixel movement, occupied-next-cell reservations, obstacle routing and collision behavior.
-2. **Hero controls:** port original manual directional attack reach, weapon-swap controls and timing; current touch hero combat is assisted/automatic.
-3. **Terrain/reinforcements:** import actual original battlefield objects and validate original reinforcement scheduling and free-edge spawning.
+1. **Movement/reservations — implemented, replay verification pending:** original pixel stepping, destination reservations, logical boundary transfers, blocked movement and soldier neighbor detours now have source-based implementations and trace tests.
+2. **Hero controls — implemented, device verification pending:** manual directional movement/attacks, recovery gates and explicit switching are wired to keyboard and touch. The hero no longer automatically targets or attacks in gameplay.
+3. **Terrain/reinforcements — implemented, source edge cases pending:** all 80 map layouts and starting formations are extracted and connected. Reinforcements use one-per-team 31-tick commands. Original terrain/spawn overlaps and AVM1 ordering remain flagged.
 4. **Consumables/abilities:** healing potions, group heals, rage timing and ranged army abilities remain unfinished; investigate suspicious original UI variable references against p-code before reproducing or fixing them.
 5. **World campaign:** world movement/encounters, shipping/harbor costs, horses, delivery collection and original quest-avatar travel are unfinished. Direct town travel is currently an explicit alpha shortcut.
 6. **Progression/source edge cases:** original XP thresholds 30–39 are absent from the recovered Hero table; advancement currently stops at 29. Determine intended versus actual behavior with original execution.
 7. **End-to-end parity:** record original runs with controlled inputs/randomness; compare combat/state/save traces. Source-level oracle tests are not whole-game equivalence.
 8. **Device acceptance:** Safari touch controls, offline launch and save persistence on the actual iPad mini A17 Pro/iPhone remain untested.
+
+See [movement and terrain details](MOVEMENT_AND_TERRAIN.md) for the completed movement milestone and its remaining parity limits.
 
 Do not mark mechanics complete or resume broad art production until these gaps are resolved or explicitly accepted as planned changes. Do not equate passing unit tests with full original-game fidelity.
 
