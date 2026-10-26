@@ -59,3 +59,7 @@ The original root frame contains MochiBot external telemetry loading code (`fram
 The committed terrain extractor reads the original SWF with a standard-library parser and verifies its SHA-256 before parsing. It uses original display-list placement origins and `Tree.init`, not inferred sprite collision bounds. It recovers all 80 map layouts, 556 collision cells and 21 initial formation markers per map. See `docs/MOVEMENT_AND_TERRAIN.md` for source formations, reservations, manual controls, 31-tick reserve commands, source overlaps and remaining AVM1 ordering uncertainty.
 
 The local suite now passes 78 checks, including extractor reproduction against the retained SWF. A clean checkout skips the single raw-SWF reproduction check unless `reference/feudalism.swf` has been acquired; all committed-fixture tests still run. CI runs tests and the production build on the mechanics-first branch without publishing Pages. Physical iPad validation remains pending.
+
+### 2026-10-26 — consumables and reserve army abilities
+
+Recovered potion/shop buttons, Screen group healing/rage and Soldier rage attack gates. Added raw original AVM1 bytecode fixtures for Screen reserve volleys, healing comparison and Button172; verified RNG evaluation order, uncapped shower counter and wrong large-scroll stock reference. Port deliberately corrects large-potion stock and rage UI count, and documents original construction/scheduling limits. Added supplies validation/migration, shop transactions, manual battle controls and fixed-tick ability queues; presentation assets unchanged.

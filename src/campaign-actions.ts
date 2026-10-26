@@ -1,3 +1,4 @@
+import {CONSUMABLES,isConsumable,supplies,type Consumable} from './consumables';
 import {data,parseSave,type Campaign,type Hero,type Item} from './model';
 import enchantments from './enchantments.json';
 export type Slot='WEAPON_PRI'|'WEAPON_SEC'|'ARMOR'|'HELMET';
@@ -36,3 +37,6 @@ export function readCampaignSave(text:string){const c=parseSave(text);validateEc
 export function settleConquest(c:Campaign,townId:string){if(!c.captured.includes(townId))c.captured.push(townId);const n=data.towns[townId].NATION;if(n!==c.hero.NATION&&!c.hostile.includes(n))c.hostile.push(n);c.hostile=c.hostile.filter(nation=>!Object.values(data.towns).filter(t=>t.NATION===nation).every(t=>c.captured.includes(t.ID)));c.town=townId;}
 
 export function initializeEconomy(c:Campaign,heroIndex:number){economy(c);const starting=(data.heroes[heroIndex] as unknown as {INVENTORY?:{CATEGORY:string;TYPE:string;NATION:string;LEVEL:number;COUNT?:number;ENCH_ID?:number}[]}).INVENTORY??[];for(const r of starting){const item=data.items[r.CATEGORY+r.TYPE+r.NATION+r.LEVEL];if(item)addInventory(c,{...item,ENCH_ID:r.ENCH_ID??0} as Item,r.COUNT??1);}}
+
+/** Original shop supports one or five items per purchase. */
+export function buyConsumable(c:Campaign,key:Consumable,count:1|5=1):string|null{if(!isConsumable(key)||count!==1&&count!==5)return 'Invalid supply purchase.';if(!townServicesOpen(c))return 'This town is hostile.';const stock=supplies(c),cost=CONSUMABLES[key].price*count;if(stock[key]+count>1e6)return 'Supply limit reached.';if(c.gold<cost)return 'Not enough gold.';c.gold-=cost;stock[key]+=count;return null;}
