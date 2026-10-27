@@ -24,3 +24,23 @@ test('reinforcement duration metadata cannot conceal incomplete or invalid trace
  assert.throws(()=>compareRuntimeTrace({...trace,lines:['SCENARIO|reinforcement','LENGTH|1200',...trace.lines]}),/complete/);
  assert.throws(()=>compareRuntimeTrace({...trace,lines:['SCENARIO|reinforcement','LENGTH|3601',...trace.lines]}),/Invalid trace length/);
 });
+
+import {readFileSync} from 'node:fs';
+import {gunzipSync} from 'node:zlib';
+test('extended original replay preserves queued lethal-frame attacks and all 1200 RNG states',()=>{
+ const capture=JSON.parse(gunzipSync(Buffer.from(readFileSync(new URL('./fixtures/runtime/reinforcement-1200.json.gz.b64',import.meta.url),'utf8'),'base64')).toString());
+ const result=compareRuntimeTrace(capture);
+ assert.equal(result.frames,1200);
+ assert.equal(result.matchingRngFrames,1200);
+ assert.deepEqual(result.rngDifferences,[]);
+ assert.ok(result.removedClipFrames>0,'removed original corpse clips are tracked separately');
+ assert.equal(result.totalUnitFrames-result.matchingUnitFrames,18);
+ for(const difference of result.firstDifferences){
+  assert.ok(Array.isArray(difference.errors));
+  for(const error of difference.errors as {field:string;expected:unknown;actual:unknown}[]){
+   assert.ok(['moveX','moveY'].includes(error.field));
+   assert.ok(Number.isNaN(error.expected));
+   assert.equal(error.actual,0);
+  }
+ }
+});
