@@ -40,7 +40,7 @@ def trace(parts):
 def parse_args():
  parser=argparse.ArgumentParser(description=__doc__)
  parser.add_argument('--frames',type=int,default=300,help='Capture length (1–3600 frames)')
- parser.add_argument('--scenario',choices=['baseline','reinforcement'],default='baseline')
+ parser.add_argument('--scenario',choices=['baseline','reinforcement','shower','wall'],default='baseline')
  parser.add_argument('--slots',type=int,default=5,help='Number of hero slots to observe (5–30); extra slots emit SLOT records')
  args=parser.parse_args()
  if not 1 <= args.frames <= 3600: parser.error('--frames must be between 1 and 3600')
@@ -65,9 +65,12 @@ def main():
  step_seed=setv('_global.__replaySeed',get('_global.__replaySeed')+push(16807)+action(0x0c)+push(2147483647)+action(0x3f))
  dice_value=method('Math.floor',[get('_global.__replaySeed')+push(2147483647)+action(0x0d)+get('n')+action(0x0c)])
  init=trace([push('LENGTH'),push(args.frames)])+setv('_global.__replayStarted',push(True))+setv('_global.__replaySeed',push(1))+setv('Math.random',fn(randbody))+setv('_root.dice',fn(step_seed+dice_value+action(0x3e),['n']))+setv('_root.d',fn(step_seed+dice_value+push(1)+action(0x47)+action(0x3e),['n']))
+ init+=setv('_root.dd',fn(step_seed+method('Math.floor',[get('_global.__replaySeed')+push(2147483647)+action(0x0d)+get('n')+push(2)+action(0x0c)+push(1)+action(0x47)+action(0x0c)])+get('n')+action(0x0b)+action(0x3e),['n']))
  init+=setv('_global.MAIN_HERO',new('Unit',[push('Melee'),push('Viz'),push(1)]))+setv('_global.MAIN_HERO.LEVEL',push(1))
  init+=setv('_global.FRIENDS',array([new('Unit',[push('Melee'),push('Viz'),push(1)]),new('Unit',[push('Ranged'),push('Viz'),push(1)])]))
  init+=setv('_global.ENEMIES',array([new('Unit',[push('Melee'),push('Viz'),push(1)]),new('Unit',[push('Ranged'),push('Viz'),push(1)])]))
+ if args.scenario in ('shower','wall'):
+  init+=trace([push('SCENARIO'),push(args.scenario)])
  if args.scenario=='reinforcement':
   init+=setv('_global.FRIENDS',array([new('Unit',[push('Melee'),push('Viz'),push(1)]) for _ in range(12)]))
   init+=setv('_global.ENEMIES',array([new('Unit',[push('Melee'),push('Viz'),push(1)]) for _ in range(12)]))
@@ -79,6 +82,10 @@ def main():
   fields=['team','X','Y','_x','_y','HP','t_bef','t_aft','isBusy','atkAnim','body._currentframe','wpn.TYPE','attacking._name','moveX','moveY','nextX','nextY']
   record+=trace([push('UNIT'),get('_global.__replayFrame'),push(i)]+[get(f'_root.hero{i}.'+f) for f in fields])
  record+=extra_slot_records(args.slots)
+ if args.scenario in ('shower','wall'):
+  effect='addArrowShower' if args.scenario=='shower' else 'addArrowWall'
+  cast=stmt(method('_root.'+effect,[get('_root.hero1.X'),get('_root.hero1.Y'),push(100),push(False)]))+trace([push('CAST'),push(args.scenario),get('_global.__replayFrame'),get('_root.hero1.X'),get('_root.hero1.Y')])
+  record+=if_(get('_global.__replayFrame')+push(150)+action(0x49),cast)
  finish=trace([push('DONE'),get('_global.__replayFrame')])
  record+=if_(get('_global.__replayFrame')+push(args.frames)+action(0x49),finish)
  wait=trace([push('WAIT'),get('_root._currentframe'),get('_root._framesloaded'),method('_root.getBytesLoaded'),method('_root.getBytesTotal')])
