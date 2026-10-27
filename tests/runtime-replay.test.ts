@@ -15,3 +15,7 @@ test('original SWF under Ruffle: 300 RNG states and 1500 fighter snapshots match
 test('runtime regression rejects incomplete captures',()=>{
  assert.throws(()=>compareRuntimeTrace({...trace,lines:trace.lines.filter(line=>line!=='DONE|300')}),/complete/);
 });
+
+test('reinforcement traces must include all additional slot observations',()=>{
+ assert.throws(()=>compareRuntimeTrace({...trace,lines:['SCENARIO|reinforcement',...trace.lines]}),/complete/);
+});
