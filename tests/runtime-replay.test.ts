@@ -19,3 +19,8 @@ test('runtime regression rejects incomplete captures',()=>{
 test('reinforcement traces must include all additional slot observations',()=>{
  assert.throws(()=>compareRuntimeTrace({...trace,lines:['SCENARIO|reinforcement',...trace.lines]}),/complete/);
 });
+
+test('reinforcement duration metadata cannot conceal incomplete or invalid traces',()=>{
+ assert.throws(()=>compareRuntimeTrace({...trace,lines:['SCENARIO|reinforcement','LENGTH|1200',...trace.lines]}),/complete/);
+ assert.throws(()=>compareRuntimeTrace({...trace,lines:['SCENARIO|reinforcement','LENGTH|3601',...trace.lines]}),/Invalid trace length/);
+});
