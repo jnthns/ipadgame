@@ -44,3 +44,24 @@ test('extended original replay preserves queued lethal-frame attacks and all 120
   }
  }
 });
+
+test('original arrow shower impact precedes fighter callbacks through frame 220',()=>{
+ const capture=JSON.parse(gunzipSync(Buffer.from(readFileSync(new URL('./fixtures/runtime/shower-effect.json.gz.b64',import.meta.url),'utf8'),'base64')).toString());
+ const result=compareRuntimeTrace(capture,220);
+ assert.equal(result.capturedFrames,300);
+ assert.equal(result.frames,220);
+ assert.equal(result.matchingRngFrames,220);
+ assert.equal(result.matchingUnitFrames,result.totalUnitFrames);
+ assert.deepEqual(result.firstDifferences,[]);
+ assert.throws(()=>compareRuntimeTrace(capture,301),/Invalid comparison/);
+ assert.throws(()=>compareRuntimeTrace({...capture,lines:capture.lines.filter((l:string)=>!l.startsWith('CAST|'))}),/validated ability cast/);
+});
+
+test('original wall effect matches its initial impact window through frame 200',()=>{
+ const capture=JSON.parse(gunzipSync(Buffer.from(readFileSync(new URL('./fixtures/runtime/wall-effect.json.gz.b64',import.meta.url),'utf8'),'base64')).toString());
+ const result=compareRuntimeTrace(capture,200);
+ assert.equal(result.capturedFrames,300);
+ assert.equal(result.matchingRngFrames,200);
+ assert.equal(result.matchingUnitFrames,result.totalUnitFrames);
+ assert.deepEqual(result.firstDifferences,[]);
+});
