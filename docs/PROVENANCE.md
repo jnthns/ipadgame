@@ -71,3 +71,7 @@ Parsed original world Shape/Shape4 edges, stroke widths, matrices, static town/q
 ### 2026-10-26 — roaming constructors and quest replacement
 
 Added original Unit AVM1 fixtures (class sprite 2058), 76 type initializers plus constructor, with constant pool/register metadata/body hashes. Dynamic runtime units match 3,040 seeded bytecode cases including RNG draw counts. Added original Quest/Cities function fixtures for 192 offer transitions and payout checks. Replaced sampled roaming instances, restored random offer selection and delivery-note replacement/approval, and retained explicit battle-checkpoint/runtime parity limits.
+
+### 2026-10-26 — presentation boundary and progression bytecode
+
+Extracted Hero constructor/experience, Creature.strike and root percent raw AVM1 fixtures with method/register/offset hashes. Verified the sparse XP table and 400 experience boundary cases, resolving the former incorrect level-29 cap. Restored source upgrade costs/caps and terrain strike RNG (three draws; percent(NaN) follows Greater/Not). Added model troop commands and atomic, idempotent victory settlement so presentation replacement cannot duplicate rewards. No new art assets.

@@ -62,7 +62,7 @@ Known differences or uncertainties:
 
 - AVM1 child-script creation order and full Flash movie-frame event ordering still need runtime replay comparison.
 - Maps 2 and 4 contain an original enemy/TreeBroken_1 overlap at `[18,7]`. It is preserved and flagged. Exact `.who` overwrites depend on original child-script order.
-- Terrain absorbs a manual strike’s target priority, but the original attempt to strike a noncombat Tree can consume miss/critical RNG. That side effect is not yet reproduced.
+- Terrain absorbs a manual strike’s target priority. Original Creature.strike plus root percent bytecode now verifies three consumed RNG draws (critical, accuracy, variance) and no miss/damage effect for a Tree; this side effect is reproduced. Grenade terrain damage draws are retained too.
 - Some original soldier weapon-switch side effects and animation busy ordering need replay confirmation.
 - The reconstruction’s battle clock starts at a defined phase; the original root frame counter can carry a phase across scene transitions.
 - Physical iPad/iPhone behavior and battery use remain untested.

@@ -46,7 +46,7 @@ Source formulas from `Creature.initUnit`, `strike`, `takeDamage` and `Soldier`:
 3. **Terrain/reinforcements — implemented, source edge cases pending:** all 80 map layouts and starting formations are extracted and connected. Reinforcements use one-per-team 31-tick commands. Original terrain/spawn overlaps and AVM1 ordering remain flagged.
 4. **Consumables/abilities — implemented, replay verification pending:** stock, shops, hero/group healing, rage timing, reserve arrow shower/wall, cooldowns and friendly fire are connected. Original bytecode confirms counter/UI bugs; deliberate large-potion stock correction is documented in [consumables and abilities](CONSUMABLES_AND_ABILITIES.md).
 5. **World campaign — implemented, fidelity gaps pending:** source vector land/sea movement, ambush formulas/maps, harbors/docking, horse shops, delivery work and town-hall collection are connected. Dynamic roaming gear/constructor RNG and quest replacement are now implemented; exact Flash collision/transition behavior and remaining checkpoint differences are documented in [world campaign](WORLD_CAMPAIGN.md).
-6. **Progression/source edge cases:** original XP thresholds 30–39 are absent from the recovered Hero table; advancement currently stops at 29. Determine intended versus actual behavior with original execution.
+6. **Progression — bytecode verified:** the sparse table and AVM1 comparison advance through missing thresholds to level 39 at 34,000 XP, then continue to 50. Original attribute/skill costs and caps are now model actions; 400 XP boundary cases match the original bytes. Full-player comparison remains part of the runtime gate.
 7. **End-to-end parity:** record original runs with controlled inputs/randomness; compare combat/state/save traces. Source-level oracle tests are not whole-game equivalence.
 8. **Device acceptance:** Safari touch controls, offline launch and save persistence on the actual iPad mini A17 Pro/iPhone remain untested.
 
@@ -71,3 +71,5 @@ Do not mark mechanics complete or resume broad art production until these gaps a
 The current JSON save is a new format. Original `.sol` migration remains future work.
 
 See [roaming units and quest replacement](ENCOUNTER_PARITY.md) for the completed constructor and offer-lifecycle work.
+
+[Presentation contract](PRESENTATION_CONTRACT.md): victory settlement is atomic/idempotent; progression and troop-order rules no longer live in UI callbacks. Tree strike and grenade terrain RNG consumption are now retained; source scene-ordering limits remain.

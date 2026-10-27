@@ -20,6 +20,8 @@ export function runBytecode(fixture:{base64:string},initialPool:string[],registe
    case 0x4f:{const value=pop(),key=pop(),obj=pop();if(obj!=null)obj[key]=value;break;}
    case 0x52:{const key=pop(),obj=pop(),count=pop();const args=Array.from({length:count},()=>pop());stack.push((key===undefined||key==='')&&typeof obj==='function'?obj(...args):obj?.[key]?.apply(obj,args));break;}
    case 0x47:{const b=pop(),a=pop();stack.push(a+b);break;}
+   case 0x0c:{const b=pop(),a=pop();stack.push(Number(a)*Number(b));break;}
+   case 0x0d:{const b=pop(),a=pop();stack.push(Number(a)/Number(b));break;}
    case 0x0b:{const b=pop(),a=pop();stack.push(Number(a)-Number(b));break;}
    case 0x48:{const b=pop(),a=pop();stack.push(less2(a,b));break;}
    case 0x67:{const b=pop(),a=pop();stack.push(less2(b,a));break;}

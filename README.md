@@ -26,11 +26,11 @@ Open the resulting HTTPS URL in Safari on the iPad or iPhone. Wait for the offli
 - Recruit local soldiers, earn gold through contracts, purchase equipment and spend hero skill points.
 - Attack towns to fight garrisons and, where present, a second throne-room battle.
 - Tap the battlefield or use the direction pad to move the hero; select Army to give troop orders. Hero attacks are manual: hold Attack while moving when needed. Hold/Charge, pause, 2× speed and retreat are available. WASD/arrows move the hero, Space/0 attacks, Shift switches weapons, and P pauses.
-- Saves occur between battles. Reload/retreat/defeat returns to the pre-battle checkpoint. A successful battle applies casualties and rewards. Progression is supported through level 29; original level 30–39 thresholds are absent in the recovered table and require investigation.
+- Saves occur between battles. Reload/retreat/defeat returns to the pre-battle checkpoint. A successful battle applies casualties and rewards. Progression follows the original sparse XP table through level 50, including its bytecode-verified jump through missing levels 30–39.
 
 ## Validation
 
-`npm test` passes 116 checks locally, including consumable stock/healing/rage, bytecode-verified reserve army abilities, source-derived movement, manual controls, all 80 battlefield layouts, and source-oracle damage, targeting, projectile, quest and equipment behavior as well as damage parity against an unmodified decompiled function across 1,400 inputs, recovered table integrity, original stat/leadership formulas, recruitment transactions, save validation, seeded simulation, reinforcement limits and battle termination for all eight heroes. These are source-level regression tests, **not recorded Flash-vs-browser gameplay replay parity**.
+`npm test` passes 127 checks locally, including consumable stock/healing/rage, bytecode-verified reserve army abilities, source-derived movement, manual controls, all 80 battlefield layouts, and source-oracle damage, targeting, projectile, quest and equipment behavior as well as damage parity against an unmodified decompiled function across 1,400 inputs, recovered table integrity, original stat/leadership formulas, recruitment transactions, save validation, seeded simulation, reinforcement limits and battle termination for all eight heroes. These are source-level regression tests, **not recorded Flash-vs-browser gameplay replay parity**.
 
 ## Reproduce the research
 
@@ -47,3 +47,5 @@ Supply controls: keys 1–6 or touch buttons use small/medium/large potions, 33%
 World travel now moves at the original two pixels per tick, with extracted land/sea collision shapes. Use waypoints when a straight route is blocked. Harbors rent ships for 4,000 gp; stables sell source horses. Delivery and rogue-contract rewards are collected at town halls. See [campaign implementation and limits](docs/WORLD_CAMPAIGN.md).
 
 Roaming enemies now use randomized constructors verified against original AVM1 bytecode over 3,040 cases; town-hall offer replacement is checked against 192 source lifecycle transitions. See [constructor and quest parity](docs/ENCOUNTER_PARITY.md).
+
+The presentation boundary now routes victory settlement, hero upgrades and troop orders through core actions; see [presentation contract and progression corrections](docs/PRESENTATION_CONTRACT.md).
