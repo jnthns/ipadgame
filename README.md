@@ -30,7 +30,7 @@ Open the resulting HTTPS URL in Safari on the iPad or iPhone. Wait for the offli
 
 ## Validation
 
-`npm test` passes 127 checks locally, including consumable stock/healing/rage, bytecode-verified reserve army abilities, source-derived movement, manual controls, all 80 battlefield layouts, and source-oracle damage, targeting, projectile, quest and equipment behavior as well as damage parity against an unmodified decompiled function across 1,400 inputs, recovered table integrity, original stat/leadership formulas, recruitment transactions, save validation, seeded simulation, reinforcement limits and battle termination for all eight heroes. These are source-level regression tests, **not recorded Flash-vs-browser gameplay replay parity**.
+`npm test` passes 131 checks locally, including consumable stock/healing/rage, bytecode-verified reserve army abilities, source-derived movement, manual controls, all 80 battlefield layouts, and source-oracle damage, targeting, projectile, quest and equipment behavior as well as damage parity against an unmodified decompiled function across 1,400 inputs, recovered table integrity, original stat/leadership formulas, recruitment transactions, save validation, seeded simulation, reinforcement limits and battle termination for all eight heroes. The suite also includes a controlled original-SWF replay under Ruffle: 300 RNG states and 1,500 fighter snapshots match. See [runtime replay evidence and limits](docs/RUNTIME_REPLAY.md); whole-game and Adobe Flash parity remain unverified.
 
 ## Reproduce the research
 
@@ -38,7 +38,7 @@ See `tools/acquire.mjs`, `tools/extract-data.mjs`, `tools/export-assets.py`, and
 
 ## Known gaps
 
-Consumables, horses, delivery collection, world travel/encounters/boats, Flash SharedObject import, high-level source edge cases and recorded whole-game replay comparison remain unfinished. Pixel movement/reservations, manual hero controls, all 80 battlefield layouts and periodic reinforcements are now implemented with source-based regression checks; Flash event ordering and documented terrain edge cases remain unverified. Inventory, equipment constraints, loot/enchantments, quest rogue generation, attack hit-event timing and projectile behavior now have source-based implementations. There is no multiplayer, analytics, ad SDK, account system or save sync. See the mechanics ledger for deliberate alpha differences.
+Consumables, horses, delivery collection, world travel/encounters/boats and quest replacement are implemented. Original Flash SharedObject import, full-game runtime comparison, scene lifecycle details and physical iOS acceptance remain unfinished. The first controlled replay corrected fighter update order, twip coordinate rounding and projectile scheduling. There is no multiplayer, analytics, ad SDK, account system or save sync. See the mechanics ledger for deliberate alpha differences.
 
 Original game, artwork and data belong to their respective rights holders. Availability of the original distribution is not an open-source license; this project does not grant rights to third-party content. See NOTICE.md.
 

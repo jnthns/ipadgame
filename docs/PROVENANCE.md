@@ -51,7 +51,7 @@ The original root frame contains MochiBot external telemetry loading code (`fram
 - Ten regression/simulation tests passed, including 1,400 damage-oracle comparisons.
 - TypeScript type check and production build passed.
 - Browser inspection covered hero selection, map rendering and contract initiation. Additional acceptance checks are recorded in `VALIDATION.md`.
-- Actual iOS Safari PWA installation and original SWF gameplay replay comparison have not been performed.
+- Actual iOS Safari PWA installation remains pending. One controlled original-SWF replay under Ruffle is now recorded; see the milestone below.
 - GitHub deployment status must be verified separately; existence of a workflow is not proof of publication.
 
 ## Movement and battlefield milestone (2026-10-26)
@@ -75,3 +75,7 @@ Added original Unit AVM1 fixtures (class sprite 2058), 76 type initializers plus
 ### 2026-10-26 — presentation boundary and progression bytecode
 
 Extracted Hero constructor/experience, Creature.strike and root percent raw AVM1 fixtures with method/register/offset hashes. Verified the sparse XP table and 400 experience boundary cases, resolving the former incorrect level-29 cap. Restored source upgrade costs/caps and terrain strike RNG (three draws; percent(NaN) follows Greater/Not). Added model troop commands and atomic, idempotent victory settlement so presentation replacement cannot duplicate rewards. No new art assets.
+
+### 2026-10-26 — first original-runtime capture
+
+Executed a research copy of the original SWF under Ruffle 0.7.1, retaining original class/timeline bodies with an appended seeded bootstrap/observer and removed tracking loader. Map 1 matches 300 RNG states and 1,500 fighter snapshots after callback-order, twip-rounding and projectile-phase corrections. Added strict replay regression and raw root-clock AVM1 checks. See [runtime evidence, reproduction and limits](RUNTIME_REPLAY.md). This does not establish Adobe Flash or full-game parity.

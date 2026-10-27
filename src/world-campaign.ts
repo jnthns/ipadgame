@@ -1,3 +1,4 @@
+import type {RootClock} from './root-clock';
 import {createEncounterUnit} from './encounter-units';
 import {data,type Campaign,type Hero,type Horse,type Nation} from './model';
 import {createQuestEnemies,questAvatarId,createCombatQuest,createDeliveryQuest} from './quest-mechanics';
@@ -34,7 +35,7 @@ export function buyHorse(c:Campaign,index:number):string|null{if(!servicesAvaila
 export function sellHorse(c:Campaign):string|null{if(!servicesAvailable(c)||!townFacilities(c.town)?.stables||!c.hero.HORSE)return 'There is no horse to sell at these stables.';c.gold+=Math.round(c.hero.HORSE.price/3);c.hero.HORSE=null;return null;}
 export function validateHorse(horse:Horse|null){if(horse==null)return;if(!['red','brown','grey','white','black'].includes(horse.skin_color)||['bonus_HP','bonus_DEF','bonus_speed','price'].some(k=>!Number.isFinite(horse[k as keyof Horse])||(horse[k as keyof Horse] as number)<0||(horse[k as keyof Horse] as number)>1e6))throw new Error('Invalid horse save.');}
 export class WorldTravel{
- constructor(public campaign:Campaign){}
+ constructor(public campaign:Campaign,private rootClock?:RootClock){}
  get state(){return world(this.campaign);}
  random=()=>{const w=this.state;w.seed=(w.seed+0x6D2B79F5)>>>0;let t=Math.imul(w.seed^w.seed>>>15,1|w.seed);t=t+Math.imul(t^t>>>7,61|t)^t;return ((t^t>>>14)>>>0)/4294967296;};
  private dice=(n:number)=>Math.floor(this.random()*n);
@@ -47,7 +48,7 @@ export class WorldTravel{
   }else if(!w.sailing){const nation=(['Viz','Ger','Rus','Jap'] as Nation[]).find(n=>worldHit(`land${n}` as 'landViz',w));if(nation&&c.hostile.includes(nation)&&this.dice(150)===0){const count=Math.min(24,8+this.d(c.hero.LEVEL));for(let i=0;i<Math.min(count,6);i++)enemies.push(createEncounterUnit('Melee',nation,1+this.d(2),this.random));for(let i=0;i<count-6;i++)enemies.push(createEncounterUnit('Ranged',nation,this.d(2)*2,this.random));}}
   if(!enemies.length)return null;const mapId=w.sailing?52+this.d(4):worldHit('seashore',w)?56+this.d(4):[10,11,12,16,17,18][this.dice(6)]*4+this.d(4);return {type:'encounter',enemies,mapId};
  }
- step():WorldEvent|null{const w=this.state;if(!w.target)return null;w.tick++;const angle=Math.atan2(w.target.y-w.y,w.target.x-w.x),next={x:w.x+2*Math.cos(angle),y:w.y+2*Math.sin(angle)};let event:WorldEvent|null=null;
+ step():WorldEvent|null{this.rootClock?.step();const w=this.state;if(!w.target)return null;w.tick++;const angle=Math.atan2(w.target.y-w.y,w.target.x-w.x),next={x:w.x+2*Math.cos(angle),y:w.y+2*Math.sin(angle)};let event:WorldEvent|null=null;
   if(Math.abs(w.x-w.target.x)<2&&Math.abs(w.y-w.target.y)<2){w.target=null;const q=this.campaign.quest;if(q&&questAt(q.avatarId??-1,w)){event={type:'quest',enemies:createQuestEnemies(this.campaign.hero,q.count,this.random),mapId:32+this.d(8)};}else{const town=townAt(w);if(town)event={type:'arrive',town};}}
   if(worldHit(w.sailing?'sea':'ground',next)){const encounter=event?null:this.encounter();if(encounter){w.target=null;return encounter;}w.x=next.x;w.y=next.y;}else{w.target=null;if(!event)event={type:'blocked'};}
   if(event?.type==='arrive')enterTown(this.campaign,event.town);return event;

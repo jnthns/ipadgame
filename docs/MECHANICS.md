@@ -11,7 +11,7 @@ Inspected build: Armor Games `feudalism-433.swf`, SHA-256 `31b2a89a748d415b249e7
 | Data | 32 towns, 76 troop definitions,8 heroes, 205 weapons/armor definitions, 24 enchantments | Recovered constructors; standard troop/town tables checked. Generic rogue constructor exports remain reference samples; roaming units now use dynamic constructors checked against original AVM1 bytecode, while quest rogues use the original formulas. |
 | Core combat | HP, defense, accuracy, dexterity avoidance, criticals, leadership, equipment enchant effects | Decompiled `Creature.as`, `Weapon.as` and Enchant definitions; damage oracle covers 1,400 cases. |
 | Targeting | Rounded Euclidean distance, melee accessibility checks, ranged hittable-first preference and terrain line of sight | Source functions exercised as regression oracles. All 80 original battlefield collision layouts are now imported from source SWF placements. |
-| Timing | Windup, concurrent recovery, human/mounted attack hit-event offsets, manual and AI weapon switching | Recovered sprite timelines; full Flash movie ordering still needs replay comparison. |
+| Timing | Windup, concurrent recovery, human/mounted attack hit-event offsets, manual and AI weapon switching | Recovered timelines plus one controlled 300-frame Ruffle replay; broader movie ordering remains unverified. |
 | Projectiles | Arrows, scatter, flight/collision avoidance, moving-target misses, grenade splash | Source-derived logic and tests; rendering and simulation remain separate. |
 | Equipment/economy | Buy-to-inventory, stacking, equip/unequip, retain replaced equipment, sale at `floor(price / 2)`, shield/two-handed/ranged/mounted restrictions | 24 item/slot cases compared against original `Hero.equipItemInfo`; transactional purchase/equip/sale tests. |
 | Loot | Gear dropped on enemy death, enchantment roll, XP/gold, inventory collected on victory | Source `Creature.die`; all 24 enchantment combat modifiers supported. |
@@ -73,3 +73,7 @@ The current JSON save is a new format. Original `.sol` migration remains future 
 See [roaming units and quest replacement](ENCOUNTER_PARITY.md) for the completed constructor and offer-lifecycle work.
 
 [Presentation contract](PRESENTATION_CONTRACT.md): victory settlement is atomic/idempotent; progression and troop-order rules no longer live in UI callbacks. Tree strike and grenade terrain RNG consumption are now retained; source scene-ordering limits remain.
+
+## Controlled original-runtime milestone
+
+[Runtime replay](RUNTIME_REPLAY.md) records an instrumented original SWF under Ruffle 0.7.1. All 1,500 fighter snapshots and 300 RNG states match after correcting callback order, twip rounding and projectile phase. Shared root-clock phase is bytecode tested and connected to world/battle simulation; DOM city screens still need lifecycle comparison. This is one case, not whole-game parity.

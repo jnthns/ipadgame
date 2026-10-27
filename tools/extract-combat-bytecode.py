@@ -11,7 +11,7 @@ def acts(p):
   if op>=128:n=struct.unpack_from('<H',p,pc)[0];pc+=2
   payload=p[pc:pc+n];pc+=n;yield at,op,payload
   if not op:break
-for cls,selected in [('Hero',{'Hero','experience'}),('Creature',{'strike'}),('Root',{'percent'})]:
+for cls,selected in [('Hero',{'Hero','experience'}),('Creature',{'strike'}),('Root',{'percent','onEnterFrame'})]:
  if cls=='Root':id=0;p=next(p for c,p,o in ts if c==12 and b'percent\x00' in p)
  else:id=next(k for k,v in ex.items() if v=='__Packages.'+cls);p=next(p[2:] for c,p,o in ts if c==59 and struct.unpack_from('<H',p)[0]==id)
  pool=[];recent=[];out={}

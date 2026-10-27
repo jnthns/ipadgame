@@ -48,7 +48,7 @@ Original map selection is connected to the UI:
 | Town siege | `Town.setBattleMap`’s town-specific base plus `d(4)` |
 | Combat quest | `32 + d(8)` |
 | Throne room | `60 + d(4)` |
-| Harbor siege | `76 + d(4)` is supported by the selector; harbor campaign state is not yet implemented |
+| Harbor siege | `76 + d(4)` is selected when attacking the town where the player’s ship is docked |
 
 Reinforcement commands add at most one unit per team every 31 source ticks, matching the root frame counter’s increment/reset sequence. Entry rows use source random retries. The reconstruction safely defers spawning if an entire edge is blocked, rather than reproducing the original retry-limit overlap failure.
 
@@ -60,9 +60,9 @@ Tests execute embedded original Creature/Player function excerpts and compare pi
 
 Known differences or uncertainties:
 
-- AVM1 child-script creation order and full Flash movie-frame event ordering still need runtime replay comparison.
+- The first controlled Ruffle case verifies reverse creation-order fighter updates and twip rounding; broader movie-frame ordering still needs comparison. See [runtime replay](RUNTIME_REPLAY.md).
 - Maps 2 and 4 contain an original enemy/TreeBroken_1 overlap at `[18,7]`. It is preserved and flagged. Exact `.who` overwrites depend on original child-script order.
 - Terrain absorbs a manual strike’s target priority. Original Creature.strike plus root percent bytecode now verifies three consumed RNG draws (critical, accuracy, variance) and no miss/damage effect for a Tree; this side effect is reproduced. Grenade terrain damage draws are retained too.
 - Some original soldier weapon-switch side effects and animation busy ordering need replay confirmation.
-- The reconstruction’s battle clock starts at a defined phase; the original root frame counter can carry a phase across scene transitions.
+- A shared root clock now carries phase across simulated world/battle transitions. DOM-only city screens do not yet advance it.
 - Physical iPad/iPhone behavior and battery use remain untested.
