@@ -2,7 +2,7 @@
 """Add a deterministic trace harness to a research copy; never change source SWF.
 Original classes, timelines and frame scripts remain intact. See RUNTIME_REPLAY.md.
 """
-import importlib.util,pathlib,struct,zlib,hashlib
+import argparse,importlib.util,pathlib,struct,zlib,hashlib
 sp=importlib.util.spec_from_file_location('t',pathlib.Path(__file__).with_name('extract-terrain.py'));t=importlib.util.module_from_spec(sp);sp.loader.exec_module(t)
 def action(op,p=b''):return bytes([op])+(struct.pack('<H',len(p))+p if op>=128 else b'')
 def push(v):
@@ -37,7 +37,24 @@ def trace(parts):
   code+=part+action(0x47)
  return code+action(0x26)
 
+def parse_args():
+ parser=argparse.ArgumentParser(description=__doc__)
+ parser.add_argument('--slots',type=int,default=5,help='Number of hero slots to observe (5–30); extra slots emit SLOT records')
+ args=parser.parse_args()
+ if not 5 <= args.slots <= 30: parser.error('--slots must be between 5 and 30')
+ return args
+
+def extra_slot_records(slots):
+ # Record every additional slot, including undefined ones, so creation and removal
+ # can be located without assuming a display-list creation order.
+ result=b''
+ fields=['team','X','Y','_x','_y','HP','t_bef','t_aft','isBusy','atkAnim','body._currentframe','wpn.TYPE','attacking._name','moveX','moveY','nextX','nextY']
+ for i in range(5,slots):
+  result+=trace([push('SLOT'),get('_global.__replayFrame'),push(i),get(f'_root.hero{i}')+action(0x44)]+[get(f'_root.hero{i}.'+f) for f in fields])
+ return result
+
 def main():
+ args=parse_args()
  root=pathlib.Path(__file__).resolve().parent.parent;raw=(root/'reference/feudalism.swf').read_bytes();assert hashlib.sha256(raw).hexdigest()==t.EXPECTED_SWF_SHA256
  # A Park-Miller stream keeps all products exactly representable in AVM1 doubles.
  randbody=setv('_global.__replaySeed',get('_global.__replaySeed')+push(16807)+action(0x0c)+push(2147483647)+action(0x3f))+get('_global.__replaySeed')+push(2147483647)+action(0x0d)+action(0x3e)
@@ -53,6 +70,7 @@ def main():
  for i in range(5):
   fields=['team','X','Y','_x','_y','HP','t_bef','t_aft','isBusy','atkAnim','body._currentframe','wpn.TYPE','attacking._name','moveX','moveY','nextX','nextY']
   record+=trace([push('UNIT'),get('_global.__replayFrame'),push(i)]+[get(f'_root.hero{i}.'+f) for f in fields])
+ record+=extra_slot_records(args.slots)
  finish=trace([push('DONE'),get('_global.__replayFrame')])
  record+=if_(get('_global.__replayFrame')+push(300)+action(0x49),finish)
  wait=trace([push('WAIT'),get('_root._currentframe'),get('_root._framesloaded'),method('_root.getBytesLoaded'),method('_root.getBytesTotal')])
