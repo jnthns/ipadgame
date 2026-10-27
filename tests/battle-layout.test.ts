@@ -4,3 +4,11 @@ test('every original town selects its recovered siege group for all four d4 outc
 test('quest, throne and harbor map ranges match original source expressions',()=>{for(const roll of [0,.125,.5,.999999]){const reference=vm.runInNewContext('({quest:32+d(8),throne:60+d(4),harbor:76+d(4)})',{d:(n:number)=>Math.floor(roll*n)+1});assert.equal(chooseBattleMap('quest','Trapezus',()=>roll),reference.quest);assert.equal(chooseBattleMap('throne','Jana',()=>roll),reference.throne);assert.equal(chooseBattleMap('siege','Omi',()=>roll,true),reference.harbor);}});
 test('all 80 layouts keep the original 10 troop spots per side plus hero and copy their collision cells',()=>{for(let id=1;id<=80;id++){const layout=battleLayout(id);assert.equal(layout.initialSpawns.filter(s=>s.hero).length,1);assert.equal(layout.initialSpawns.filter(s=>s.team===0&&!s.hero).length,10);assert.equal(layout.initialSpawns.filter(s=>s.team===1).length,10);assert.deepEqual(layout.initialSpawns.find(s=>s.hero),{x:0,y:4,team:0,hero:true});assert.equal(layout.reinforcementInterval,31);for(const c of layout.blockedCells)assert.ok(c.x>=0&&c.x<20&&c.y>=0&&c.y<8);layout.blockedCells.push({x:99,y:99});assert.ok(!battleLayout(id).blockedCells.some(c=>c.x===99));}});
 test('invalid map inputs are rejected before starting a battle',()=>{for(const id of [0,81,1.5,NaN])assert.throws(()=>battleLayout(id));assert.throws(()=>chooseBattleMap('siege','__proto__',()=>0));assert.throws(()=>chooseBattleMap('siege','Trapezus',()=>1));});
+
+test('reinforcements acquire a target on their spawn tick',async()=>{
+ const {Battle,newCampaign}=await import('../src/model');
+ const c=newCampaign();c.army=['MeleeViz1'];
+ const battle=new Battle(c,['MeleeViz1'],'quest',c.town,1,{heroControl:'manual',initialSpawns:[{x:1,y:3,team:0,hero:true},{x:18,y:3,team:1,hero:false}],reinforcementInterval:1});
+ const next=battle.nextId;battle.step();const added=battle.fighters.find(f=>f.id===next);
+ assert.ok(added);assert.equal(added.targetId,battle.fighters.find(f=>f.team===1)?.id);
+});
