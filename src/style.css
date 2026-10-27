@@ -8,3 +8,14 @@
 .battle-supplies{display:flex;gap:8px;flex-wrap:wrap;padding:10px 14px;border-top:1px solid var(--line)}
 .battle-supplies button{min-height:44px;flex:1 1 130px;font-size:12px}
 .battle-supplies b{margin-left:6px;color:var(--gold)}
+/* Device acceptance: functional insets and hit areas, independent of art presets. */
+.app-shell{padding-top:max(24px,env(safe-area-inset-top));padding-right:max(20px,env(safe-area-inset-right));padding-bottom:max(20px,env(safe-area-inset-bottom));padding-left:max(20px,env(safe-area-inset-left))}
+button,select,input:not([type="file"]){min-width:44px;min-height:44px}
+.header #help{min-width:44px}
+select,input,textarea{font-size:16px}
+.preset-control select{font-size:16px;max-width:150px}
+.overlay{padding-top:max(18px,env(safe-area-inset-top));padding-bottom:max(18px,env(safe-area-inset-bottom));padding-left:max(18px,env(safe-area-inset-left));padding-right:max(18px,env(safe-area-inset-right))}
+.toast{bottom:max(25px,env(safe-area-inset-bottom))}
+.unit-copy,.row>div,.brand,.side,.panel{min-width:0}.unit-copy b,.equipment b,.log-entry{overflow-wrap:anywhere}
+@media(max-width:1050px){.app-shell{padding-top:max(15px,env(safe-area-inset-top));padding-right:max(15px,env(safe-area-inset-right));padding-bottom:max(20px,env(safe-area-inset-bottom));padding-left:max(15px,env(safe-area-inset-left))}}
+@media(max-width:760px){.app-shell{padding-top:max(12px,env(safe-area-inset-top));padding-right:max(12px,env(safe-area-inset-right));padding-left:max(12px,env(safe-area-inset-left))}.header{flex-wrap:wrap}.resources{margin-left:auto;flex-wrap:wrap}.preset-control select{font-size:16px;max-width:150px}.manual-controls{flex-wrap:wrap}.hero-actions{min-width:0}.unit{flex-wrap:wrap}.unit-copy{min-width:min(150px,100%)}}

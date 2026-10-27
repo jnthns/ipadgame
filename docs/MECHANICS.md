@@ -76,4 +76,8 @@ See [roaming units and quest replacement](ENCOUNTER_PARITY.md) for the completed
 
 ## Controlled original-runtime milestone
 
-[Runtime replay](RUNTIME_REPLAY.md) records an instrumented original SWF under Ruffle 0.7.1. All 1,500 fighter snapshots and 300 RNG states match after correcting callback order, twip rounding and projectile phase. Shared root-clock phase is bytecode tested and connected to world/battle simulation; DOM city screens still need lifecycle comparison. This is one case, not whole-game parity.
+[Runtime replay](RUNTIME_REPLAY.md) records an instrumented original SWF under Ruffle 0.7.1. All 1,500 fighter snapshots and 300 RNG states match after correcting callback order, twip rounding and projectile phase. Shared root-clock phase is bytecode tested and connected to world/battle simulation; DOM city screens now advance phase, while original transition ordering still needs lifecycle comparison. This is one case, not whole-game parity.
+
+## Hands-on testing candidate
+
+The suite now contains149 passing checks. Integrated campaign scenarios cover real simulated quests through level2, equipment/recruitment, deliveries, upgrades, two-stage foreign conquest and defeat/checkpoint data. Original reinforcement command bytes match675 usable-edge cases and the152-draw retry boundary. Fully blocked edges deliberately defer spawning rather than copying the original overlap bug. PWA checks cover scope-isolated/current-build caching, query-string offline navigation, renamed-asset revision changes and manifest/icons. See [device handoff](DEVICE_TEST.md). These checks support an alpha testing candidate; they do not close full-runtime or physical-device acceptance.

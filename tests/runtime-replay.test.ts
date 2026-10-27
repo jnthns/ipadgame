@@ -65,3 +65,13 @@ test('original wall effect matches all 300 frames including scatter and friendly
  assert.equal(result.matchingUnitFrames,result.totalUnitFrames);
  assert.deepEqual(result.firstDifferences,[]);
 });
+
+test('runtime regression rejects corrupt or duplicate fighter evidence',()=>{
+ const unit=trace.lines.find(line=>line.startsWith('UNIT|1|1|'))!;
+ const values=unit.split('|');values[8]='NaN';
+ assert.throws(()=>compareRuntimeTrace({...trace,lines:trace.lines.map(line=>line===unit?values.join('|'):line)}),/Invalid runtime fighter/);
+ values[8]=unit.split('|')[8];values[2]='0';
+ assert.throws(()=>compareRuntimeTrace({...trace,lines:trace.lines.map(line=>line===unit?values.join('|'):line)}),/Duplicate runtime fighter/);
+ const frame=trace.lines.find(line=>line.startsWith('FRAME|1|'))!;
+ assert.throws(()=>compareRuntimeTrace({...trace,lines:[...trace.lines,frame]}),/duplicate runtime frame/);
+});

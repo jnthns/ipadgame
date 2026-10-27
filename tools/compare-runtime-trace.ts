@@ -9,6 +9,19 @@ const lengthLine=input.lines.find(line=>line.startsWith('LENGTH|'));const durati
 if(ability){const casts=input.lines.filter(line=>line.startsWith('CAST|')).map(line=>line.split('|'));if(casts.length!==1||casts[0][1]!==ability||casts[0][2]!=='150'||!casts[0].slice(3,5).every(v=>Number.isInteger(Number(v))))throw new Error('Expected one validated ability cast at frame 150.');}
 const c=newCampaign();c.hero=structuredClone(data.units.MeleeViz1);c.hero.LEVEL=1;c.army=reinforcement?Array(12).fill('MeleeViz1'):['MeleeViz1','RangedViz1'];const enemies=reinforcement?Array(12).fill('MeleeViz1'):['MeleeViz1','RangedViz1'];const b=new Battle(c,enemies,'quest',c.town,1,{heroControl:'manual',...battleLayout(1)});
 let seed=Number(boot[1]);b.random=()=>{seed=seed*16807%2147483647;return seed/2147483647;};
+// Validate recorded evidence before building scenario-specific frame views.
+const seenFrames=new Set<number>(),seenFighters=new Set<string>();
+for(const line of input.lines){
+ const raw=line.split('|');if(!['FRAME','UNIT','SLOT'].includes(raw[0]))continue;
+ const frame=Number(raw[1]);if(!Number.isInteger(frame)||frame<1||frame>duration)throw new Error('Invalid runtime frame number.');
+ if(raw[0]==='FRAME'){const value=Number(raw[3]);if(raw.length!==5||seenFrames.has(frame)||!Number.isInteger(value)||value<1||value>=2147483647)throw new Error('Invalid or duplicate runtime frame sample.');seenFrames.add(frame);continue;}
+ const a=[...raw];if(a[0]==='SLOT'){if(!reinforcement)continue;a.splice(3,1);}
+ const id=Number(a[2]),key=`${frame}:${id}`;
+ if(seenFighters.has(key))throw new Error('Duplicate runtime fighter sample.');seenFighters.add(key);
+ if(a.length!==20||!Number.isInteger(id)||id<0||id>(reinforcement?29:4))throw new Error('Invalid runtime fighter sample.');
+ if(reinforcement&&a[3]==='undefined')continue;
+ if(a.slice(3,11).some(v=>v.trim()===''||!Number.isFinite(Number(v)))||[a[16],a[17]].some(v=>v.trim()===''||!Number.isFinite(Number(v))&&!(reinforcement&&['NaN','undefined'].includes(v)))||!['Melee','Ranged'].includes(a[14])||a[15]!=='undefined'&&!/^hero\d+$/.test(a[15]))throw new Error('Invalid runtime fighter sample.');
+}
 const slotsByFrame=new Map<number,Set<number>>(); let duplicateSlot=false;
 const frameSeeds=new Map<number,number>();const frames=new Map<number,string[][]>();for(const line of input.lines){const a=line.split('|');if(a[0]==='FRAME')frameSeeds.set(Number(a[1]),Number(a[3]));if(a[0]==='SLOT'&&reinforcement){const frame=Number(a[1]),id=Number(a[2]);if(!slotsByFrame.has(frame))slotsByFrame.set(frame,new Set());const slots=slotsByFrame.get(frame)!;if(slots.has(id))duplicateSlot=true;slots.add(id);}if(a[0]==='SLOT'&&reinforcement&&a[3]!=='undefined'){a.splice(0,1,'UNIT');a.splice(3,1);if(!frames.has(Number(a[1])))frames.set(Number(a[1]),[]);frames.get(Number(a[1]))!.push(a);}if(a[0]==='UNIT'&&line.startsWith('UNIT|')){const frame=Number(a[1]);if(!frames.has(frame))frames.set(frame,[]);frames.get(frame)!.push(a);}}
 if(frames.size!==duration||frameSeeds.size!==duration||(reinforcement&&(duplicateSlot||Array.from({length:duration},(_,i)=>Array.from({length:25},(_,j)=>!slotsByFrame.get(i+1)?.has(j+5)).some(Boolean)).some(Boolean)))||Array.from({length:duration},(_,i)=>(reinforcement?(frames.get(i+1)?.length??0)<5:frames.get(i+1)?.length!==5)||!frameSeeds.has(i+1)).some(Boolean)||!input.lines.includes(`DONE|${duration}`))throw new Error('Expected a complete runtime capture.');

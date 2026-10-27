@@ -8,7 +8,7 @@ Map 1, a stationary manual hero, two allies and two enemies, 300 frames: **1,500
 
 The capture exposed three errors: actors must update in reverse creation order, MovieClip position writes truncate to integer twips (1/20 pixel), and existing projectiles update before fighters. New arrows therefore start moving on the following frame. Hero ID zero is independent from its actual place in the display-list creation sequence. The formation adapter already had the correct creation order.
 
-The original root clock also has a 31-frame period. Its raw AVM1 callback is checked over all 31 starting phases, with and without a hero. A shared `RootClock` now carries phase through simulated world travel and battle transitions. DOM-only city/equipment screens do not advance this clock yet; this remains a transition fidelity limit.
+The original root clock also has a 31-frame period. Its raw AVM1 callback is checked over all 31 starting phases, with and without a hero. A shared `RootClock` now carries phase through simulated world travel and battle transitions. Visible idle city/equipment screens also advance this clock at 30 Hz; backgrounded sessions deliberately pause without a catch-up jump. Full source scene-lifecycle replay remains a fidelity limit.
 
 ## Provenance
 
@@ -45,6 +45,12 @@ The runtime package, original SWF and generated research movie remain ignored an
 ## Remaining acceptance gaps
 
 This single seeded case does not establish callback ordering for all cross-team/reinforcement combinations, projectile-to-projectile ordering, reserve ability scheduling, every battlefield, body animation/busy flags, world collision edges, or scene lifecycle equivalence. The observer records additional fields that the comparator does not yet assert. The bootstrap bypasses normal menu interaction. Cloud-browser wall-clock speed is not a performance measurement. Adobe Flash and physical iPad/iPhone Safari validation remain outstanding. Presentation and bulk art generation remain paused.
+
+## Reinforcement bytecode acceptance
+
+Three additional checks execute the original root `commandAI`, `getTeamCount` and `getFreeY` bytes. A 675-case matrix varies active counts across zero, one, nine, ten and eleven, both reserve sizes across zero, one and three, and three deterministic seeds. Queue retention, team order, spawn positions and RNG draws match for usable edges. The retry boundary exposed and corrected an off-by-one: the original consumes one initial draw plus up to 151 retries, or 152 draws total.
+
+A fully blocked edge still deliberately defers spawning in the remake. The original exhausts its retries and returns a blocked cell, allowing an overlap. That difference is asserted explicitly, not hidden as parity. These narrow bytecode checks complement the existing actual runtime capture; they do not add an original-player reinforcement or ability capture. Capture validation now rejects duplicate frame/fighter records and non-finite numeric evidence.
 
 ## Reinforcement capture preparation
 

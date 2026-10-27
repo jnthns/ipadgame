@@ -30,7 +30,7 @@ Open the resulting HTTPS URL in Safari on the iPad or iPhone. Wait for the offli
 
 ## Validation
 
-`npm test` passes 131 checks locally, including consumable stock/healing/rage, bytecode-verified reserve army abilities, source-derived movement, manual controls, all 80 battlefield layouts, and source-oracle damage, targeting, projectile, quest and equipment behavior as well as damage parity against an unmodified decompiled function across 1,400 inputs, recovered table integrity, original stat/leadership formulas, recruitment transactions, save validation, seeded simulation, reinforcement limits and battle termination for all eight heroes. The suite also includes a controlled original-SWF replay under Ruffle: 300 RNG states and 1,500 fighter snapshots match. See [runtime replay evidence and limits](docs/RUNTIME_REPLAY.md); whole-game and Adobe Flash parity remain unverified.
+`npm test` passes 149 checks locally, including consumable stock/healing/rage, bytecode-verified reserve army abilities, source-derived movement, manual controls, all 80 battlefield layouts, and source-oracle damage, targeting, projectile, quest and equipment behavior as well as damage parity against an unmodified decompiled function across 1,400 inputs, recovered table integrity, original stat/leadership formulas, recruitment transactions, save validation, seeded simulation, reinforcement limits and battle termination for all eight heroes. The suite also includes a controlled original-SWF replay under Ruffle: 300 RNG states and 1,500 fighter snapshots match. See [runtime replay evidence and limits](docs/RUNTIME_REPLAY.md); whole-game and Adobe Flash parity remain unverified.
 
 ## Reproduce the research
 
@@ -49,3 +49,7 @@ World travel now moves at the original two pixels per tick, with extracted land/
 Roaming enemies now use randomized constructors verified against original AVM1 bytecode over 3,040 cases; town-hall offer replacement is checked against 192 source lifecycle transitions. See [constructor and quest parity](docs/ENCOUNTER_PARITY.md).
 
 The presentation boundary now routes victory settlement, hero upgrades and troop orders through core actions; see [presentation contract and progression corrections](docs/PRESENTATION_CONTRACT.md).
+
+## Hands-on mechanics test candidate
+
+See [device test steps](docs/DEVICE_TEST.md), [integrated campaign acceptance](docs/CAMPAIGN_ACCEPTANCE.md) and [runtime fidelity limits](docs/RUNTIME_REPLAY.md). CI retains the built static app as the `feudalism-mechanics-test-build` artifact for 14 days. The main-branch workflow publishes GitHub Pages once the repository owner enables Settings → Pages → Source: GitHub Actions. Physical device testing and full original-game parity remain pending; presentation work is paused.

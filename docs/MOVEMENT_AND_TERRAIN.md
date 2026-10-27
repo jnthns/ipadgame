@@ -64,5 +64,5 @@ Known differences or uncertainties:
 - Maps 2 and 4 contain an original enemy/TreeBroken_1 overlap at `[18,7]`. It is preserved and flagged. Exact `.who` overwrites depend on original child-script order.
 - Terrain absorbs a manual strike’s target priority. Original Creature.strike plus root percent bytecode now verifies three consumed RNG draws (critical, accuracy, variance) and no miss/damage effect for a Tree; this side effect is reproduced. Grenade terrain damage draws are retained too.
 - Some original soldier weapon-switch side effects and animation busy ordering need replay confirmation.
-- A shared root clock now carries phase across simulated world/battle transitions. DOM-only city screens do not yet advance it.
+- A shared root clock now carries phase across simulated world/battle transitions. DOM-only city/equipment screens now advance it at30 Hz while visible; exact transition callback ordering still needs original-runtime comparison.
 - Physical iPad/iPhone behavior and battery use remain untested.
