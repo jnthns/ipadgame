@@ -1,0 +1,9 @@
+# Payment and company visibility
+
+Returning to a town does not call the original town-hall collection action. A six-gold purse alone therefore cannot establish that a contract was paid incorrectly. The previous UI hid queued payment behind opening Town hall, and road encounters could be mistaken for the marked contract battle.
+
+The campaign now shows queued payments separately from purse gold, with a one-time Collect action at the eligible town or a travel action elsewhere. Combat contracts that remain active are labelled explicitly. Existing saves use their existing reward notes; no currency is invented and payment rules are unchanged.
+
+Victory results separately show battle gold, XP, loot item count, survivors/casualties and any contract pay awaiting collection. A permanent company strip shows the hero plus grouped troops and quantities, and the header army count opens the roster. During combat that count/roster reads living deployed troops plus reserves, rather than the pre-battle campaign snapshot. Shared portraits are provisional; unarmed troops use a fist symbol.
+
+Verification: four regression checks cover six battle gold versus saved 300-gold payment, collection exactly once, road encounters retaining active contracts, grouped living company/reserves and remote payment eligibility. Full local suite: 153 tests, 151 passing and two original-SWF extraction checks skipped in this isolated checkout; production build passes. Browser verification imported a disposable Niora save with six gold, seven soldiers and a 300-gold queued note; the new Collect action changed the purse to306 and removed the note. The company strip showed five Taekwons and two Apprentices. This is not evidence of the reporting player's actual save state or a diagnosis of the previously reported crashes.
