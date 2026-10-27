@@ -45,3 +45,9 @@ The runtime package, original SWF and generated research movie remain ignored an
 ## Remaining acceptance gaps
 
 This single seeded case does not establish callback ordering for all cross-team/reinforcement combinations, projectile-to-projectile ordering, reserve ability scheduling, every battlefield, body animation/busy flags, world collision edges, or scene lifecycle equivalence. The observer records additional fields that the comparator does not yet assert. The bootstrap bypasses normal menu interaction. Cloud-browser wall-clock speed is not a performance measurement. Adobe Flash and physical iPad/iPhone Safari validation remain outstanding. Presentation and bulk art generation remain paused.
+
+## Reinforcement capture preparation
+
+Generate `python tools/make-runtime-probe.py --scenario reinforcement` to initialize twelve melee Viz troops per side and observe thirty fighter slots. Extra SLOT records retain undefined slots so creation/removal can be inspected. Export the 300-frame trace using the existing replay player, then pass it to `tools/compare-runtime-trace.ts`. The comparator recognizes the scenario marker, checks additional slot coverage, compares present fighters and RNG, and reports unexpected model fighters. This scenario has not yet been captured or validated against Ruffle; slot lifecycle and spawn ordering remain exploratory.
+
+The current environment recovered the exact original SWF and Ruffle package, but local capture was blocked by a missing browser and an invalid browser download archive. No reinforcement fixture or parity claim was added. The original five-fighter regression remains the only committed original-runtime evidence.
