@@ -39,8 +39,10 @@ def trace(parts):
 
 def parse_args():
  parser=argparse.ArgumentParser(description=__doc__)
+ parser.add_argument('--scenario',choices=['baseline','reinforcement'],default='baseline')
  parser.add_argument('--slots',type=int,default=5,help='Number of hero slots to observe (5–30); extra slots emit SLOT records')
  args=parser.parse_args()
+ if args.scenario == 'reinforcement': args.slots=30
  if not 5 <= args.slots <= 30: parser.error('--slots must be between 5 and 30')
  return args
 
@@ -64,6 +66,10 @@ def main():
  init+=setv('_global.MAIN_HERO',new('Unit',[push('Melee'),push('Viz'),push(1)]))+setv('_global.MAIN_HERO.LEVEL',push(1))
  init+=setv('_global.FRIENDS',array([new('Unit',[push('Melee'),push('Viz'),push(1)]),new('Unit',[push('Ranged'),push('Viz'),push(1)])]))
  init+=setv('_global.ENEMIES',array([new('Unit',[push('Melee'),push('Viz'),push(1)]),new('Unit',[push('Ranged'),push('Viz'),push(1)])]))
+ if args.scenario=='reinforcement':
+  init+=setv('_global.FRIENDS',array([new('Unit',[push('Melee'),push('Viz'),push(1)]) for _ in range(12)]))
+  init+=setv('_global.ENEMIES',array([new('Unit',[push('Melee'),push('Viz'),push(1)]) for _ in range(12)]))
+  init+=trace([push('SCENARIO'),push('reinforcement')])
  for k,v in [('CURR_TOWN','Trapezus'),('BATTLE_TYPE','QUEST'),('BATTLE_MAP',1),('times',0),('__replayFrame',0),('GOLD',100),('POTION_HealSmall',5),('POTION_HealMedium',2),('POTION_HealBig',1),('SCROLL_AllHealSmall',4),('SCROLL_AllHealBig',2),('SCROLL_Rage',1)]:init+=setv('_global.'+k,push(v))
  init+=stmt(method('_root.loadMap',[push(1)]))+stmt(method('_root.gotoAndStop',[push(5)]))+trace([push('BOOT'),get('_global.__replaySeed'),get('_root._currentframe'),get('Unit')+action(0x44),get('_root.loadMap')+action(0x44),get('loadMap')+action(0x44),get('_global.MAIN_HERO.NAME'),get('_global.HERO'),get('_root.WhatToLoad')])
  record=setv('_root.__probeReadout.text',get('_global.__replayFrame'))+setv('_global.__replayFrame',get('_global.__replayFrame')+push(1)+action(0x47))+trace([push('FRAME'),get('_global.__replayFrame'),get('_global.times'),get('_global.__replaySeed'),get('_root._currentframe')])
