@@ -39,12 +39,15 @@ def trace(parts):
 
 def parse_args():
  parser=argparse.ArgumentParser(description=__doc__)
+ parser.add_argument('--control-roster',choices=['both','none','deployed'],default='both')
+ parser.add_argument('--cast-controls',action='store_true')
  parser.add_argument('--frames',type=int,default=300,help='Capture length (1–3600 frames)')
- parser.add_argument('--scenario',choices=['baseline','reinforcement','shower','wall'],default='baseline')
+ parser.add_argument('--scenario',choices=['baseline','reinforcement','shower','wall','controls'],default='baseline')
  parser.add_argument('--slots',type=int,default=5,help='Number of hero slots to observe (5–30); extra slots emit SLOT records')
  args=parser.parse_args()
+ if args.cast_controls and (args.scenario!='controls' or args.control_roster!='both'): parser.error('--cast-controls requires --scenario controls --control-roster both')
  if not 1 <= args.frames <= 3600: parser.error('--frames must be between 1 and 3600')
- if args.scenario == 'reinforcement': args.slots=30
+ if args.scenario in ('reinforcement','controls'): args.slots=30
  if not 5 <= args.slots <= 30: parser.error('--slots must be between 5 and 30')
  return args
 
@@ -69,6 +72,11 @@ def main():
  init+=setv('_global.MAIN_HERO',new('Unit',[push('Melee'),push('Viz'),push(1)]))+setv('_global.MAIN_HERO.LEVEL',push(1))
  init+=setv('_global.FRIENDS',array([new('Unit',[push('Melee'),push('Viz'),push(1)]),new('Unit',[push('Ranged'),push('Viz'),push(1)])]))
  init+=setv('_global.ENEMIES',array([new('Unit',[push('Melee'),push('Viz'),push(1)]),new('Unit',[push('Ranged'),push('Viz'),push(1)])]))
+ if args.scenario=='controls':
+  roster=[new('Unit',[push('Melee'),push('Viz'),push(1)]) for _ in range(10)]+[new('Unit',[push('Ranged'),push('Viz'),push(1)]),new('Unit',[push('Ranged'),push('Viz'),push(2)])]
+  if args.control_roster=='none': roster=roster[:10]
+  if args.control_roster=='deployed': roster=roster[:8]+roster[10:]
+  init+=setv('_global.FRIENDS',array(roster))+trace([push('SCENARIO'),push('controls')])+trace([push('CONTROLS'),push(args.control_roster),push(args.cast_controls)])
  if args.scenario in ('shower','wall'):
   init+=trace([push('SCENARIO'),push(args.scenario)])
  if args.scenario=='reinforcement':
@@ -82,10 +90,18 @@ def main():
   fields=['team','X','Y','_x','_y','HP','t_bef','t_aft','isBusy','atkAnim','body._currentframe','wpn.TYPE','attacking._name','moveX','moveY','nextX','nextY']
   record+=trace([push('UNIT'),get('_global.__replayFrame'),push(i)]+[get(f'_root.hero{i}.'+f) for f in fields])
  record+=extra_slot_records(args.slots)
+ if args.scenario=='controls':
+  record+=trace([push('CONTROL'),get('_global.__replayFrame'),get('_root.scr')+action(0x44),get('_root.scr.control_shower._currentframe'),get('_root.scr.control_shower.is_ready'),get('_root.scr.control_wall._currentframe'),get('_root.scr.control_wall.is_ready'),get('_global.FRIENDS.length'),method('_root.getTeamCount',[push(0)])])
  if args.scenario in ('shower','wall'):
   effect='addArrowShower' if args.scenario=='shower' else 'addArrowWall'
   cast=stmt(method('_root.'+effect,[get('_root.hero1.X'),get('_root.hero1.Y'),push(100),push(False)]))+trace([push('CAST'),push(args.scenario),get('_global.__replayFrame'),get('_root.hero1.X'),get('_root.hero1.Y')])
   record+=if_(get('_global.__replayFrame')+push(150)+action(0x49),cast)
+ if args.scenario=='controls' and args.cast_controls:
+  cast=b''
+  for kind,method_name in [('shower','makeArrowShower'),('wall','makeArrowWall')]:
+   cast+=stmt(method('_root.scr.'+method_name,[push(10),push(3)]))+stmt(method('_root.scr.control_'+kind+'.gotoAndPlay',[push(1)]))
+  cast+=trace([push('CONTROLCAST'),get('_global.__replayFrame'),push(10),push(3)])
+  record+=if_(get('_global.__replayFrame')+push(90)+action(0x49),cast)
  finish=trace([push('DONE'),get('_global.__replayFrame')])
  record+=if_(get('_global.__replayFrame')+push(args.frames)+action(0x49),finish)
  wait=trace([push('WAIT'),get('_root._currentframe'),get('_root._framesloaded'),method('_root.getBytesLoaded'),method('_root.getBytesTotal')])
