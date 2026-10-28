@@ -4,6 +4,10 @@ A personal reverse-engineering study of Vitaly Zaborov’s 2007 Flash game, impl
 
 **Active priority: finish original mechanics. Presentation is frozen as a representative slice on a separate branch. Status: playable alpha, not a complete or behavior-identical port.** Original unit/town/hero data and core damage formulas are recovered. Navigation, combat simulation, rendering and controls are reconstructed. See [mechanics and fidelity](docs/MECHANICS.md) and [research provenance](docs/PROVENANCE.md).
 
+## Presentation work
+
+The campaign shell retains the earlier painted world map. Stage 2 adds four representative illustrated combat roles, movement/attack/hit/defeat poses, team and faction markers, a live health/command HUD, readable projectile effects and touch controls. Simulation and rewards remain in the existing core. See [presentation stages](docs/PRESENTATION_STAGES.md) and [combat artwork](docs/COMBAT_ART.md). Full per-class equipment appearances and physical iPad acceptance remain later work.
+
 ## Run
 
 ```sh
