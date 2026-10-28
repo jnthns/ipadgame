@@ -2,7 +2,7 @@
 
 Repository: https://github.com/jnthns/ipadgame
 
-Mechanics workstream: `mechanics-first`. The hands-on testing candidate is on `device-test-stage`, prepared for release through `main`. Presentation is frozen; earlier art is archived on `presentation-slice`. GitHub Pages must be enabled by the owner before publication can succeed.
+Mechanics workstream: `mechanics-first`. The hands-on testing candidate is on `device-test-stage`, prepared for release through `main`. Focused presentation work now proceeds on `presentation-stage-2`, based on current `main`; the earlier representative slice is archived on `presentation-slice`. See `docs/PRESENTATION_STAGES.md`. GitHub Pages must be enabled by the owner before publication can succeed.
 
 Read `docs/MECHANICS.md`, `docs/WORLD_CAMPAIGN.md`, `docs/ENCOUNTER_PARITY.md` and `docs/IPAD_VALIDATION.md` and `docs/PRESENTATION_CONTRACT.md` before choosing the next task. Do not claim mechanics complete or restart broad asset generation while acceptance gaps remain.
 
@@ -10,10 +10,10 @@ Run `npm ci`, `npm test`, and `npm run build`. Current full local suite: 157 che
 
 Completed: source data, combat formulas/timing, manual hero controls, movement/collision reservations, 80 battlefield layouts/formations, reinforcements, inventory/equipment/loot, consumables/army abilities, world vector travel, encounters, harbors, horses, quest travel/rewards/replacement, randomized roaming constructors, bytecode-verified sparse XP progression through level 50, upgrade actions, troop commands and idempotent victory settlement.
 
-Next work: publish the mechanics alpha for physical iPad/iPhone Safari touch/offline/save acceptance using docs/DEVICE_TEST.md; continue broad original-runtime reinforcement/ability/transition capture as fidelity work. DOM-only screens now advance the shared root phase, reinforcement bytecode matches 675 matrix cases and152-draw boundary, and integrated campaign/PWA checks pass. Presentation remains frozen until hands-on acceptance and visual review. Original Flash .sol migration is separate future work.
+Next work: publish the mechanics alpha for physical iPad/iPhone Safari touch/offline/save acceptance using docs/DEVICE_TEST.md; continue broad original-runtime reinforcement/ability/transition capture as fidelity work. DOM-only screens now advance the shared root phase, reinforcement bytecode matches 675 matrix cases and152-draw boundary, and integrated campaign/PWA checks pass. The user has requested sequential presentation work. Stages 1–2 now cover the campaign shell, retained illustrated world map and representative live battlefield. Next presentation stage is the city/services pass; physical-device acceptance remains outstanding. Original Flash .sol migration is separate future work.
 
 Keep simulation independent from rendering. Quality, Balanced and Battery Saver must produce identical gameplay behavior. Document deliberate repairs and checkpoint adaptations separately from literal source parity. Do not overwrite uncommitted work or silently change the active branch. User authorization permits continuing mechanics and syncing changes to this repository.
 
-Suggested new-chat prompt: “Continue Feudalism in jnthns/ipadgame on mechanics-first. Read docs/CONTINUATION.md and docs/MECHANICS.md, inspect the current branch and tests, then work through the remaining mechanics acceptance gaps. Keep presentation frozen.”
+Suggested new-chat prompt: “Continue Feudalism in jnthns/ipadgame on mechanics-first. Read docs/CONTINUATION.md and docs/MECHANICS.md, inspect the current branch and tests, then work through the remaining mechanics acceptance gaps. Keep the work bounded to the selected workstream; presentation stages are tracked in docs/PRESENTATION_STAGES.md.”
 
 Concurrent runtime work is integrated: baseline and isolated shower/wall captures each match300 frames. Reinforcement matches1200 RNG states with18 explicit NaN movement differences retained. Three reserve-control runtime captures now match 360 control observations and RNG states, including command casts and cooldown reset; further formation cutoffs, death/reinforcement reinitialization, touch targeting and wider transitions remain fidelity gaps.
