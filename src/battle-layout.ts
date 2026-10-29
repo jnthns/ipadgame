@@ -1,7 +1,7 @@
 import terrainData from './battle-terrain.json';
 import {data} from './model';
 export type BattleKind='siege'|'quest'|'throne';
-type MapRecord={rootFrame:number;blockedCells:number[][];initialSpawns:{cell:number[];team:0|1;hero:boolean;depth:number}[];obstacles:{cell:number[];name:string}[]};
+type MapRecord={rootFrame:number;blockedCells:number[][];initialSpawns:{cell:number[];team:0|1;hero:boolean;depth:number}[];obstacles:{cell:number[];name:string;originPixels:[number,number]}[]};
 const maps=terrainData.maps as unknown as Record<string,MapRecord>;
 /** Town.setBattleMap bases. The original adds d(4), so bases themselves are not maps. */
 export const SIEGE_MAP_BASES:Readonly<Record<string,number>>=Object.freeze({

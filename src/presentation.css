@@ -189,7 +189,7 @@ button.atlas-chip{min-height:44px;cursor:pointer}
 .atlas .atlas-canvas .canvas-wrap{width:min(100%,calc((100dvh - 285px)*806/601));min-width:min(100%,300px)}
 .atlas-markers{position:absolute;inset:0;z-index:3;pointer-events:none}
 .atlas-town{position:absolute;width:0;height:0;padding:0;margin:0;border:0;background:none;box-shadow:none;min-height:0;pointer-events:none;color:inherit}
-.atlas-town .town-hit{position:absolute;left:-22px;top:-50px;width:44px;height:52px;border-radius:12px;pointer-events:auto;cursor:pointer}
+.atlas-town .town-hit{position:absolute;left:-22px;top:-44px;width:44px;height:46px;border-radius:12px;pointer-events:auto;cursor:pointer}
 .atlas-town:focus-visible .town-hit,.atlas-town:hover .town-hit{outline:2px solid #fff3b8}
 .atlas-town.selected .town-hit{outline:3px solid #fff3b8;box-shadow:0 0 0 5px #243e4655}
 .atlas-town.owned .town-hit{background:radial-gradient(circle at 50% 70%,#f8d97766,transparent 70%)}
@@ -261,9 +261,89 @@ button.atlas-chip{min-height:44px;cursor:pointer}
 .dialog button.danger{background:#a2401e;color:#fff;border-color:#8a3418}
 @media(min-width:681px) and (max-height:900px){.atlas .atlas-canvas .canvas-wrap{width:min(100%,calc((100dvh - 250px)*806/601))}.app-shell[data-view="world"] .atlas{margin-top:10px}}
 @media(max-width:680px){.atlas .atlas-canvas .canvas-wrap{width:100%;min-width:0}.atlas-tools{margin-left:0;width:100%}.atlas-tools .town-picker{flex:1}.atlas-tools .town-picker select{max-width:none;width:100%}.atlas-town .town-hit{left:-18px;top:-40px;width:36px;height:44px}}
-.atlas-company{position:absolute;z-index:4;width:0;height:0;pointer-events:none}
+.atlas-company{position:absolute;z-index:700;width:0;height:0;pointer-events:none}
 .company-pin{position:absolute;left:-14px;top:-40px;width:28px;height:28px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:#ffed92;border:3px solid #243e46;box-shadow:0 2px 6px #0007;display:grid;place-items:center}
 .company-pin .ui-icon{width:15px;height:15px;transform:rotate(45deg);color:#243e46;stroke-width:2.2}
 .atlas-company.sailing .company-pin{background:#bfe6f5}
 .company-label{position:absolute;left:0;top:-58px;transform:translateX(-50%);font:800 10px/1 system-ui,sans-serif;color:#243e46;background:#ffed92;border:2px solid #243e46;border-radius:999px;padding:2px 6px}
 .legend-pin{display:inline-grid;place-items:center;width:18px;height:18px;border-radius:50%;background:#ffed92;color:#243e46}.legend-pin .ui-icon{width:12px;height:12px}
+
+/* ── Victory roll call and level-up moment ── */
+.roll-call{display:flex;flex-wrap:wrap;gap:4px;align-items:flex-end;margin:12px 0 4px;padding:10px;border-radius:8px;background:#efe6cc}
+.roll-face{display:inline-flex;position:relative}
+.roll-face.hero .character-portrait{outline:2px solid #e2b54e;border-radius:6px}
+.roll-face.fallen{filter:grayscale(1) brightness(.75);opacity:.6}
+.roll-face.fallen::after{content:"✝";position:absolute;right:2px;top:0;font-size:12px;color:#5a2b2b}
+.roll-more{align-self:center;font-size:12px;color:#6c7b78;padding:0 6px}
+.level-up{display:flex;align-items:center;gap:12px;margin:12px 0 4px;padding:12px 14px;border-radius:10px;background:linear-gradient(135deg,#fff1bf,#f3cf75);border:1px solid #d5a843;animation:level-glow 1.6s ease-out 1}
+.level-up b{display:block;font:20px Georgia,serif;color:#4a3712}
+.level-up small{color:#6a5320;font-size:12px}
+.level-badge{flex:none;display:grid;place-items:center;width:46px;height:46px;border-radius:50%;background:#4a3712;color:#ffe39a;font:700 20px Georgia,serif;box-shadow:0 0 0 4px #ffe39a88}
+@keyframes level-glow{0%{transform:scale(.92);box-shadow:0 0 0 0 #ffd36baa}60%{transform:scale(1.02);box-shadow:0 0 0 16px #ffd36b00}100%{transform:scale(1)}}
+@media(prefers-reduced-motion:reduce){.level-up{animation:none}}
+nav button .nav-badge{display:inline-grid;place-items:center;min-width:18px;height:18px;padding:0 5px;border-radius:9px;background:#d9534f;color:#fff;font:700 10px/1 system-ui,sans-serif;margin-left:2px}
+
+/* ── Item cards ── */
+.item-row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.item-row .item-copy{flex:1 1 180px;min-width:0;display:flex;flex-direction:column;gap:2px}
+.item-row .item-copy small{display:block;font-size:11px;color:#7c8a84;line-height:1.45}
+.item-row .actions{flex:1 1 100%;margin-top:2px}
+.unit.item-row .actions,.unit.item-row>button{flex:0 0 auto;margin-top:0}
+.item-thumb{flex:none;display:grid;place-items:center;width:52px;height:52px;border-radius:10px;background:radial-gradient(circle at 50% 40%,#fff8e3,#eadfc0);border:1px solid #d8c99f;overflow:hidden}
+.item-thumb img{width:100%;height:100%;object-fit:contain;transform:scale(1.35)}
+.item-thumb.armor .ui-icon,.item-thumb .ui-icon{width:28px;height:28px;color:#8c6c33}
+.item-thumb.empty{background:#efe9d8;border-style:dashed}
+.item-row.unmet .item-thumb{filter:grayscale(.8);opacity:.7}
+.item-row.unmet .item-copy b{color:#8a5a4a}
+.delta{font-size:11px;font-weight:700}
+.delta.up{color:#2f7a3f}.delta.down{color:#a2401e}
+.equipped-figure{display:flex;justify-content:center;margin:4px 0 8px}
+.equipped-row .item-copy{flex:1 1 0}
+.equipped-row>button{flex:none}
+.equipped-figure .character-portrait{--portrait-height:170px;width:150px;margin:0 auto}
+.roll-face .character-portrait{--portrait-height:48px;width:38px;flex-basis:38px;margin:0}
+.roll-face.hero .character-portrait{--portrait-height:60px;width:48px;flex-basis:48px}
+
+/* ── Warband, muster, conquest and chronicle ── */
+.muster{position:relative;height:280px;border-radius:12px;background-size:cover;background-position:center 34%;overflow:hidden;margin:12px 0 18px;box-shadow:inset 0 -60px 60px -40px #20301f88,0 10px 30px #0b151b30}
+.muster::before{content:"";position:absolute;inset:0;background:linear-gradient(#0000 40%,#24311f33)}
+.muster-figure{position:absolute;transform:translateX(-50%);filter:drop-shadow(0 3px 2px #0005)}
+.muster-figure .character-portrait{--portrait-height:100px;width:80px;background:none;box-shadow:none;margin:0}
+.muster-figure.hero{z-index:20}
+.muster-figure.hero .character-portrait{--portrait-height:150px;width:120px;background:none}
+.muster-name{position:absolute;left:50%;bottom:-4px;transform:translateX(-50%);white-space:nowrap;font:700 11px system-ui,sans-serif;color:#243e46;background:#ffed92;border:2px solid #243e46;border-radius:999px;padding:1px 8px}
+.muster-more,.muster-empty{position:absolute;right:12px;bottom:10px;font:600 12px system-ui,sans-serif;color:#fff;background:#243e46cc;border-radius:999px;padding:4px 10px}
+.muster-empty{left:50%;right:auto;bottom:auto;top:20px;transform:translateX(-50%)}
+.warband-band{margin:18px 0 0;padding:14px 16px;border:1px solid #465b60;border-radius:10px;background:#21343a;color:#e6d5ae}
+.warband-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.warband-head b{display:block;font:20px Georgia,serif;color:#f1e5c7;margin-top:2px}
+.warband-head .eyebrow{color:#c9ae77;font-size:9px;letter-spacing:1.6px}
+.warband-head button{min-height:44px;background:#e8c37e;color:#263c41;border-color:#e8c37e}
+.warband-band .muster{height:220px;margin:12px 0}
+.warband-band .muster-figure .character-portrait{--portrait-height:80px;width:64px}
+.warband-band .muster-figure.hero .character-portrait{--portrait-height:120px;width:96px}
+.conquest-board{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 18px;margin:10px 0}
+.conquest-land{display:flex;align-items:center;gap:8px;font-size:12px}
+.land-name{flex:0 0 96px;font-weight:600}
+.land-pips{display:flex;gap:4px}
+.land-pips i{width:14px;height:18px;border-radius:2px 2px 7px 7px;background:#ffffff1f;border:1px solid color-mix(in srgb,var(--land) 70%,#fff 0%)}
+.land-pips i.held{background:var(--land);box-shadow:0 0 6px var(--land)}
+.land-count{flex:none;font-variant-numeric:tabular-nums;opacity:.8}
+.panel .conquest-land .land-pips i{background:#e9e1cb}
+.panel .conquest-land .land-pips i.held{background:var(--land)}
+.chronicle-chart{position:relative;margin:16px 0 20px;padding:12px 14px;border:1px solid #e0d5b8;border-radius:10px;background:#fffaf0}
+.chronicle-chart figcaption{display:flex;flex-direction:column;gap:2px;margin-bottom:6px}
+.chronicle-chart figcaption b{font-size:13px;color:#263d4a}
+.chronicle-chart figcaption span{font-size:11px;color:#6c7b78}
+.chronicle-chart svg{width:100%;height:auto;display:block;overflow:visible}
+.chronicle-chart .grid{stroke:#ece5d3;stroke-width:1}
+.chronicle-chart .tick{font:10px system-ui,sans-serif;fill:#6c7b78}
+.chronicle-chart .annotation{font:700 10px system-ui,sans-serif;fill:#263d4a}
+.chronicle-chart .bar{fill:#b07a26}
+.chronicle-chart .chronicle-bar{cursor:pointer;outline:none}
+.chronicle-chart .chronicle-bar:hover .bar,.chronicle-chart .chronicle-bar:focus .bar{fill:#8a5c14}
+.chart-tip{position:absolute;z-index:5;width:220px;white-space:pre-line;font-size:11px;line-height:1.45;color:#263d4a;background:#fff;border:1px solid #d8cfb5;border-radius:8px;padding:8px 10px;box-shadow:0 8px 20px #0002;pointer-events:none}
+.own-flag{position:absolute;left:6px;top:-58px;width:3px;height:26px;background:#3b2f22;pointer-events:none}
+.own-flag::after{content:"";position:absolute;left:3px;top:0;width:18px;height:13px;background:var(--own);clip-path:polygon(0 0,100% 0,78% 50%,100% 100%,0 100%);box-shadow:0 0 0 1px #fff8}
+@media(max-width:680px){.muster{height:200px}.muster-figure .character-portrait{--portrait-height:52px;width:42px}.muster-figure.hero .character-portrait{--portrait-height:84px;width:66px}.land-name{flex-basis:84px}.land-pips i{width:11px;height:15px}}
+@media(max-width:760px){.conquest-board{grid-template-columns:1fr}}

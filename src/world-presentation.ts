@@ -37,8 +37,8 @@ function threatBadge(t:ThreatEstimate|null){
 export function townMarkers(c:Campaign,w:WorldState,selected:string,threat:ThreatLookup){
  return Object.values(data.towns).map(t=>{const p=townPoint(t.ID),owned=c.captured.includes(t.ID),hostile=c.hostile.includes(t.NATION)&&!owned,f=townFacilities(t.ID),goals=objectives(c,w,t.ID).filter(o=>o.kind!=='here');
   const classes=['atlas-town',owned?'owned':'',hostile?'hostile':'',t.ID===selected?'selected':'',w.town===t.ID?'here':'',goals.length?'goal':''].filter(Boolean).join(' ');
-  return `<button type="button" class="${classes}" data-town="${t.ID}" style="left:${(p.x/MAP_WIDTH*100).toFixed(2)}%;top:${(p.y/MAP_HEIGHT*100).toFixed(2)}%;--faction:${factionHex(t.NATION)}" aria-label="${esc(t.NAME)}, ${nations[t.NATION].name}${owned?', your town':hostile?', hostile':''}" aria-pressed="${t.ID===selected}">
-   <span class="town-hit" aria-hidden="true"></span>
+  return `<button type="button" class="${classes}" data-town="${t.ID}" style="left:${(p.x/MAP_WIDTH*100).toFixed(2)}%;top:${(p.y/MAP_HEIGHT*100).toFixed(2)}%;z-index:${Math.round(p.y)};--faction:${factionHex(t.NATION)}" aria-label="${esc(t.NAME)}, ${nations[t.NATION].name}${owned?', your town':hostile?', hostile':''}" aria-pressed="${t.ID===selected}">
+   <span class="town-hit" aria-hidden="true"></span>${owned?`<span class="own-flag" aria-hidden="true" style="--own:${factionHex(c.hero.NATION)}"></span>`:''}
    <span class="town-tag" aria-hidden="true">${threatBadge(threat(t.ID))}<span class="town-label">${esc(t.NAME)}</span>${goals.map(g=>`<span class="goal-badge ${g.kind}">${icon(objectiveIcon[g.kind])}</span>`).join('')}<span class="service-badges">${f?.harbor?icon('anchor'):''}${f?.stables?icon('horse'):''}${t.adv_defenders.length?icon('castle'):''}</span></span>
   </button>`;}).join('');
 }
