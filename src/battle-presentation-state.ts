@@ -6,7 +6,7 @@ export type CombatPose='idle'|'walkA'|'walkB'|'attack'|'hurt'|'defeated';
 export type CombatWeapon='blade'|'spear'|'bow'|'crossbow'|'axe'|'mace'|'staff'|'unarmed'|'throwing';
 
 /** Source battle pixels are 40×25 per cell. The view insets X for silhouette clearance and stretches Y. */
-export const BATTLE_VIEW_X=28,BATTLE_VIEW_SCALE_X=750/800;
+export const BATTLE_VIEW_X=80,BATTLE_VIEW_SCALE_X=646/800;
 export function projectBattlePixel(x:number,y:number){return {x:BATTLE_VIEW_X+x*BATTLE_VIEW_SCALE_X,y:(y/25-.5)*36+250};}
 export function unprojectBattlePoint(x:number,y:number){return {x:(x-BATTLE_VIEW_X)/BATTLE_VIEW_SCALE_X,y:(y-250)/36*25+12.5};}
 export function battleCellCenter(point:CombatPoint){return projectBattlePixel(point.x*40+20,point.y*25+12.5);}
@@ -28,7 +28,7 @@ export function combatWeapon(f:Readonly<Fighter>):CombatWeapon{
   return 'blade';
 }
 
-/** Four representative costumes. This is deliberately not a final 76-unit skin catalogue. */
+/** Legacy pose classification; actual appearance and equipment resolve per identity. */
 export function combatRole(f:Readonly<Fighter>):CombatRole{
   if(f.key==='hero')return 'hero';
   if(f.weapon.range>0)return 'archer';

@@ -1,0 +1,1414 @@
+{
+  "characters": {
+    "hero-karl": {
+      "frontX": 197.86,
+      "frontY": 134.96,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        70,
+        24,
+        202,
+        225
+      ]
+    },
+    "hero-niora": {
+      "frontX": 186.64,
+      "frontY": 137.18,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        74,
+        24,
+        192,
+        225
+      ]
+    },
+    "hero-olga": {
+      "frontX": 190.38,
+      "frontY": 134.28,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        65,
+        24,
+        195,
+        225
+      ]
+    },
+    "hero-vseslav": {
+      "frontX": 192.55,
+      "frontY": 138.09,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        64,
+        24,
+        197,
+        225
+      ]
+    },
+    "hero-edgar": {
+      "frontX": 193.75,
+      "frontY": 133.36,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        55,
+        24,
+        198,
+        224
+      ]
+    },
+    "hero-elizabth": {
+      "frontX": 183.35,
+      "frontY": 133.3,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        69,
+        24,
+        188,
+        225
+      ]
+    },
+    "hero-selena": {
+      "frontX": 186.33,
+      "frontY": 133.72,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        60,
+        24,
+        191,
+        225
+      ]
+    },
+    "hero-sieg": {
+      "frontX": 184.39,
+      "frontY": 140.44,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        73,
+        24,
+        189,
+        225
+      ]
+    },
+    "unit-MeleeGer1": {
+      "frontX": 187.13,
+      "frontY": 139.87,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        70,
+        24,
+        195,
+        225
+      ]
+    },
+    "unit-MeleeGer2": {
+      "frontX": 188.92,
+      "frontY": 142.77,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        65,
+        24,
+        196,
+        225
+      ]
+    },
+    "unit-MeleeGer3": {
+      "frontX": 194.67,
+      "frontY": 142.6,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        62,
+        24,
+        202,
+        225
+      ]
+    },
+    "unit-MeleeGer4": {
+      "frontX": 188.77,
+      "frontY": 143.23,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        65,
+        24,
+        196,
+        225
+      ]
+    },
+    "unit-MeleeGer5": {
+      "frontX": 191.77,
+      "frontY": 140.98,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        65,
+        24,
+        199,
+        225
+      ]
+    },
+    "unit-MeleeGer6": {
+      "frontX": 192.77,
+      "frontY": 139.91,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        68,
+        24,
+        200,
+        225
+      ]
+    },
+    "unit-MeleeGer7": {
+      "frontX": 196.16,
+      "frontY": 143.1,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        62,
+        24,
+        203,
+        224
+      ]
+    },
+    "unit-MeleeGer8": {
+      "frontX": 194.91,
+      "frontY": 140.91,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        59,
+        24,
+        202,
+        225
+      ]
+    },
+    "unit-MeleeGer9": {
+      "frontX": 198.11,
+      "frontY": 137.88,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        52,
+        24,
+        205,
+        224
+      ]
+    },
+    "unit-MeleeGer10": {
+      "frontX": 198.88,
+      "frontY": 138.39,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        41,
+        24,
+        205,
+        225
+      ]
+    },
+    "unit-MeleeGer11": {
+      "frontX": 195.26,
+      "frontY": 137.88,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        39,
+        23,
+        202,
+        224
+      ]
+    },
+    "unit-MeleeGer12": {
+      "frontX": 192.52,
+      "frontY": 139.41,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        66,
+        24,
+        199,
+        224
+      ]
+    },
+    "unit-RangedGer1": {
+      "frontX": 193.38,
+      "frontY": 140.92,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        55,
+        24,
+        200,
+        225
+      ]
+    },
+    "unit-RangedGer2": {
+      "frontX": 200.9,
+      "frontY": 140.03,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        61,
+        24,
+        208,
+        225
+      ]
+    },
+    "unit-RangedGer3": {
+      "frontX": 190.96,
+      "frontY": 139.93,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        67,
+        24,
+        198,
+        224
+      ]
+    },
+    "unit-RangedGer4": {
+      "frontX": 193.43,
+      "frontY": 142.59,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        62,
+        24,
+        200,
+        224
+      ]
+    },
+    "unit-RangedGer5": {
+      "frontX": 188.87,
+      "frontY": 139.42,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        49,
+        24,
+        196,
+        225
+      ]
+    },
+    "unit-RangedGer6": {
+      "frontX": 189.42,
+      "frontY": 138.96,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        46,
+        24,
+        197,
+        225
+      ]
+    },
+    "unit-RangedGer7": {
+      "frontX": 202.34,
+      "frontY": 143.25,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        43,
+        24,
+        210,
+        225
+      ]
+    },
+    "unit-MeleeViz1": {
+      "frontX": 192.07,
+      "frontY": 155.11,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        70,
+        24,
+        199,
+        224
+      ]
+    },
+    "unit-MeleeViz2": {
+      "frontX": 187.51,
+      "frontY": 158.15,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        73,
+        24,
+        194,
+        224
+      ]
+    },
+    "unit-MeleeViz3": {
+      "frontX": 183.67,
+      "frontY": 158.75,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        69,
+        24,
+        190,
+        224
+      ]
+    },
+    "unit-MeleeViz4": {
+      "frontX": 193.49,
+      "frontY": 159.21,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        57,
+        23,
+        200,
+        224
+      ]
+    },
+    "unit-MeleeViz5": {
+      "frontX": 196.4,
+      "frontY": 155.6,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        62,
+        24,
+        203,
+        224
+      ]
+    },
+    "unit-MeleeViz6": {
+      "frontX": 183.14,
+      "frontY": 156.53,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        35,
+        24,
+        190,
+        224
+      ]
+    },
+    "unit-MeleeViz7": {
+      "frontX": 189.64,
+      "frontY": 156.88,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        50,
+        24,
+        196,
+        224
+      ]
+    },
+    "unit-MeleeViz8": {
+      "frontX": 204.71,
+      "frontY": 156.88,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        57,
+        24,
+        211,
+        225
+      ]
+    },
+    "unit-MeleeViz9": {
+      "frontX": 192.89,
+      "frontY": 152.37,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        64,
+        24,
+        199,
+        224
+      ]
+    },
+    "unit-RangedViz9": {
+      "frontX": 187.29,
+      "frontY": 156.14,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        66,
+        24,
+        194,
+        224
+      ]
+    },
+    "unit-RangedViz1": {
+      "frontX": 192.31,
+      "frontY": 153.33,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        66,
+        24,
+        198,
+        224
+      ]
+    },
+    "unit-RangedViz2": {
+      "frontX": 194.67,
+      "frontY": 151.72,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        64,
+        24,
+        202,
+        224
+      ]
+    },
+    "unit-RangedViz3": {
+      "frontX": 189.3,
+      "frontY": 158.93,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        71,
+        24,
+        196,
+        224
+      ]
+    },
+    "unit-RangedViz4": {
+      "frontX": 184.06,
+      "frontY": 158.26,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        46,
+        24,
+        190,
+        224
+      ]
+    },
+    "unit-RangedViz5": {
+      "frontX": 187.79,
+      "frontY": 157.81,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        61,
+        24,
+        194,
+        224
+      ]
+    },
+    "unit-RangedViz6": {
+      "frontX": 194.32,
+      "frontY": 158.71,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        50,
+        24,
+        201,
+        224
+      ]
+    },
+    "unit-RangedViz7": {
+      "frontX": 196.02,
+      "frontY": 156.79,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        60,
+        23,
+        203,
+        225
+      ]
+    },
+    "unit-RangedViz8": {
+      "frontX": 203.2,
+      "frontY": 154.08,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        48,
+        24,
+        211,
+        224
+      ]
+    },
+    "unit-MeleeRus1": {
+      "frontX": 188.54,
+      "frontY": 148.41,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        69,
+        24,
+        194,
+        224
+      ]
+    },
+    "unit-MeleeRus2": {
+      "frontX": 187.08,
+      "frontY": 150.07,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        40,
+        24,
+        193,
+        224
+      ]
+    },
+    "unit-MeleeRus3": {
+      "frontX": 188.73,
+      "frontY": 150.07,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        65,
+        24,
+        196,
+        224
+      ]
+    },
+    "unit-MeleeRus4": {
+      "frontX": 184.31,
+      "frontY": 153.45,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        68,
+        24,
+        191,
+        225
+      ]
+    },
+    "unit-MeleeRus5": {
+      "frontX": 193.05,
+      "frontY": 154.1,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        66,
+        24,
+        200,
+        225
+      ]
+    },
+    "unit-MeleeRus6": {
+      "frontX": 189.29,
+      "frontY": 153.03,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        65,
+        24,
+        196,
+        224
+      ]
+    },
+    "unit-MeleeRus7": {
+      "frontX": 200.67,
+      "frontY": 156.48,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        48,
+        23,
+        207,
+        224
+      ]
+    },
+    "unit-MeleeRus8": {
+      "frontX": 191.02,
+      "frontY": 150.69,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        54,
+        23,
+        197,
+        224
+      ]
+    },
+    "unit-MeleeRus9": {
+      "frontX": 193.18,
+      "frontY": 152.12,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        47,
+        24,
+        199,
+        224
+      ]
+    },
+    "unit-MeleeRus10": {
+      "frontX": 194.77,
+      "frontY": 153.07,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        34,
+        24,
+        200,
+        224
+      ]
+    },
+    "unit-RangedRus1": {
+      "frontX": 194.67,
+      "frontY": 147.33,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        51,
+        24,
+        201,
+        224
+      ]
+    },
+    "unit-RangedRus2": {
+      "frontX": 188.14,
+      "frontY": 146.34,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        51,
+        24,
+        194,
+        224
+      ]
+    },
+    "unit-RangedRus3": {
+      "frontX": 194.33,
+      "frontY": 146.22,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        64,
+        24,
+        200,
+        224
+      ]
+    },
+    "unit-RangedRus4": {
+      "frontX": 194.78,
+      "frontY": 146.15,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        67,
+        24,
+        202,
+        224
+      ]
+    },
+    "unit-RangedRus5": {
+      "frontX": 191.91,
+      "frontY": 148.17,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        62,
+        24,
+        197,
+        224
+      ]
+    },
+    "unit-RangedRus6": {
+      "frontX": 192.43,
+      "frontY": 145.48,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        45,
+        24,
+        199,
+        224
+      ]
+    },
+    "unit-MeleeJap1": {
+      "frontX": 187.56,
+      "frontY": 141.65,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        71,
+        23,
+        194,
+        225
+      ]
+    },
+    "unit-MeleeJap2": {
+      "frontX": 190.17,
+      "frontY": 139.36,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        72,
+        24,
+        197,
+        224
+      ]
+    },
+    "unit-MeleeJap3": {
+      "frontX": 185.88,
+      "frontY": 141.95,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        75,
+        23,
+        193,
+        224
+      ]
+    },
+    "unit-MeleeJap4": {
+      "frontX": 185.88,
+      "frontY": 141.22,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        71,
+        23,
+        193,
+        224
+      ]
+    },
+    "unit-MeleeJap5": {
+      "frontX": 192.06,
+      "frontY": 142.86,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        65,
+        24,
+        198,
+        224
+      ]
+    },
+    "unit-MeleeJap6": {
+      "frontX": 191.54,
+      "frontY": 141.69,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        61,
+        24,
+        198,
+        225
+      ]
+    },
+    "unit-MeleeJap7": {
+      "frontX": 189.87,
+      "frontY": 143.42,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        60,
+        24,
+        197,
+        224
+      ]
+    },
+    "unit-MeleeJap8": {
+      "frontX": 192.87,
+      "frontY": 145.15,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        58,
+        24,
+        200,
+        224
+      ]
+    },
+    "unit-MeleeJap9": {
+      "frontX": 193.96,
+      "frontY": 139.6,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        50,
+        24,
+        201,
+        224
+      ]
+    },
+    "unit-MeleeJap10": {
+      "frontX": 186.19,
+      "frontY": 142.47,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        70,
+        23,
+        193,
+        224
+      ]
+    },
+    "unit-MeleeJap11": {
+      "frontX": 189.03,
+      "frontY": 144.0,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        72,
+        23,
+        195,
+        224
+      ]
+    },
+    "unit-RangedJap1": {
+      "frontX": 188.21,
+      "frontY": 141.65,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        75,
+        24,
+        195,
+        225
+      ]
+    },
+    "unit-RangedJap2": {
+      "frontX": 192.46,
+      "frontY": 145.95,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        50,
+        24,
+        199,
+        224
+      ]
+    },
+    "unit-RangedJap3": {
+      "frontX": 189.67,
+      "frontY": 141.77,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        69,
+        23,
+        196,
+        224
+      ]
+    },
+    "unit-RangedJap4": {
+      "frontX": 190.37,
+      "frontY": 143.71,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        68,
+        24,
+        197,
+        224
+      ]
+    },
+    "unit-RangedJap5": {
+      "frontX": 190.09,
+      "frontY": 139.52,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        50,
+        24,
+        196,
+        224
+      ]
+    },
+    "unit-RangedJap6": {
+      "frontX": 198.66,
+      "frontY": 153.73,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        38,
+        24,
+        205,
+        226
+      ]
+    },
+    "unit-MeleeRog1": {
+      "frontX": 186.42,
+      "frontY": 139.21,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        37,
+        24,
+        190,
+        224
+      ]
+    },
+    "unit-MeleeRog2": {
+      "frontX": 190.03,
+      "frontY": 140.3,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        53,
+        24,
+        194,
+        224
+      ]
+    },
+    "unit-MeleeRog3": {
+      "frontX": 180.34,
+      "frontY": 139.27,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        73,
+        24,
+        185,
+        224
+      ]
+    },
+    "unit-RangedRog1": {
+      "frontX": 185.87,
+      "frontY": 137.29,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        49,
+        24,
+        190,
+        224
+      ]
+    },
+    "unit-RangedRog2": {
+      "frontX": 179.54,
+      "frontY": 138.17,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        72,
+        24,
+        184,
+        224
+      ]
+    },
+    "unit-RangedRog3": {
+      "frontX": 186.81,
+      "frontY": 137.93,
+      "offX": 94,
+      "offY": 151,
+      "bounds": [
+        62,
+        24,
+        191,
+        224
+      ]
+    }
+  },
+  "equipment": {
+    "morningstar": {
+      "gripX": 130.0,
+      "gripY": 200,
+      "bounds": [
+        82,
+        24,
+        173,
+        224
+      ]
+    },
+    "hammer": {
+      "gripX": 129.5,
+      "gripY": 200,
+      "bounds": [
+        62,
+        23,
+        193,
+        224
+      ]
+    },
+    "mace": {
+      "gripX": 127.0,
+      "gripY": 200,
+      "bounds": [
+        90,
+        24,
+        166,
+        224
+      ]
+    },
+    "sword": {
+      "gripX": 128.0,
+      "gripY": 200,
+      "bounds": [
+        80,
+        24,
+        177,
+        224
+      ]
+    },
+    "greatsword": {
+      "gripX": 127.5,
+      "gripY": 200,
+      "bounds": [
+        84,
+        24,
+        172,
+        224
+      ]
+    },
+    "katana": {
+      "gripX": 121.5,
+      "gripY": 200,
+      "bounds": [
+        100,
+        24,
+        155,
+        224
+      ]
+    },
+    "ninjato": {
+      "gripX": 124.5,
+      "gripY": 200,
+      "bounds": [
+        105,
+        24,
+        151,
+        225
+      ]
+    },
+    "axe": {
+      "gripX": 90.5,
+      "gripY": 200,
+      "bounds": [
+        74,
+        24,
+        182,
+        225
+      ]
+    },
+    "greataxe": {
+      "gripX": 122.0,
+      "gripY": 200,
+      "bounds": [
+        65,
+        24,
+        190,
+        224
+      ]
+    },
+    "bow": {
+      "gripX": 161.5,
+      "gripY": 124.0,
+      "bounds": [
+        81,
+        24,
+        175,
+        224
+      ]
+    },
+    "crossbow": {
+      "gripX": 128.0,
+      "gripY": 185,
+      "bounds": [
+        44,
+        56,
+        212,
+        224
+      ]
+    },
+    "spear": {
+      "gripX": 128.5,
+      "gripY": 156,
+      "bounds": [
+        112,
+        24,
+        144,
+        224
+      ]
+    },
+    "naginata": {
+      "gripX": 114.0,
+      "gripY": 156,
+      "bounds": [
+        105,
+        24,
+        150,
+        224
+      ]
+    },
+    "staff": {
+      "gripX": 126.5,
+      "gripY": 156,
+      "bounds": [
+        117,
+        24,
+        139,
+        225
+      ]
+    },
+    "dagger": {
+      "gripX": 128.0,
+      "gripY": 200,
+      "bounds": [
+        81,
+        23,
+        175,
+        224
+      ]
+    },
+    "shuriken": {
+      "gripX": 128.0,
+      "gripY": 145.5,
+      "bounds": [
+        44,
+        67,
+        213,
+        224
+      ]
+    },
+    "throwingAxe": {
+      "gripX": 78.5,
+      "gripY": 200,
+      "bounds": [
+        58,
+        23,
+        197,
+        225
+      ]
+    },
+    "throwingKnife": {
+      "gripX": 129.0,
+      "gripY": 200,
+      "bounds": [
+        106,
+        23,
+        151,
+        225
+      ]
+    },
+    "fire": {
+      "gripX": 123.0,
+      "gripY": 123.0,
+      "bounds": [
+        54,
+        22,
+        204,
+        224
+      ]
+    },
+    "shield": {
+      "gripX": 126.5,
+      "gripY": 138.0,
+      "bounds": [
+        43,
+        52,
+        212,
+        224
+      ]
+    },
+    "spikedStaff": {
+      "gripX": 127.0,
+      "gripY": 156,
+      "bounds": [
+        107,
+        23,
+        148,
+        224
+      ]
+    },
+    "goldNaginata": {
+      "gripX": 122.0,
+      "gripY": 156,
+      "bounds": [
+        101,
+        23,
+        154,
+        224
+      ]
+    },
+    "holySpear": {
+      "gripX": 128.0,
+      "gripY": 156,
+      "bounds": [
+        102,
+        24,
+        154,
+        224
+      ]
+    },
+    "blackKatana": {
+      "gripX": 122.5,
+      "gripY": 200,
+      "bounds": [
+        108,
+        24,
+        148,
+        225
+      ]
+    },
+    "goldKatana": {
+      "gripX": 122.0,
+      "gripY": 200,
+      "bounds": [
+        107,
+        24,
+        148,
+        224
+      ]
+    },
+    "holyNinjato": {
+      "gripX": 128.0,
+      "gripY": 200,
+      "bounds": [
+        102,
+        24,
+        156,
+        223
+      ]
+    },
+    "blackShuriken": {
+      "gripX": 128,
+      "gripY": 141.0,
+      "bounds": [
+        44,
+        58,
+        213,
+        224
+      ]
+    },
+    "silverShuriken": {
+      "gripX": 128,
+      "gripY": 142.5,
+      "bounds": [
+        45,
+        60,
+        213,
+        225
+      ]
+    },
+    "forgedCrossbow": {
+      "gripX": 128.0,
+      "gripY": 185,
+      "bounds": [
+        44,
+        43,
+        213,
+        224
+      ]
+    },
+    "eliteCrossbow": {
+      "gripX": 128.0,
+      "gripY": 185,
+      "bounds": [
+        43,
+        69,
+        212,
+        224
+      ]
+    },
+    "holyBow": {
+      "gripX": 162.5,
+      "gripY": 124.0,
+      "bounds": [
+        81,
+        24,
+        175,
+        224
+      ]
+    },
+    "samuraiBow": {
+      "gripX": 163.5,
+      "gripY": 124.0,
+      "bounds": [
+        80,
+        24,
+        175,
+        224
+      ]
+    },
+    "longAxe": {
+      "gripX": 95.5,
+      "gripY": 200,
+      "bounds": [
+        82,
+        24,
+        174,
+        224
+      ]
+    },
+    "holyAxe": {
+      "gripX": 85.5,
+      "gripY": 200,
+      "bounds": [
+        70,
+        24,
+        187,
+        224
+      ]
+    },
+    "eliteGreataxe": {
+      "gripX": 126.5,
+      "gripY": 200,
+      "bounds": [
+        60,
+        24,
+        195,
+        225
+      ]
+    },
+    "peacekeeperMace": {
+      "gripX": 127.5,
+      "gripY": 200,
+      "bounds": [
+        89,
+        24,
+        168,
+        224
+      ]
+    },
+    "starbringerSword": {
+      "gripX": 128.0,
+      "gripY": 200,
+      "bounds": [
+        75,
+        24,
+        182,
+        225
+      ]
+    },
+    "silverThrowingKnife": {
+      "gripX": 125.0,
+      "gripY": 200,
+      "bounds": [
+        108,
+        24,
+        147,
+        224
+      ]
+    },
+    "ironBuckler": {
+      "gripX": 128,
+      "gripY": 140.0,
+      "bounds": [
+        44,
+        55,
+        213,
+        225
+      ]
+    },
+    "kiteShield": {
+      "gripX": 128,
+      "gripY": 123.5,
+      "bounds": [
+        69,
+        23,
+        187,
+        224
+      ]
+    }
+  }
+}

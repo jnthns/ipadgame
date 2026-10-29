@@ -1,0 +1,42 @@
+/* Identity art is contained as a complete figure; no lineup crop is reused. */
+.character-portrait{--portrait-height:88px;--character-color:#b69c63;position:relative;display:inline-block;isolation:isolate;flex:0 0 auto;width:calc(var(--portrait-height)*.86);height:var(--portrait-height);vertical-align:middle;overflow:visible;background:none;color:#35545a}
+.character-portrait__scene{display:block;position:absolute;left:50%;top:50%;width:min(100%,calc(var(--portrait-height)*var(--portrait-scene-ratio)));aspect-ratio:var(--portrait-scene-width)/var(--portrait-scene-height);transform:translate(-50%,-50%)}
+.character-portrait__body{position:absolute;left:var(--portrait-body-left);top:var(--portrait-body-top);width:var(--portrait-body-width);height:var(--portrait-body-height);object-fit:contain;object-position:center;pointer-events:none;user-select:none;-webkit-user-select:none;filter:drop-shadow(0 3px 2px #2c422c16)}
+.character-portrait__equipment{position:absolute;display:block;pointer-events:none;user-select:none;-webkit-user-select:none;overflow:visible;transform-origin:50% 72%}
+.character-portrait__equipment svg{display:block;width:100%;height:100%;overflow:visible}
+.character-portrait--company{--portrait-height:64px;width:56px;margin:0 1px;border-radius:7px;background:linear-gradient(135deg,#f5efd9,#ece3c6);box-shadow:inset 0 -2px var(--character-color)}
+.character-portrait--hero{--portrait-height:285px;width:min(100%,260px);display:block;margin:0 auto 20px;background:radial-gradient(ellipse at 50% 48%,#efe1ae80,transparent 68%)}
+.character-portrait--hud{--portrait-height:75px;width:64px;margin:-2px;flex-shrink:0}
+.character-portrait--selection{--portrait-height:219px;width:100%;display:block;background:radial-gradient(ellipse at 50% 52%,#fff6d5b0,transparent 69%)}
+.hero-selection-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;align-items:stretch;margin-top:8px}
+.hero-card.hero-identity-card{--character-color:#b69c63;display:flex;flex-direction:column;align-items:stretch;min-width:0;padding:0;text-align:left;border:1px solid #cfc3a6;border-top:3px solid var(--character-color);border-radius:11px;background:#fffaf0;box-shadow:0 5px 18px #24382c0d;overflow:hidden;transition:transform .18s,border-color .18s,box-shadow .18s}
+.hero-card.hero-identity-card:hover{transform:translateY(-3px);border-color:#ad8c49;background:#fffaf0;box-shadow:0 9px 24px #35492f1e}
+.hero-card.hero-identity-card:focus-visible{outline:3px solid #416f80;outline-offset:4px;box-shadow:0 0 0 6px #fff9e7}
+.hero-identity-card__art{position:relative;display:block;isolation:isolate;margin:0 10px;min-height:219px;padding-top:8px;background:linear-gradient(180deg,#eee6cc8c,transparent 72%)}
+.hero-identity-card__number{position:absolute;right:9px;top:13px;color:#9a8a63;font:italic 12px Georgia,serif;z-index:2}
+.hero-identity-card__copy{display:flex;flex-direction:column;align-items:stretch;flex:1;padding:3px 19px 18px;min-width:0}
+.hero-identity-card .eyebrow{font-size:8px;letter-spacing:1.25px;color:#8c794e;overflow-wrap:anywhere}
+.hero-card.hero-identity-card h3{margin:8px 0 5px;font:30px/1.1 Georgia,serif;color:#304e57}
+.hero-identity-card__description{display:block;min-height:51px;margin:0 0 12px;color:#758178;font-size:11px;line-height:1.55;white-space:normal}
+.hero-identity-card__loadout{display:flex;align-items:flex-start;gap:7px;padding:11px 0 10px;border-top:1px solid #e4dac1;color:#435e5e;min-height:53px;font-size:11px;line-height:1.5;white-space:normal}
+.hero-identity-card__loadout .ui-icon{flex:0 0 15px;width:15px;height:15px;margin-top:2px;color:#a88848}
+.hero-identity-card__loadout small{display:block;color:#899087;font-size:9px}
+.hero-identity-card__stats{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin:0 0 13px}
+.hero-identity-card__stats>span{display:flex;flex-direction:column;align-items:center;gap:3px;background:#f0ecd9;border-radius:4px;padding:7px 2px}
+.hero-identity-card__stats b{font:16px/1 Georgia,serif;color:#46605c}
+.hero-identity-card__stats small{font-size:7px;letter-spacing:.7px;color:#8d917e}
+.hero-identity-card__begin{display:flex;align-items:center;justify-content:space-between;gap:7px;margin-top:auto;padding-top:10px;border-top:1px solid #e4dac1;color:#9d7e3d;font-size:9px;letter-spacing:.65px}
+.hero-identity-card__begin>span:last-child{font-size:16px;line-height:1}
+.unit>.character-portrait--company{align-self:center}
+.company-card .character-portrait--company{--portrait-height:55px;width:47px;flex-basis:47px}
+.app-shell[data-view="world"] .company-card .character-portrait--company{--portrait-height:52px;width:44px;flex-basis:44px;background:linear-gradient(145deg,#c9d1bd20,#f5e2a816);box-shadow:inset 0 -2px var(--character-color)}
+.hero-identity-caption{margin:-7px 0 16px;text-align:center;color:#748178;font-size:11px;line-height:1.6}
+@media(min-width:1500px){.hero-selection-grid{gap:22px}.character-portrait--selection{--portrait-height:253px}.hero-identity-card__art{min-height:253px}.hero-identity-card__copy{padding-left:23px;padding-right:23px}}
+@media(max-width:1050px){.hero-selection-grid{gap:13px}.character-portrait--selection{--portrait-height:190px}.hero-identity-card__art{min-height:190px;margin:0 7px}.hero-identity-card__copy{padding:3px 14px 15px}.hero-card.hero-identity-card h3{font-size:27px}.hero-identity-card__description{font-size:10px;min-height:48px}.hero-identity-card__stats{gap:3px}.hero-identity-card__loadout{font-size:10px}}
+@media(max-width:820px){.hero-selection-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}.character-portrait--selection{--portrait-height:230px}.hero-identity-card__art{min-height:230px;margin:0 10px}.hero-identity-card__copy{padding:3px 19px 18px}.hero-identity-card__description{font-size:11px;min-height:34px}.hero-identity-card__loadout{font-size:11px}.hero-card.hero-identity-card h3{font-size:29px}}
+@media(max-width:500px){.hero-selection-grid{gap:10px}.character-portrait--selection{--portrait-height:173px}.hero-identity-card__art{min-height:173px;margin:0 5px;padding-top:4px}.hero-identity-card__number{right:7px;top:10px;font-size:10px}.hero-identity-card__copy{padding:4px 12px 14px}.hero-identity-card .eyebrow{font-size:7px;letter-spacing:.65px;line-height:1.5}.hero-card.hero-identity-card h3{font-size:26px;margin-top:7px}.hero-identity-card__description{font-size:10px;min-height:61px;line-height:1.5;margin-bottom:10px}.hero-identity-card__loadout{font-size:10px;min-height:60px;gap:5px}.hero-identity-card__loadout .ui-icon{width:13px;height:13px;flex-basis:13px}.hero-identity-card__loadout small{font-size:8px}.hero-identity-card__stats{gap:3px;margin-bottom:10px}.hero-identity-card__stats b{font-size:15px}.hero-identity-card__stats small{font-size:6px}.hero-identity-card__begin{font-size:8px;letter-spacing:.2px}.character-portrait--company{--portrait-height:62px;width:53px}.character-portrait--hero{--portrait-height:263px}}
+@media(prefers-reduced-motion:reduce){.hero-card.hero-identity-card{transition:none}.hero-card.hero-identity-card:hover{transform:none}}
+
+.unit-copy{min-width:0}.unit-copy small{overflow-wrap:anywhere}#battle-hero-identity{flex:0 0 64px;width:64px}.character-portrait__equipment--secondary{z-index:1}.character-portrait__equipment--primary{z-index:2}
+
+.character-portrait::before{content:"";position:absolute;width:40%;height:4%;left:30%;bottom:14%;border-radius:50%;background:#2039411a;pointer-events:none}

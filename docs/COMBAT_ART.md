@@ -1,3 +1,7 @@
+# Legacy representative combat artwork
+
+This document records the earlier four-role study. Live characters now use the complete identity and equipment library described in [CHARACTER_IDENTITIES.md](CHARACTER_IDENTITIES.md); the old sheet is retained only as an art-direction archive.
+
 # Representative combat artwork
 
 `public/art/remastered/combat-sheet.webp` is a project asset generated with the built-in image-generation tool, using the previously approved `lineup.webp` as its character/style reference. The WebP preserves alpha and the generated1536×1024 layout. The original generated PNG is retained outside the source checkout; the shipped WebP is the runtime asset.

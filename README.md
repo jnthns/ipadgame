@@ -57,3 +57,7 @@ The presentation boundary now routes victory settlement, hero upgrades and troop
 ## Hands-on mechanics test candidate
 
 See [device test steps](docs/DEVICE_TEST.md), [integrated campaign acceptance](docs/CAMPAIGN_ACCEPTANCE.md) and [runtime fidelity limits](docs/RUNTIME_REPLAY.md). CI retains the built static app as the `feudalism-mechanics-test-build` artifact for 14 days. The main-branch workflow publishes GitHub Pages once the repository owner enables Settings → Pages → Source: GitHub Actions. Physical device testing and full original-game parity remain pending; presentation work is paused.
+
+## Shared completion roadmap
+
+Agents should begin from latest `main` and follow [the sequential completion plan](docs/COMPLETION_PLAN.md). The next gate is physical-device acceptance; approved art sheets are saved in [the reference index](docs/art/character-references/README.md).
