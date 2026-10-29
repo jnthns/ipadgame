@@ -26,7 +26,9 @@ Open the resulting HTTPS URL in Safari on the iPad or iPhone. Wait for the offli
 
 ## Play
 
-- Choose an original hero; select and travel to towns on the map.
+- Choose an original hero; tap a town on the map to see what is there and travel to it. Town details open on the map itself. Shield badges show garrison size, colored by an estimate of how your current company would fare (simulated battles with your hero held back); gold badges mark delivery and payment towns; the yellow pin and dashed line show your company and its route.
+- Your warband stands together under the map and on the Army tab; the conquest board fills as towns fall, captured towns fly your banner, and the Journal charts your company after every battle. Victories show who survived and who fell, and level-ups get their own moment.
+- Battles look like where they happen: open country for road and contract fights, the defender's castle and banners for sieges, dusk for the final assault, colour-graded per land, with each original battlefield's trees, wells, crates and other obstacles drawn in place (`tools/make-battle-backdrops.py` regenerates the backdrops). Synthesized sound effects can be muted from the header.
 - Recruit local soldiers, earn gold through contracts, purchase equipment and spend hero skill points.
 - Attack towns to fight garrisons and, where present, a second throne-room battle.
 - Tap the battlefield or use the direction pad to move the hero; select Army to give troop orders. Hero attacks are manual: hold Attack while moving when needed. Hold/Charge, pause, 2× speed and retreat are available. WASD/arrows move the hero, Space/0 attacks, Shift switches weapons, and P pauses.
