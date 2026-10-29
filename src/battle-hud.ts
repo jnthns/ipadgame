@@ -1,13 +1,15 @@
 import type {Battle} from './model';
 import type {ArmyAbilityKind} from './army-abilities';
 import {icon} from './interface-icons';
+import {characterPortraitMarkup} from './character-portraits';
 
 const esc=(value:unknown)=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]!));
 export interface BattleHUDOptions {
   title:string;
   heroName:string;
   heroLevel:number;
-  heroPortraitURL:string;
+  /** Trusted markup from the shared identity/equipment renderer. */
+  heroPortraitHTML:string;
   /** Trusted markup produced by the existing supplyButtons renderer. */
   supplyButtonsHTML:string;
   paused?:boolean;
@@ -24,7 +26,7 @@ export interface BattleHUDState {
 
 /** Action IDs bind to the existing controller; this module never issues commands. */
 export function battleMarkup(options:BattleHUDOptions):string {
-  const {title,heroName,heroLevel,heroPortraitURL,supplyButtonsHTML,paused=false,speed=1,control='hero'}=options;
+  const {title,heroName,heroLevel,heroPortraitHTML,supplyButtonsHTML,paused=false,speed=1,control='hero'}=options;
   return `<section class="battle-presentation" aria-label="Battlefield">
     <div class="battle-topline"><div><div class="eyebrow">The field of battle</div><h2>${esc(title)}</h2></div><div class="battle-top-actions"><span class="battle-clock" id="battle-clock" aria-label="Battle elapsed time">0:00</span><button id="speed" aria-label="Change battle speed">${speed}× Speed</button><button id="pause" aria-pressed="${paused}">${icon('pause')}${paused?'Resume':'Pause'}</button><button id="retreat" class="ghost danger">Withdraw</button></div></div>
     <div class="battle-layout">
@@ -41,7 +43,7 @@ export function battleMarkup(options:BattleHUDOptions):string {
         </div>
       </div>
       <aside class="battle-command-rail" aria-label="Battle commands">
-        <section class="battle-hero-card"><div class="battle-hero-heading"><div class="battle-hero-portrait" style="background-image:url('${esc(heroPortraitURL)}')" role="img" aria-label="Representative blue-cloaked hero"></div><div><span class="eyebrow">Your hero · Level ${heroLevel}</span><h3>${esc(heroName)}</h3><span id="hero-equipment-badge" class="battle-equipment-badge">Taking position</span></div></div><div class="battle-health-heading"><span>Health</span><b id="hero-health-text">— / —</b></div><div id="hero-health-bar" class="battle-health-bar" role="progressbar" aria-label="Hero health" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100"><i></i></div><p id="hero-hp" class="battle-weapon-label">Preparing equipment</p></section>
+        <section class="battle-hero-card"><div class="battle-hero-heading"><div id="battle-hero-identity">${heroPortraitHTML}</div><div><span class="eyebrow">Your hero · Level ${heroLevel}</span><h3>${esc(heroName)}</h3><span id="hero-equipment-badge" class="battle-equipment-badge">Taking position</span></div></div><div class="battle-health-heading"><span>Health</span><b id="hero-health-text">— / —</b></div><div id="hero-health-bar" class="battle-health-bar" role="progressbar" aria-label="Hero health" aria-valuemin="0" aria-valuemax="100" aria-valuenow="100"><i></i></div><p id="hero-hp" class="battle-weapon-label">Preparing equipment</p></section>
         <section class="battle-order-card"><div class="battle-card-heading"><span class="eyebrow">Field command</span><span id="battle-command-status">Hero selected</span></div><div class="battle-control-switch" role="group" aria-label="Select command target"><button data-control="hero" class="${control==='hero'?'active':''}" aria-pressed="${control==='hero'}">${icon('hero')}Hero</button><button data-control="army" class="${control==='army'?'active':''}" aria-pressed="${control==='army'}">${icon('banner')}Army</button></div><div class="battle-troop-orders" role="group" aria-label="Troop orders"><button id="hold" aria-pressed="false">${icon('shield')}Hold</button><button id="charge" class="primary" aria-pressed="true">${icon('swords')}Charge</button></div><dl class="battle-roster-counts"><div><dt>Soldiers on field</dt><dd id="soldiers-field-count">—</dd></div><div><dt>Your reserves</dt><dd id="allied-reserve-count">—</dd></div><div><dt>Enemy reserves</dt><dd id="enemy-reserve-count">—</dd></div></dl><p class="battle-hero-separate">Hero shown separately from soldiers.</p></section>
         <details class="battle-supply-drawer"><summary>${icon('bag')}Supplies & abilities</summary><div class="battle-supplies" role="group" aria-label="Potions and scrolls">${supplyButtonsHTML}<button data-army-ability="shower" aria-pressed="false">Arrow shower</button><button data-army-ability="wall" aria-pressed="false">Arrow wall</button></div><p>Reserve archers power arrow abilities. Their arrows can hit allies.</p></details>
       </aside>
@@ -55,6 +57,11 @@ const write=(root:ParentNode,selector:string,value:string)=>{const el=root.query
 export function updateBattleHUD(battle:Pick<Battle,'fighters'|'reserves'|'tick'|'rageCommands'|'result'>,state:BattleHUDState,root:ParentNode=document):void {
   root.querySelector('.battle-presentation')?.setAttribute('data-simulation-tick',String(battle.tick));
   const hero=battle.fighters.find(f=>f.team===0&&f.key==='hero');
+  const portrait=root.querySelector<HTMLElement>('#battle-hero-identity');
+  if(hero&&portrait){
+    const signature=JSON.stringify([hero.hero.NAME,hero.weaponItem.TYPE,hero.weaponItem.NAME,hero.secondaryItem?.TYPE,hero.secondaryItem?.NAME]);
+    if(portrait.dataset.loadout!==signature){portrait.innerHTML=characterPortraitMarkup(hero.hero,undefined,{size:'hud',weapon:hero.weaponItem,secondary:hero.secondaryItem});portrait.dataset.loadout=signature;}
+  }
   const allied=battle.fighters.filter(f=>f.team===0&&f.hp>0),enemy=battle.fighters.filter(f=>f.team===1&&f.hp>0);
   const activeTroops=allied.filter(f=>f.key!=='hero'),soldiers=activeTroops.length;
   const order=state.order??(activeTroops.length&&activeTroops.every(f=>f.hold)?'hold':activeTroops.some(f=>f.order)?'move':'charge');

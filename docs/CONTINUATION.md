@@ -17,3 +17,7 @@ Keep simulation independent from rendering. Quality, Balanced and Battery Saver 
 Suggested new-chat prompt: “Continue Feudalism in jnthns/ipadgame on mechanics-first. Read docs/CONTINUATION.md and docs/MECHANICS.md, inspect the current branch and tests, then work through the remaining mechanics acceptance gaps. Keep the work bounded to the selected workstream; presentation stages are tracked in docs/PRESENTATION_STAGES.md.”
 
 Concurrent runtime work is integrated: baseline and isolated shower/wall captures each match300 frames. Reinforcement matches1200 RNG states with18 explicit NaN movement differences retained. Three reserve-control runtime captures now match 360 control observations and RNG states, including command casts and cooldown reset; further formation cutoffs, death/reinforcement reinitialization, touch targeting and wider transitions remain fidelity gaps.
+
+Character identity correction: all 8 heroes and 76 troop definitions now have distinct padded body cutouts, regional costumes, and actual active weapon attachments. Hero selection, profile, rosters and battle share the resolver. See CHARACTER_IDENTITIES.md for provenance and measured clipping checks. Physical-device acceptance is still outstanding.
+
+The authoritative sequential roadmap is [COMPLETION_PLAN.md](COMPLETION_PLAN.md). Start from latest main and complete stage 1 device acceptance before expanding scope.

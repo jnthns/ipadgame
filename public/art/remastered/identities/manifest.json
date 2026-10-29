@@ -1,0 +1,1992 @@
+{
+  "size": [
+    256,
+    256
+  ],
+  "assets": {
+    "hero-karl": {
+      "sourceSheet": "heroes",
+      "sourceBounds": [
+        100,
+        5,
+        394,
+        449
+      ],
+      "bounds": [
+        70,
+        24,
+        202,
+        225
+      ],
+      "sha256": "3339a859831518a302b7f4b97b8e2b3ce17cb4c0540163827e2e4f14dd5e3578"
+    },
+    "hero-niora": {
+      "sourceSheet": "heroes",
+      "sourceBounds": [
+        546,
+        3,
+        809,
+        449
+      ],
+      "bounds": [
+        74,
+        24,
+        192,
+        225
+      ],
+      "sha256": "839c07299bf2e15a04ff7ef1ca5ca0929fd75b2f187066ad0052dc397f7d3d27"
+    },
+    "hero-olga": {
+      "sourceSheet": "heroes",
+      "sourceBounds": [
+        970,
+        15,
+        1253,
+        449
+      ],
+      "bounds": [
+        65,
+        24,
+        195,
+        225
+      ],
+      "sha256": "c66f4cd252c4fb1a8e91cdbaeca2ac5f2cf3a2ba14eef9885fd5b3f0cced67e7"
+    },
+    "hero-vseslav": {
+      "sourceSheet": "heroes",
+      "sourceBounds": [
+        1419,
+        1,
+        1717,
+        447
+      ],
+      "bounds": [
+        64,
+        24,
+        197,
+        225
+      ],
+      "sha256": "d07b4ef3b29fb3e6b02e9212b522a15c90da4dbfad0e486af3468d87812c7fb4"
+    },
+    "hero-edgar": {
+      "sourceSheet": "heroes",
+      "sourceBounds": [
+        71,
+        444,
+        389,
+        887
+      ],
+      "bounds": [
+        55,
+        24,
+        198,
+        224
+      ],
+      "sha256": "484562df79107a69ea16668614cd0da64d68e76eee3838423d819bc3398fd8dd"
+    },
+    "hero-elizabth": {
+      "sourceSheet": "heroes",
+      "sourceBounds": [
+        541,
+        451,
+        801,
+        887
+      ],
+      "bounds": [
+        69,
+        24,
+        188,
+        225
+      ],
+      "sha256": "8ed2de0c44c51ef03955220fa9def4daefb5f83cb1824b7d229cbe75ce103583"
+    },
+    "hero-selena": {
+      "sourceSheet": "heroes",
+      "sourceBounds": [
+        963,
+        449,
+        1251,
+        887
+      ],
+      "bounds": [
+        60,
+        24,
+        191,
+        225
+      ],
+      "sha256": "be322590ec5fd158e3376cdef9dca8c45ec57c7c90e74186ddb6f8b1354ed6bb"
+    },
+    "hero-sieg": {
+      "sourceSheet": "heroes",
+      "sourceBounds": [
+        1440,
+        443,
+        1699,
+        887
+      ],
+      "bounds": [
+        73,
+        24,
+        189,
+        225
+      ],
+      "sha256": "86d4a98a41601828f7b307b747ae137117a63f9100f12dc1c9c2d393c8019250"
+    },
+    "unit-MeleeGer1": {
+      "sourceSheet": "troop-ger",
+      "sourceBounds": [
+        71,
+        21,
+        233,
+        279
+      ],
+      "bounds": [
+        70,
+        24,
+        195,
+        225
+      ],
+      "sha256": "ef811c4bd29985e167077dd070b27507dce8902cb4738c4a59ff10ee40dd6c58"
+    },
+    "unit-MeleeGer2": {
+      "sourceSheet": "troop-ger",
+      "sourceBounds": [
+        329,
+        11,
+        505,
+        278
+      ],
+      "bounds": [
+        65,
+        24,
+        196,
+        225
+      ],
+      "sha256": "efeeef29991a11ab8452afe7533dba03cddf1acf7b3be6cadaaaa6b514a761ba"
+    },
+    "unit-MeleeGer3": {
+      "sourceSheet": "troop-ger",
+      "sourceBounds": [
+        603,
+        15,
+        789,
+        279
+      ],
+      "bounds": [
+        62,
+        24,
+        202,
+        225
+      ],
+      "sha256": "5f3a4a4e5f1f65bbeaa431d7411e7c10f4189dc22cc811d0cfa23b2e6e4e2e18"
+    },
+    "unit-MeleeGer4": {
+      "sourceSheet": "troop-ger",
+      "sourceBounds": [
+        891,
+        13,
+        1066,
+        279
+      ],
+      "bounds": [
+        65,
+        24,
+        196,
+        225
+      ],
+      "sha256": "867c6fba5f668392e3432f3d47e0696bada6b55477f101edbf841878ad26251b"
+    },
+    "unit-MeleeGer5": {
+      "sourceSheet": "troop-ger",
+      "sourceBounds": [
+        58,
+        291,
+        241,
+        562
+      ],
+      "bounds": [
+        65,
+        24,
+        199,
+        225
+      ],
+      "sha256": "fdd25455cdedd988eb14930231317cc2ee367bfc32ee91582fbb337affba93ed"
+    },
+    "unit-MeleeGer6": {
+      "sourceSheet": "troop-ger",
+      "sourceBounds": [
+        337,
+        291,
+        516,
+        561
+      ],
+      "bounds": [
+        68,
+        24,
+        200,
+        225
+      ],
+      "sha256": "333efe3ee3006c1f5331a4d052e9fd76bd7bd853eff5fff972a1fca4fe2ebc09"
+    },
+    "unit-MeleeGer7": {
+      "sourceSheet": "troop-ger",
+      "sourceBounds": [
+        604,
+        289,
+        798,
+        562
+      ],
+      "bounds": [
+        62,
+        24,
+        203,
+        224
+      ],
+      "sha256": "131b86a1ba7de06d552d282ef8931d2998c295312dc654cc9443c4a87c84c6ed"
+    },
+    "unit-MeleeGer8": {
+      "sourceSheet": "troop-ger",
+      "sourceBounds": [
+        895,
+        285,
+        1095,
+        563
+      ],
+      "bounds": [
+        59,
+        24,
+        202,
+        225
+      ],
+      "sha256": "f0f6f1c03cf4e7b1a2243fec383ef31f1b4a55f72d88fba9565e25a1124e2b42"
+    },
+    "unit-MeleeGer9": {
+      "sourceSheet": "troop-ger",
+      "sourceBounds": [
+        43,
+        563,
+        263,
+        850
+      ],
+      "bounds": [
+        52,
+        24,
+        205,
+        224
+      ],
+      "sha256": "39aa356d3c8c206a2a2a43f67c5476e0ef91aca345f444c04a6c4e6d33ad4318"
+    },
+    "unit-MeleeGer10": {
+      "sourceSheet": "troop-ger",
+      "sourceBounds": [
+        292,
+        560,
+        532,
+        851
+      ],
+      "bounds": [
+        41,
+        24,
+        205,
+        225
+      ],
+      "sha256": "9876e15f4053ff4d8f30f497aaea07ec2847934c30056b4590f93c763f78c7da"
+    },
+    "unit-MeleeGer11": {
+      "sourceSheet": "troop-ger",
+      "sourceBounds": [
+        570,
+        564,
+        805,
+        851
+      ],
+      "bounds": [
+        39,
+        23,
+        202,
+        224
+      ],
+      "sha256": "2b242b0fa5197a70eaa1429fb3c10550ece705f1a12192c94a5159b6cc61054f"
+    },
+    "unit-MeleeGer12": {
+      "sourceSheet": "troop-ger",
+      "sourceBounds": [
+        890,
+        565,
+        1081,
+        850
+      ],
+      "bounds": [
+        66,
+        24,
+        199,
+        224
+      ],
+      "sha256": "8ed6afdaa30189c4f460d9d5ea3fc0b9cf9b06be86b5f2095d9aea671272e5cd"
+    },
+    "unit-RangedGer1": {
+      "sourceSheet": "troop-ger",
+      "sourceBounds": [
+        43,
+        861,
+        237,
+        1127
+      ],
+      "bounds": [
+        55,
+        24,
+        200,
+        225
+      ],
+      "sha256": "075e40f34856a780371bf01173852c6d743c4f0464ff2d40abc72fb653d2c874"
+    },
+    "unit-RangedGer2": {
+      "sourceSheet": "troop-ger",
+      "sourceBounds": [
+        326,
+        862,
+        524,
+        1130
+      ],
+      "bounds": [
+        61,
+        24,
+        208,
+        225
+      ],
+      "sha256": "01b85d405f234c4a7113d362a41050e7d7ede1b48f3a7c9617de8c8bbecfabdd"
+    },
+    "unit-RangedGer3": {
+      "sourceSheet": "troop-ger",
+      "sourceBounds": [
+        607,
+        855,
+        789,
+        1131
+      ],
+      "bounds": [
+        67,
+        24,
+        198,
+        224
+      ],
+      "sha256": "eee34e9f2f8d1dfe7797e5ef17d040b725838749a4804ae18d214ffcd219087d"
+    },
+    "unit-RangedGer4": {
+      "sourceSheet": "troop-ger",
+      "sourceBounds": [
+        889,
+        855,
+        1080,
+        1130
+      ],
+      "bounds": [
+        62,
+        24,
+        200,
+        224
+      ],
+      "sha256": "023a28e4ed6471d283831d793a31846bde43a6940b0978824a449664fd13e46d"
+    },
+    "unit-RangedGer5": {
+      "sourceSheet": "troop-ger",
+      "sourceBounds": [
+        40,
+        1134,
+        231,
+        1393
+      ],
+      "bounds": [
+        49,
+        24,
+        196,
+        225
+      ],
+      "sha256": "5850802922169787b9d0b4ac50f55696993d02d52c10fb030916de09771d3df4"
+    },
+    "unit-RangedGer6": {
+      "sourceSheet": "troop-ger",
+      "sourceBounds": [
+        311,
+        1134,
+        508,
+        1394
+      ],
+      "bounds": [
+        46,
+        24,
+        197,
+        225
+      ],
+      "sha256": "959f91473fe935d9b525dc9e1c85e688fa6595baafd8e8785648cd8a1e533a8a"
+    },
+    "unit-RangedGer7": {
+      "sourceSheet": "troop-ger",
+      "sourceBounds": [
+        577,
+        1124,
+        803,
+        1395
+      ],
+      "bounds": [
+        43,
+        24,
+        210,
+        225
+      ],
+      "sha256": "ee12f57ad557118e51598be05523501f577c72ba8c847b467e4eda88116814b9"
+    },
+    "unit-MeleeViz1": {
+      "sourceSheet": "troop-viz",
+      "sourceBounds": [
+        70,
+        14,
+        250,
+        290
+      ],
+      "bounds": [
+        70,
+        24,
+        199,
+        224
+      ],
+      "sha256": "5909823193180eebc2a5d0e0cc6d5face36757c8773a909cf1bc0bae803b8249"
+    },
+    "unit-MeleeViz2": {
+      "sourceSheet": "troop-viz",
+      "sourceBounds": [
+        329,
+        0,
+        506,
+        290
+      ],
+      "bounds": [
+        73,
+        24,
+        194,
+        224
+      ],
+      "sha256": "1ce6b4af99a6c4253e38f8f884845563ed0d3f016c47906297a2f898fdb6dacc"
+    },
+    "unit-MeleeViz3": {
+      "sourceSheet": "troop-viz",
+      "sourceBounds": [
+        608,
+        2,
+        784,
+        290
+      ],
+      "bounds": [
+        69,
+        24,
+        190,
+        224
+      ],
+      "sha256": "1ac0d11a9126af55da14fd0ac698c66a544f0f21415a358aac2d27ed34476de3"
+    },
+    "unit-MeleeViz4": {
+      "sourceSheet": "troop-viz",
+      "sourceBounds": [
+        859,
+        0,
+        1068,
+        290
+      ],
+      "bounds": [
+        57,
+        23,
+        200,
+        224
+      ],
+      "sha256": "cd42298f0363fe426e9838395059e6a05a3340b5b7242ff7b1d50c38d7e461fb"
+    },
+    "unit-MeleeViz5": {
+      "sourceSheet": "troop-viz",
+      "sourceBounds": [
+        51,
+        289,
+        260,
+        583
+      ],
+      "bounds": [
+        62,
+        24,
+        203,
+        224
+      ],
+      "sha256": "f5a56cffe83cc09dc8464675336980aac1d412841cab1f237166c75cda7d9627"
+    },
+    "unit-MeleeViz6": {
+      "sourceSheet": "troop-viz",
+      "sourceBounds": [
+        293,
+        285,
+        523,
+        583
+      ],
+      "bounds": [
+        35,
+        24,
+        190,
+        224
+      ],
+      "sha256": "68f42d40959a71c0ef11357ae55609b2f8df2d1878644189fff897aee195166f"
+    },
+    "unit-MeleeViz7": {
+      "sourceSheet": "troop-viz",
+      "sourceBounds": [
+        581,
+        285,
+        798,
+        583
+      ],
+      "bounds": [
+        50,
+        24,
+        196,
+        224
+      ],
+      "sha256": "9b8776cdafdc52ce2f8172d41b898d1790b07ba5ccde4b6406dc36100afe5e4b"
+    },
+    "unit-MeleeViz8": {
+      "sourceSheet": "troop-viz",
+      "sourceBounds": [
+        853,
+        285,
+        1083,
+        583
+      ],
+      "bounds": [
+        57,
+        24,
+        211,
+        225
+      ],
+      "sha256": "bc8f66250a4a9c67be8521f134b6d11c862e415efab3ed17c24cfbe15afe139a"
+    },
+    "unit-MeleeViz9": {
+      "sourceSheet": "troop-viz",
+      "sourceBounds": [
+        64,
+        581,
+        260,
+        869
+      ],
+      "bounds": [
+        64,
+        24,
+        199,
+        224
+      ],
+      "sha256": "a98eda7793d83ab66c6da6a7711f7ac173408d19f3950ed28a70dd66ba9062f0"
+    },
+    "unit-RangedViz9": {
+      "sourceSheet": "troop-viz",
+      "sourceBounds": [
+        340,
+        583,
+        525,
+        869
+      ],
+      "bounds": [
+        66,
+        24,
+        194,
+        224
+      ],
+      "sha256": "c43e6c12ffaeec6e011b7f7d9048b6e2c03c2d7db90c807a92eec2fc029f94b2"
+    },
+    "unit-RangedViz1": {
+      "sourceSheet": "troop-viz",
+      "sourceBounds": [
+        601,
+        580,
+        794,
+        869
+      ],
+      "bounds": [
+        66,
+        24,
+        198,
+        224
+      ],
+      "sha256": "b6786af724993920175a9ad9a32a111e62d3fd71bbbf08f7102be83fb9f7eb22"
+    },
+    "unit-RangedViz2": {
+      "sourceSheet": "troop-viz",
+      "sourceBounds": [
+        883,
+        578,
+        1082,
+        869
+      ],
+      "bounds": [
+        64,
+        24,
+        202,
+        224
+      ],
+      "sha256": "0026da7cd628dc93d4174c774ce2b1e330c0080c91b55b9ed95d51d173ca51c3"
+    },
+    "unit-RangedViz3": {
+      "sourceSheet": "troop-viz",
+      "sourceBounds": [
+        74,
+        857,
+        262,
+        1155
+      ],
+      "bounds": [
+        71,
+        24,
+        196,
+        224
+      ],
+      "sha256": "c2888ec1af204aa60182e3259b6603530e9b7c14e39abd62127f0aeb5adb605a"
+    },
+    "unit-RangedViz4": {
+      "sourceSheet": "troop-viz",
+      "sourceBounds": [
+        311,
+        860,
+        525,
+        1155
+      ],
+      "bounds": [
+        46,
+        24,
+        190,
+        224
+      ],
+      "sha256": "eabf7497084624f619df27548a0823689aa1e69a61e2b1d91aa59f047ccc7147"
+    },
+    "unit-RangedViz5": {
+      "sourceSheet": "troop-viz",
+      "sourceBounds": [
+        599,
+        868,
+        792,
+        1155
+      ],
+      "bounds": [
+        61,
+        24,
+        194,
+        224
+      ],
+      "sha256": "73d9d00ff341f4beb0c37fda0eb3ec2987a00e9ea7f4fcd6b6ae336cdeda77c5"
+    },
+    "unit-RangedViz6": {
+      "sourceSheet": "troop-viz",
+      "sourceBounds": [
+        856,
+        858,
+        1081,
+        1155
+      ],
+      "bounds": [
+        50,
+        24,
+        201,
+        224
+      ],
+      "sha256": "5d1ceb5978e53de08c487bb789b8301e1ccd13cb2a8197c9c9fc146977ee137e"
+    },
+    "unit-RangedViz7": {
+      "sourceSheet": "troop-viz",
+      "sourceBounds": [
+        74,
+        1149,
+        256,
+        1402
+      ],
+      "bounds": [
+        60,
+        23,
+        203,
+        225
+      ],
+      "sha256": "57f64e06fa997c5510b0daf8410b6fcfe81c5e52ed2704276903c2766ddbf9aa"
+    },
+    "unit-RangedViz8": {
+      "sourceSheet": "troop-viz",
+      "sourceBounds": [
+        327,
+        1151,
+        532,
+        1402
+      ],
+      "bounds": [
+        48,
+        24,
+        211,
+        224
+      ],
+      "sha256": "8c198d94e051b594392260f598bf8adb1456512f6c5fec82a39ee7fdf92004ec"
+    },
+    "unit-MeleeRus1": {
+      "sourceSheet": "troop-rus",
+      "sourceBounds": [
+        78,
+        9,
+        271,
+        314
+      ],
+      "bounds": [
+        69,
+        24,
+        194,
+        224
+      ],
+      "sha256": "5061910814d0d7173e6a5c9b6b1cc89907cd35d49ab06be61db521d79e455570"
+    },
+    "unit-MeleeRus2": {
+      "sourceSheet": "troop-rus",
+      "sourceBounds": [
+        353,
+        5,
+        589,
+        314
+      ],
+      "bounds": [
+        40,
+        24,
+        193,
+        224
+      ],
+      "sha256": "d41619aa55bbda9f29e261e7fc4e58d9a55d4a2a71f8f1a2c5459d1962313467"
+    },
+    "unit-MeleeRus3": {
+      "sourceSheet": "troop-rus",
+      "sourceBounds": [
+        689,
+        5,
+        892,
+        314
+      ],
+      "bounds": [
+        65,
+        24,
+        196,
+        224
+      ],
+      "sha256": "a8b0ca339d0443569605f572381bc0483569bc34b9ce5ae037ea73425d2c3706"
+    },
+    "unit-MeleeRus4": {
+      "sourceSheet": "troop-rus",
+      "sourceBounds": [
+        1004,
+        0,
+        1199,
+        314
+      ],
+      "bounds": [
+        68,
+        24,
+        191,
+        225
+      ],
+      "sha256": "7809a63840c9076f4e5a310bec70d339a152d7758974278a327edbb0f82576ca"
+    },
+    "unit-MeleeRus5": {
+      "sourceSheet": "troop-rus",
+      "sourceBounds": [
+        67,
+        314,
+        279,
+        629
+      ],
+      "bounds": [
+        66,
+        24,
+        200,
+        225
+      ],
+      "sha256": "44979febc0e06d80ee400ca88f016099d021de77cebfed0f66b66a720e88c428"
+    },
+    "unit-MeleeRus6": {
+      "sourceSheet": "troop-rus",
+      "sourceBounds": [
+        386,
+        314,
+        593,
+        630
+      ],
+      "bounds": [
+        65,
+        24,
+        196,
+        224
+      ],
+      "sha256": "e7c3c60130ee3a678badf583c3ac13d7b2835a638bcc51c405dc85e547471606"
+    },
+    "unit-MeleeRus7": {
+      "sourceSheet": "troop-rus",
+      "sourceBounds": [
+        657,
+        314,
+        910,
+        631
+      ],
+      "bounds": [
+        48,
+        23,
+        207,
+        224
+      ],
+      "sha256": "3b35833c3d87630c60e5ba362a5a32a19699cb2e949b78e390a5ac560494cba5"
+    },
+    "unit-MeleeRus8": {
+      "sourceSheet": "troop-rus",
+      "sourceBounds": [
+        988,
+        314,
+        1214,
+        631
+      ],
+      "bounds": [
+        54,
+        23,
+        197,
+        224
+      ],
+      "sha256": "95dea0b0f5629325ee1f1c40beb5a0dffffd7ce3cb229381719da8d64242b650"
+    },
+    "unit-MeleeRus9": {
+      "sourceSheet": "troop-rus",
+      "sourceBounds": [
+        41,
+        625,
+        285,
+        944
+      ],
+      "bounds": [
+        47,
+        24,
+        199,
+        224
+      ],
+      "sha256": "75168140a772c8dd30eb3f6862df1c8044190099f6e008fff2802e35c2e60a5b"
+    },
+    "unit-MeleeRus10": {
+      "sourceSheet": "troop-rus",
+      "sourceBounds": [
+        337,
+        625,
+        602,
+        944
+      ],
+      "bounds": [
+        34,
+        24,
+        200,
+        224
+      ],
+      "sha256": "1e43c96efa6a364c444e08d29262b009a1d995841a458b338a7b1bb35df6256c"
+    },
+    "unit-RangedRus1": {
+      "sourceSheet": "troop-rus",
+      "sourceBounds": [
+        673,
+        638,
+        903,
+        944
+      ],
+      "bounds": [
+        51,
+        24,
+        201,
+        224
+      ],
+      "sha256": "8a9d7da0855a6365bc5d17eb93a34ccceee3091993d44dbdefd9a6c01157ee9e"
+    },
+    "unit-RangedRus2": {
+      "sourceSheet": "troop-rus",
+      "sourceBounds": [
+        991,
+        647,
+        1205,
+        944
+      ],
+      "bounds": [
+        51,
+        24,
+        194,
+        224
+      ],
+      "sha256": "57d8b379f621c1b51d36a95aad55f5366e5098a42460522338734285b34b6b2f"
+    },
+    "unit-RangedRus3": {
+      "sourceSheet": "troop-rus",
+      "sourceBounds": [
+        75,
+        944,
+        283,
+        1247
+      ],
+      "bounds": [
+        64,
+        24,
+        200,
+        224
+      ],
+      "sha256": "9afa27ebf8b828dc4889647e322fbcb48d4503071259899512c117e1c430ddda"
+    },
+    "unit-RangedRus4": {
+      "sourceSheet": "troop-rus",
+      "sourceBounds": [
+        393,
+        943,
+        599,
+        1247
+      ],
+      "bounds": [
+        67,
+        24,
+        202,
+        224
+      ],
+      "sha256": "a3dd6bfa22ccaa9d6a6952074839726732b9f60926c6e52ab0c67c3cad7b810d"
+    },
+    "unit-RangedRus5": {
+      "sourceSheet": "troop-rus",
+      "sourceBounds": [
+        694,
+        939,
+        903,
+        1247
+      ],
+      "bounds": [
+        62,
+        24,
+        197,
+        224
+      ],
+      "sha256": "dab3fdc17237eb6140e0b1382f9c6375f218b38650486391978128ad11d9b3e3"
+    },
+    "unit-RangedRus6": {
+      "sourceSheet": "troop-rus",
+      "sourceBounds": [
+        981,
+        943,
+        1216,
+        1247
+      ],
+      "bounds": [
+        45,
+        24,
+        199,
+        224
+      ],
+      "sha256": "09e064abaeacc5193650dfed32571092401e7b84f728f22ff17f2a0528daef94"
+    },
+    "unit-MeleeJap1": {
+      "sourceSheet": "troop-jap",
+      "sourceBounds": [
+        91,
+        0,
+        264,
+        277
+      ],
+      "bounds": [
+        71,
+        23,
+        194,
+        225
+      ],
+      "sha256": "1549ea649fa80b664a7f2bd367f8dc12798660f1113c6d37616c8e7cc3e4a88e"
+    },
+    "unit-MeleeJap2": {
+      "sourceSheet": "troop-jap",
+      "sourceBounds": [
+        348,
+        4,
+        520,
+        277
+      ],
+      "bounds": [
+        72,
+        24,
+        197,
+        224
+      ],
+      "sha256": "05bfd53cdd1f8fd7d0866d399930a674cfbbf8af0515ada61bc4ab05abd311e8"
+    },
+    "unit-MeleeJap3": {
+      "sourceSheet": "troop-jap",
+      "sourceBounds": [
+        615,
+        0,
+        781,
+        277
+      ],
+      "bounds": [
+        75,
+        23,
+        193,
+        224
+      ],
+      "sha256": "781a4bdd0ec2b755099a966525d58e4810cc49e4bafe1a18b39becee426fb398"
+    },
+    "unit-MeleeJap4": {
+      "sourceSheet": "troop-jap",
+      "sourceBounds": [
+        875,
+        0,
+        1047,
+        277
+      ],
+      "bounds": [
+        71,
+        23,
+        193,
+        224
+      ],
+      "sha256": "4ad057d9c1c5dce62c0db912bc56c824aae5663864422fba3a2557506b0983b0"
+    },
+    "unit-MeleeJap5": {
+      "sourceSheet": "troop-jap",
+      "sourceBounds": [
+        69,
+        274,
+        262,
+        561
+      ],
+      "bounds": [
+        65,
+        24,
+        198,
+        224
+      ],
+      "sha256": "5230a498517c88d4dd34d1b16ea66d448b898f764592009c04cad1db31213329"
+    },
+    "unit-MeleeJap6": {
+      "sourceSheet": "troop-jap",
+      "sourceBounds": [
+        334,
+        278,
+        529,
+        561
+      ],
+      "bounds": [
+        61,
+        24,
+        198,
+        225
+      ],
+      "sha256": "38af5c8d7bd8a6209a2c27be4212375c07e9fa2e54b8a65c82c71b7ae6da02e4"
+    },
+    "unit-MeleeJap7": {
+      "sourceSheet": "troop-jap",
+      "sourceBounds": [
+        594,
+        277,
+        788,
+        561
+      ],
+      "bounds": [
+        60,
+        24,
+        197,
+        224
+      ],
+      "sha256": "3edf3182467df27b42e32e96498d0b85adb9ac968ae09d9e6d48680dc921e0e4"
+    },
+    "unit-MeleeJap8": {
+      "sourceSheet": "troop-jap",
+      "sourceBounds": [
+        871,
+        276,
+        1074,
+        561
+      ],
+      "bounds": [
+        58,
+        24,
+        200,
+        224
+      ],
+      "sha256": "dab675b14a1591dd321405ab54d0cbc68d2e4376873269089c8275bed3fb2630"
+    },
+    "unit-MeleeJap9": {
+      "sourceSheet": "troop-jap",
+      "sourceBounds": [
+        46,
+        562,
+        263,
+        850
+      ],
+      "bounds": [
+        50,
+        24,
+        201,
+        224
+      ],
+      "sha256": "258cc351ef55ba6a60f49f77d54a5147fd0355e6df0b3014855bf47f972ec676"
+    },
+    "unit-MeleeJap10": {
+      "sourceSheet": "troop-jap",
+      "sourceBounds": [
+        343,
+        557,
+        525,
+        850
+      ],
+      "bounds": [
+        70,
+        23,
+        193,
+        224
+      ],
+      "sha256": "7b4b950d1022bb24dcbb83e423a0166033f1f868e4fe5051417b482a3728bfc1"
+    },
+    "unit-MeleeJap11": {
+      "sourceSheet": "troop-jap",
+      "sourceBounds": [
+        608,
+        556,
+        792,
+        852
+      ],
+      "bounds": [
+        72,
+        23,
+        195,
+        224
+      ],
+      "sha256": "f30370966a73f100b5ffc89ec9d17f7b6f254fbec077f372606818642a579c83"
+    },
+    "unit-RangedJap1": {
+      "sourceSheet": "troop-jap",
+      "sourceBounds": [
+        897,
+        556,
+        1076,
+        851
+      ],
+      "bounds": [
+        75,
+        24,
+        195,
+        225
+      ],
+      "sha256": "6b22fb928e2cd2b90ab2a10a748c5d0a056cfcaddabad51ef4fd0c65be171cb4"
+    },
+    "unit-RangedJap2": {
+      "sourceSheet": "troop-jap",
+      "sourceBounds": [
+        50,
+        847,
+        270,
+        1140
+      ],
+      "bounds": [
+        50,
+        24,
+        199,
+        224
+      ],
+      "sha256": "cc67f90339ff4c005a32ab7fc5334ab2aed87a4c068453544073f889577f13d0"
+    },
+    "unit-RangedJap3": {
+      "sourceSheet": "troop-jap",
+      "sourceBounds": [
+        337,
+        848,
+        525,
+        1141
+      ],
+      "bounds": [
+        69,
+        23,
+        196,
+        224
+      ],
+      "sha256": "caf7f46f72bb6fcc2f130f634d6d4e1f9ab453e582bb3e648d5b925855dc6497"
+    },
+    "unit-RangedJap4": {
+      "sourceSheet": "troop-jap",
+      "sourceBounds": [
+        606,
+        856,
+        791,
+        1141
+      ],
+      "bounds": [
+        68,
+        24,
+        197,
+        224
+      ],
+      "sha256": "d887f63ab50d3286593f653275071b7acf42301c0f210480cceb2a8e622e1be1"
+    },
+    "unit-RangedJap5": {
+      "sourceSheet": "troop-jap",
+      "sourceBounds": [
+        868,
+        858,
+        1075,
+        1141
+      ],
+      "bounds": [
+        50,
+        24,
+        196,
+        224
+      ],
+      "sha256": "60e3ed5ae0b7e5e8b558cc39d689c75de0539f8ddb99ca44d5b069f8abdd7a13"
+    },
+    "unit-RangedJap6": {
+      "sourceSheet": "troop-jap",
+      "sourceBounds": [
+        40,
+        1138,
+        262,
+        1402
+      ],
+      "bounds": [
+        38,
+        24,
+        205,
+        226
+      ],
+      "sha256": "d148572ce1a279227b5ba20e7eab62074d79ad9f31fcddfa3721bd529a831468"
+    },
+    "unit-MeleeRog1": {
+      "sourceSheet": "troop-rog",
+      "sourceBounds": [
+        92,
+        15,
+        475,
+        514
+      ],
+      "bounds": [
+        37,
+        24,
+        190,
+        224
+      ],
+      "sha256": "f3d8087b600bde4e9d6f9de7cf8e7423f02d08d9954f61ce1d5d6472a2c77d43"
+    },
+    "unit-MeleeRog2": {
+      "sourceSheet": "troop-rog",
+      "sourceBounds": [
+        593,
+        6,
+        953,
+        515
+      ],
+      "bounds": [
+        53,
+        24,
+        194,
+        224
+      ],
+      "sha256": "ddd059d433437fdc516e314a0ad01cb2f0d65789f4664f0fbac3b0d780a84de6"
+    },
+    "unit-MeleeRog3": {
+      "sourceSheet": "troop-rog",
+      "sourceBounds": [
+        1131,
+        18,
+        1410,
+        515
+      ],
+      "bounds": [
+        73,
+        24,
+        185,
+        224
+      ],
+      "sha256": "819d7bb3c2535e3f285f67303a1d2d53bcb5737d63e273b6543bc8cf4f7e76b5"
+    },
+    "unit-RangedRog1": {
+      "sourceSheet": "troop-rog",
+      "sourceBounds": [
+        124,
+        514,
+        474,
+        1009
+      ],
+      "bounds": [
+        49,
+        24,
+        190,
+        224
+      ],
+      "sha256": "51c24428a9e0e38ed6b72be1cc440bb49c69ad97710c804ddaf52b3595c6be8b"
+    },
+    "unit-RangedRog2": {
+      "sourceSheet": "troop-rog",
+      "sourceBounds": [
+        656,
+        516,
+        934,
+        1009
+      ],
+      "bounds": [
+        72,
+        24,
+        184,
+        224
+      ],
+      "sha256": "0852b2e8ce2244749410ecdb1c25c150ad8f44d39dc909d38abedfb1aee125ef"
+    },
+    "unit-RangedRog3": {
+      "sourceSheet": "troop-rog",
+      "sourceBounds": [
+        1108,
+        515,
+        1428,
+        1009
+      ],
+      "bounds": [
+        62,
+        24,
+        191,
+        224
+      ],
+      "sha256": "22f2591bc32ef6efc6322f6716e6a3ccea467a3c3c2f466c4859d82ce4e14664"
+    },
+    "morningstar": {
+      "sourceSheet": "equipment",
+      "sourceBounds": [
+        98,
+        23,
+        231,
+        309
+      ],
+      "bounds": [
+        82,
+        24,
+        173,
+        224
+      ],
+      "sha256": "7da527f12f49f979d9b8f193fc1de98ed03341c4c08e56362f243ed32deeb24d"
+    },
+    "hammer": {
+      "sourceSheet": "equipment",
+      "sourceBounds": [
+        340,
+        18,
+        533,
+        309
+      ],
+      "bounds": [
+        62,
+        23,
+        193,
+        224
+      ],
+      "sha256": "937355a0acadf7665629e5dde1d0394e2274e93dc384956538f542d9eb71ae44"
+    },
+    "mace": {
+      "sourceSheet": "equipment",
+      "sourceBounds": [
+        645,
+        22,
+        758,
+        309
+      ],
+      "bounds": [
+        90,
+        24,
+        166,
+        224
+      ],
+      "sha256": "60141b4319f8cfa0e3204a5b6fa400bb8a63d48a6e2ac58ef1dccd6290196aca"
+    },
+    "sword": {
+      "sourceSheet": "equipment",
+      "sourceBounds": [
+        905,
+        16,
+        1050,
+        310
+      ],
+      "bounds": [
+        80,
+        24,
+        177,
+        224
+      ],
+      "sha256": "8644028c8fc802af0b7e9501929372554a22928a7c4c4dac741c6a67b75cbfb2"
+    },
+    "greatsword": {
+      "sourceSheet": "equipment",
+      "sourceBounds": [
+        1179,
+        3,
+        1318,
+        312
+      ],
+      "bounds": [
+        84,
+        24,
+        172,
+        224
+      ],
+      "sha256": "e2a0450e007e8285b37529534a819a3b5a3b6fbaac350f8017bb8496da35a5a6"
+    },
+    "katana": {
+      "sourceSheet": "equipment",
+      "sourceBounds": [
+        134,
+        314,
+        214,
+        596
+      ],
+      "bounds": [
+        100,
+        24,
+        155,
+        224
+      ],
+      "sha256": "63f20a8505a2ba8b901ed9d46c0afbfd077f2413ad5cb68a3c92eb8faf344870"
+    },
+    "ninjato": {
+      "sourceSheet": "equipment",
+      "sourceBounds": [
+        409,
+        325,
+        473,
+        589
+      ],
+      "bounds": [
+        105,
+        24,
+        151,
+        225
+      ],
+      "sha256": "4c864b93c0095f920ca14f815a3f17bc26da8aa4ded994b8f975133dd2bcbabe"
+    },
+    "axe": {
+      "sourceSheet": "equipment",
+      "sourceBounds": [
+        651,
+        330,
+        791,
+        586
+      ],
+      "bounds": [
+        74,
+        24,
+        182,
+        225
+      ],
+      "sha256": "2111c2404c27575a9913d147e20dd65cf8dc4fc132175c95b2e7dbb760176da4"
+    },
+    "greataxe": {
+      "sourceSheet": "equipment",
+      "sourceBounds": [
+        899,
+        314,
+        1074,
+        591
+      ],
+      "bounds": [
+        65,
+        24,
+        190,
+        224
+      ],
+      "sha256": "410df426cfbef0c3c3f9a1d5771336e040fc78aa789616d345ee9c910dfb0632"
+    },
+    "bow": {
+      "sourceSheet": "equipment",
+      "sourceBounds": [
+        1174,
+        312,
+        1312,
+        600
+      ],
+      "bounds": [
+        81,
+        24,
+        175,
+        224
+      ],
+      "sha256": "e53c9601e4879a01f2743101e61bd7d133a4c6466f6893e148aa6b8a0ebfc447"
+    },
+    "crossbow": {
+      "sourceSheet": "equipment",
+      "sourceBounds": [
+        44,
+        612,
+        300,
+        868
+      ],
+      "bounds": [
+        44,
+        56,
+        212,
+        224
+      ],
+      "sha256": "c6d44cfc452e33fa7243706cef19e3518fc91fa4aaede10f598edac36aa0c2d9"
+    },
+    "spear": {
+      "sourceSheet": "equipment",
+      "sourceBounds": [
+        414,
+        595,
+        462,
+        869
+      ],
+      "bounds": [
+        112,
+        24,
+        144,
+        224
+      ],
+      "sha256": "3c117a0213955fe6c5edf6b83cd3e2c2927ac00d31a01ad5a2b02b81e0da3098"
+    },
+    "naginata": {
+      "sourceSheet": "equipment",
+      "sourceBounds": [
+        685,
+        591,
+        752,
+        869
+      ],
+      "bounds": [
+        105,
+        24,
+        150,
+        224
+      ],
+      "sha256": "4c777f1a5162ee2bd360c0282d0d6c5bf334db677cd68ac95ba73104f2c7f5eb"
+    },
+    "staff": {
+      "sourceSheet": "equipment",
+      "sourceBounds": [
+        963,
+        599,
+        997,
+        868
+      ],
+      "bounds": [
+        117,
+        24,
+        139,
+        225
+      ],
+      "sha256": "5e15ef25ec95f8efe2a595e36d3438617016d3c76ab05b460952ee6e8ee0dea8"
+    },
+    "dagger": {
+      "sourceSheet": "equipment",
+      "sourceBounds": [
+        1192,
+        621,
+        1303,
+        852
+      ],
+      "bounds": [
+        81,
+        23,
+        175,
+        224
+      ],
+      "sha256": "441e180b6e4e50b7d1d26d0fb88dd7b0a206dfd39de91f954685e2e589fb8b6d"
+    },
+    "shuriken": {
+      "sourceSheet": "equipment",
+      "sourceBounds": [
+        69,
+        888,
+        281,
+        1086
+      ],
+      "bounds": [
+        44,
+        67,
+        213,
+        224
+      ],
+      "sha256": "b9e91a9d9b568195e5816871ce9d6a709c5f6d01ce81804eae2777fd5d7da000"
+    },
+    "throwingAxe": {
+      "sourceSheet": "equipment",
+      "sourceBounds": [
+        368,
+        876,
+        525,
+        1098
+      ],
+      "bounds": [
+        58,
+        23,
+        197,
+        225
+      ],
+      "sha256": "2fb44ea4c5ed3aa06a1ee7cb0fd3a720321b612231210347bf893d8b2882b9f2"
+    },
+    "throwingKnife": {
+      "sourceSheet": "equipment",
+      "sourceBounds": [
+        674,
+        880,
+        728,
+        1098
+      ],
+      "bounds": [
+        106,
+        23,
+        151,
+        225
+      ],
+      "sha256": "c285f0d7b711a5ad1900fbb4926c9afe9a8186938f6c8ca27818353403a21ad8"
+    },
+    "fire": {
+      "sourceSheet": "equipment",
+      "sourceBounds": [
+        889,
+        873,
+        1056,
+        1098
+      ],
+      "bounds": [
+        54,
+        22,
+        204,
+        224
+      ],
+      "sha256": "00a89201ed9a22c97f82c7aed9356b2cc3caa9aa3754fdf948ef8d8286e31d1f"
+    },
+    "shield": {
+      "sourceSheet": "equipment",
+      "sourceBounds": [
+        1141,
+        880,
+        1348,
+        1091
+      ],
+      "bounds": [
+        43,
+        52,
+        212,
+        224
+      ],
+      "sha256": "62d472bdb3c7425abd9a800c3af7e27119c98d47baefcf13911d78f4364cda7b"
+    },
+    "spikedStaff": {
+      "sourceSheet": "equipment-variants",
+      "sourceBounds": [
+        142,
+        8,
+        209,
+        318
+      ],
+      "bounds": [
+        107,
+        23,
+        148,
+        224
+      ],
+      "sha256": "c1121ca2a90886c2a81a5a658c01ceefc2bf0d47004590fbdca369842a6a5986"
+    },
+    "goldNaginata": {
+      "sourceSheet": "equipment-variants",
+      "sourceBounds": [
+        414,
+        0,
+        504,
+        319
+      ],
+      "bounds": [
+        101,
+        23,
+        154,
+        224
+      ],
+      "sha256": "4842731f4b0e33cd744068468402f321c584bd50a9fcead919e9f7a893be95f7"
+    },
+    "holySpear": {
+      "sourceSheet": "equipment-variants",
+      "sourceBounds": [
+        659,
+        0,
+        747,
+        318
+      ],
+      "bounds": [
+        102,
+        24,
+        154,
+        224
+      ],
+      "sha256": "fd8afee1fcbe68730f03c6648076aac0a2f451e17f1da6e47d2d96ce50e1e226"
+    },
+    "blackKatana": {
+      "sourceSheet": "equipment-variants",
+      "sourceBounds": [
+        963,
+        6,
+        1031,
+        318
+      ],
+      "bounds": [
+        108,
+        24,
+        148,
+        225
+      ],
+      "sha256": "978e04032ab5492cc8758fd30af2fa6c851a811b65c02016fbbe1820178dd544"
+    },
+    "goldKatana": {
+      "sourceSheet": "equipment-variants",
+      "sourceBounds": [
+        1237,
+        0,
+        1306,
+        318
+      ],
+      "bounds": [
+        107,
+        24,
+        148,
+        224
+      ],
+      "sha256": "6f99e21d4d51c302b9c2971cdf48eb321ed7c57f6a3aba42bd031b072a6ce8db"
+    },
+    "holyNinjato": {
+      "sourceSheet": "equipment-variants",
+      "sourceBounds": [
+        127,
+        326,
+        196,
+        567
+      ],
+      "bounds": [
+        102,
+        24,
+        156,
+        223
+      ],
+      "sha256": "56ed6ba84fb260202fcb0731412b75b5e9770b406ab6d1a3bf4e30df180782e0"
+    },
+    "blackShuriken": {
+      "sourceSheet": "equipment-variants",
+      "sourceBounds": [
+        315,
+        347,
+        526,
+        555
+      ],
+      "bounds": [
+        44,
+        58,
+        213,
+        224
+      ],
+      "sha256": "a4b8e7b9a9587a35b423fcbac248054cc104d913eac666e254b833345d1a4665"
+    },
+    "silverShuriken": {
+      "sourceSheet": "equipment-variants",
+      "sourceBounds": [
+        596,
+        348,
+        804,
+        551
+      ],
+      "bounds": [
+        45,
+        60,
+        213,
+        225
+      ],
+      "sha256": "feb878a2c3d636ec446ad92224820e2efae7855b434064044b3cf0d4d594f179"
+    },
+    "forgedCrossbow": {
+      "sourceSheet": "equipment-variants",
+      "sourceBounds": [
+        874,
+        322,
+        1099,
+        563
+      ],
+      "bounds": [
+        44,
+        43,
+        213,
+        224
+      ],
+      "sha256": "9e307b0eabb744cc9703140ba9c133611f220f7d3aff13938c14dfdf7708e495"
+    },
+    "eliteCrossbow": {
+      "sourceSheet": "equipment-variants",
+      "sourceBounds": [
+        1130,
+        323,
+        1390,
+        564
+      ],
+      "bounds": [
+        43,
+        69,
+        212,
+        224
+      ],
+      "sha256": "c823e6519892ab566d54440a56683f6981072e8bcede4264a4936116b0ffbc66"
+    },
+    "holyBow": {
+      "sourceSheet": "equipment-variants",
+      "sourceBounds": [
+        98,
+        569,
+        229,
+        846
+      ],
+      "bounds": [
+        81,
+        24,
+        175,
+        224
+      ],
+      "sha256": "a529abfafde65a1dde40700517db6d6f4066f7177766dd1f2996846b4960f082"
+    },
+    "samuraiBow": {
+      "sourceSheet": "equipment-variants",
+      "sourceBounds": [
+        366,
+        551,
+        507,
+        845
+      ],
+      "bounds": [
+        80,
+        24,
+        175,
+        224
+      ],
+      "sha256": "8a9fa6c4429fbcef293c63e7e060ff500324a2a642c0abac124ebdc2688a6c97"
+    },
+    "longAxe": {
+      "sourceSheet": "equipment-variants",
+      "sourceBounds": [
+        654,
+        567,
+        783,
+        842
+      ],
+      "bounds": [
+        82,
+        24,
+        174,
+        224
+      ],
+      "sha256": "42958892d91306f31097822809deef785f77755d9c3df35a7080dccf3059912c"
+    },
+    "holyAxe": {
+      "sourceSheet": "equipment-variants",
+      "sourceBounds": [
+        903,
+        566,
+        1066,
+        842
+      ],
+      "bounds": [
+        70,
+        24,
+        187,
+        224
+      ],
+      "sha256": "574d4c0a1fb76b70f14a04ed008990f5707b5509f9ab6d53300acd962da1edc0"
+    },
+    "eliteGreataxe": {
+      "sourceSheet": "equipment-variants",
+      "sourceBounds": [
+        1164,
+        564,
+        1353,
+        839
+      ],
+      "bounds": [
+        60,
+        24,
+        195,
+        225
+      ],
+      "sha256": "6dcd681a4bda6de800bb8d83177e1bc0521843ab6f6e4121d77dbf83b838411b"
+    },
+    "peacekeeperMace": {
+      "sourceSheet": "equipment-variants",
+      "sourceBounds": [
+        98,
+        830,
+        210,
+        1106
+      ],
+      "bounds": [
+        89,
+        24,
+        168,
+        224
+      ],
+      "sha256": "22a048f2fda0c1110f83aa8662febafb1cae2c5d8705d3a8874db14c6e68f222"
+    },
+    "starbringerSword": {
+      "sourceSheet": "equipment-variants",
+      "sourceBounds": [
+        372,
+        827,
+        523,
+        1106
+      ],
+      "bounds": [
+        75,
+        24,
+        182,
+        225
+      ],
+      "sha256": "e27f57df4785b02ad047a2d6acda0977321ca75b577a67bc9298130087bb6a4b"
+    },
+    "silverThrowingKnife": {
+      "sourceSheet": "equipment-variants",
+      "sourceBounds": [
+        679,
+        832,
+        737,
+        1106
+      ],
+      "bounds": [
+        108,
+        24,
+        147,
+        224
+      ],
+      "sha256": "78262b7879e9456df4aa2de6aef2f83fa1a2124a9a61c455985257a93acbc716"
+    },
+    "ironBuckler": {
+      "sourceSheet": "equipment-variants",
+      "sourceBounds": [
+        885,
+        873,
+        1094,
+        1083
+      ],
+      "bounds": [
+        44,
+        55,
+        213,
+        225
+      ],
+      "sha256": "245bc6cf881209d45a5b39e077fa1720fe60d6badccbe3932125cea005cd6c85"
+    },
+    "kiteShield": {
+      "sourceSheet": "equipment-variants",
+      "sourceBounds": [
+        1176,
+        834,
+        1340,
+        1107
+      ],
+      "bounds": [
+        69,
+        23,
+        187,
+        224
+      ],
+      "sha256": "63c8cbf5bd9890be74a417b516a4805c27f2719bd9c20d8209c7f6eb0ca056c3"
+    }
+  }
+}
