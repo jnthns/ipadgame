@@ -26,7 +26,7 @@ Open the resulting HTTPS URL in Safari on the iPad or iPhone. Wait for the offli
 
 ## Play
 
-- Choose an original hero; select and travel to towns on the map.
+- Choose an original hero; tap a town on the map to see what is there and travel to it. Town details open on the map itself. Shield badges show garrison size, colored by an estimate of how your current company would fare (simulated battles with your hero held back); gold badges mark delivery and payment towns; the yellow pin and dashed line show your company and its route.
 - Recruit local soldiers, earn gold through contracts, purchase equipment and spend hero skill points.
 - Attack towns to fight garrisons and, where present, a second throne-room battle.
 - Tap the battlefield or use the direction pad to move the hero; select Army to give troop orders. Hero attacks are manual: hold Attack while moving when needed. Hold/Charge, pause, 2× speed and retreat are available. WASD/arrows move the hero, Space/0 attacks, Shift switches weapons, and P pauses.

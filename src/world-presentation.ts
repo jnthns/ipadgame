@@ -1,38 +1,100 @@
 import {data,expand,nations,type Campaign} from './model';
 import {townFacilities,type WorldState} from './world-campaign';
+import {geometry} from './world-geometry';
 import {icon} from './interface-icons';
 import {VISUAL_IDENTITY} from './render-presets';
+import {THREAT_LABELS,type ThreatEstimate} from './threat';
 const factionHex=(n:string)=>VISUAL_IDENTITY.factionColors[n as keyof typeof VISUAL_IDENTITY.factionColors]??'#897d70';
 
 const esc=(s:unknown)=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]!));
+const MAP_WIDTH=806,MAP_HEIGHT=601,TRAVEL_SPEED=2*30;
+type Point={x:number;y:number};
+const townPoint=(id:string)=>(geometry.towns as Record<string,Point>)[id];
+export type ThreatLookup=(town:string)=>ThreatEstimate|null;
 
-/** Presentation of a selected town. Action IDs bind to existing campaign actions. */
-export function townDossier(c:Campaign,w:WorldState,selected:string,cityArt:string){
-  const t=data.towns[selected],current=w.town===selected,owned=c.captured.includes(selected);
-  const hostile=c.hostile.includes(t.NATION)&&!owned,facilities=townFacilities(selected);
-  const defenders=expand(t.defenders).length+expand(t.adv_defenders).length;
-  return `<section class="town-dossier" style="--faction:${factionHex(t.NATION)}">
-    <div class="town-vignette" style="background-image:url('${cityArt}')" role="img" aria-label="Representative illustrated medieval town">
-      <span class="faction-pennant">${icon('banner')}</span><span class="location-tag">${current?'Your location':'Selected destination'}</span>
-    </div>
-    <div class="dossier-body">
-      <div class="row"><span class="eyebrow">${nations[t.NATION].name}</span><span class="town-allegiance ${hostile?'hostile':''}">${owned?'Your banner':hostile?'Hostile':'Neutral'}</span></div>
-      <h2 class="town-name">${esc(t.NAME)}</h2><p class="town-description">${esc(nations[t.NATION].blurb)}</p>
-      <dl class="town-facts"><div><dt>${icon('shield')}Garrison</dt><dd>${defenders}</dd></div><div><dt>${icon('banner')}Troop types</dt><dd>${t.barracks.length}</dd></div></dl>
-      ${!current?`<p class="destination-note">Select a destination, then set out. Use waypoints around coastlines.</p><button class="primary full" id="travel">Travel here ${icon('arrow')}</button>`:`<p class="destination-note">Your company is stationed here.</p><button class="primary full" id="enter-city">Enter town ${icon('arrow')}</button>`}
-      ${current?`<div class="town-services" aria-label="Town services">${!hostile?`<button id="all-troops" ${!owned?'disabled title="Recruitment requires an owned town"':''}>${icon('banner')}Recruit</button><button id="forge">${icon('swords')}Armory</button><button id="contract">${icon('book')}Town hall</button>${facilities?.harbor?`<button id="harbor">${icon('anchor')}Harbor</button>`:''}${facilities?.stables?`<button id="stables">${icon('shield')}Stables</button>`:''}`:'<p>Capture this town to reopen its services.</p>'}</div>${!owned?`<button class="full ghost danger" id="siege">${icon('swords')}Attack garrison</button>`:''}`:`<div class="destination-services">${facilities?.harbor?`${icon('anchor')} Harbor available`:'Land destination'}${facilities?.stables?' · Stables':''}</div>`}
-    </div>
-  </section>
-  <section class="conquest-note"><div class="row"><span class="eyebrow">A world to unite</span><span>${c.captured.length}<small> / 32</small></span></div><div class="conquest-track" role="progressbar" aria-label="Towns captured" aria-valuenow="${c.captured.length}" aria-valuemin="0" aria-valuemax="32"><i style="width:${c.captured.length/32*100}%"></i></div><p>Build your company. Raise your banner.</p></section>
-  ${w.delivery&&w.delivery.accepted!==false?`<section class="atlas-contract"><span class="eyebrow">Delivery contract</span><p>Deliver to <b>${esc(data.towns[w.delivery.to].NAME)}</b>. Collect ${w.delivery.gold} gold at its town hall.</p></section>`:''}`;
+/** The town a journey is heading for, when its target is a town gate. */
+export function destinationTown(w:WorldState){if(!w.target)return null;return Object.keys(data.towns).find(id=>{const p=townPoint(id);return p&&Math.abs(p.x-w.target!.x)<1&&Math.abs(p.y-w.target!.y)<1;})??null;}
+/** Straight-line travel time at the original two pixels per tick; detours make it longer. */
+export function travelSeconds(w:WorldState,to:Point){return Math.max(1,Math.round(Math.hypot(to.x-w.x,to.y-w.y)/TRAVEL_SPEED));}
+
+function objectives(c:Campaign,w:WorldState,town:string){
+ const notes:{kind:'delivery'|'payment'|'rogues'|'here';text:string}[]=[];
+ if(w.town===town)notes.push({kind:'here',text:'Your company is here.'});
+ const reward=w.rewards.find(r=>r.town===town),delivering=w.delivery&&w.delivery.accepted!==false&&w.delivery.to===town;
+ if(delivering)notes.push({kind:'delivery',text:`Delivery destination. Collect ${(reward?.gold??w.delivery!.gold).toLocaleString()} gp at its town hall.`});
+ else if(reward)notes.push({kind:'payment',text:`${reward.gold.toLocaleString()} gp waiting at the town hall.`});
+ if(c.quest?.town===town)notes.push({kind:'rogues',text:`Defeat ${c.quest.count} rogues on the road, then collect ${c.quest.reward.toLocaleString()} gp here.`});
+ return notes;
+}
+const objectiveIcon={delivery:'crate',payment:'coin',rogues:'swords',here:'pin'} as const;
+
+function threatBadge(t:ThreatEstimate|null){
+ if(!t)return `<span class="threat-badge pending" title="Estimating garrison strength">${icon('shield')}<b>…</b></span>`;
+ return `<span class="threat-badge ${t.tier}" title="${THREAT_LABELS[t.tier].label} · ${t.garrison} defenders">${icon(t.tier==='owned'?'banner':'shield')}${t.tier==='owned'?'':`<b>${t.garrison}</b>`}</span>`;
 }
 
-export function atlasMarkup(c:Campaign,w:WorldState,selected:string,cityArt:string,paused:boolean){
-  return `<div class="atlas-title"><div><span class="eyebrow">The campaign atlas</span><h2>The known world<span>.</span></h2></div><p>Four lands. Thirty-two towns.<br>One banner to raise.</p></div>
-  <div class="world-layout"><section class="map-panel world-map">
-    <div class="atlas-toolbar"><div class="atlas-key">${(['Ger','Rus','Viz','Jap'] as const).map(n=>`<span><i style="--faction:${factionHex(n)}"></i>${nations[n].name}</span>`).join('')}</div><button id="map-labels" aria-pressed="false" title="Show all town names">Town names</button></div>
-    <div class="atlas-canvas"><div id="game" class="canvas-wrap" role="img" aria-label="World map. Choose a town using the selector below, or tap the map to travel."></div><div class="atlas-compass" aria-hidden="true"><span>N</span>${icon('compass')}</div></div>
-    <div class="atlas-map-bottom"><div class="atlas-legend"><span><i class="legend-owned"></i>Your town</span><span><i class="legend-selected"></i>Selected</span><span><i class="legend-company"></i>Your company</span></div><label class="town-picker">Find a town<select id="town-select" aria-label="Select town">${Object.values(data.towns).map(t=>`<option value="${t.ID}" ${t.ID===selected?'selected':''}>${esc(t.NAME)} · ${nations[t.NATION].name}</option>`).join('')}</select></label></div>
-    <div class="journey-bar"><div class="journey-copy"><i id="journey-light"></i><span id="journey-status">${paused?'Journey paused':w.town?`At ${esc(data.towns[w.town].NAME)}`:w.sailing?'At sea':'On the road'}</span></div><div class="journey-actions"><button id="pause-world" aria-pressed="${paused}">${paused?'Resume':icon('pause')+'Pause'}</button><button id="stop-world">${icon('stop')}Stop</button>${c.quest?'<button id="quest-route">Track rogues</button>':''}</div></div>
-  </section><aside class="atlas-side" aria-label="Selected town">${townDossier(c,w,selected,cityArt)}</aside></div>`;
+/** One accessible button per town, positioned over the painted map in map-space percentages. */
+export function townMarkers(c:Campaign,w:WorldState,selected:string,threat:ThreatLookup){
+ return Object.values(data.towns).map(t=>{const p=townPoint(t.ID),owned=c.captured.includes(t.ID),hostile=c.hostile.includes(t.NATION)&&!owned,f=townFacilities(t.ID),goals=objectives(c,w,t.ID).filter(o=>o.kind!=='here');
+  const classes=['atlas-town',owned?'owned':'',hostile?'hostile':'',t.ID===selected?'selected':'',w.town===t.ID?'here':'',goals.length?'goal':''].filter(Boolean).join(' ');
+  return `<button type="button" class="${classes}" data-town="${t.ID}" style="left:${(p.x/MAP_WIDTH*100).toFixed(2)}%;top:${(p.y/MAP_HEIGHT*100).toFixed(2)}%;--faction:${factionHex(t.NATION)}" aria-label="${esc(t.NAME)}, ${nations[t.NATION].name}${owned?', your town':hostile?', hostile':''}" aria-pressed="${t.ID===selected}">
+   <span class="town-hit" aria-hidden="true"></span>
+   <span class="town-tag" aria-hidden="true">${threatBadge(threat(t.ID))}<span class="town-label">${esc(t.NAME)}</span>${goals.map(g=>`<span class="goal-badge ${g.kind}">${icon(objectiveIcon[g.kind])}</span>`).join('')}<span class="service-badges">${f?.harbor?icon('anchor'):''}${f?.stables?icon('horse'):''}${t.adv_defenders.length?icon('castle'):''}</span></span>
+  </button>`;}).join('');
+}
+
+/** The selected town, presented on the map itself so the choice and its actions never need a scroll. */
+export function townCard(c:Campaign,w:WorldState,selected:string,threat:ThreatEstimate|null){
+ const t=data.towns[selected],current=w.town===selected,owned=c.captured.includes(selected);
+ const hostile=c.hostile.includes(t.NATION)&&!owned,f=townFacilities(selected),notes=objectives(c,w,selected).filter(o=>o.kind!=='here');
+ const throne=expand(t.adv_defenders).length,heading=destinationTown(w)===selected;
+ const threatHTML=owned?'':threat?`<div class="card-threat ${threat.tier}"><div class="row"><span class="threat-pill">${icon('shield')}${THREAT_LABELS[threat.tier].label}</span><span>${threat.garrison} defenders${throne?` + ${throne} throne guards`:''}</span></div><p>${THREAT_LABELS[threat.tier].advice}</p></div>`:`<div class="card-threat pending"><span class="threat-pill">${icon('shield')}Estimating…</span></div>`;
+ const services=`<ul class="card-services" aria-label="What is here">
+   <li>${icon('banner')}<span>${t.barracks.length} troop types</span></li>
+   <li class="${f?.harbor?'':'absent'}">${icon('anchor')}<span>${f?.harbor?'Harbor':'No harbor'}</span></li>
+   <li class="${f?.stables?'':'absent'}">${icon('horse')}<span>${f?.stables?'Stables':'No stables'}</span></li>
+   ${throne?`<li>${icon('castle')}<span>Throne room</span></li>`:''}
+ </ul>`;
+ const actions=current?`<button class="primary full" id="enter-city">Enter town ${icon('arrow')}</button>
+   ${!hostile?`<div class="town-services" aria-label="Town services"><button id="all-troops" ${!owned?'disabled title="Recruitment requires an owned town"':''}>${icon('banner')}Recruit</button><button id="forge">${icon('swords')}Armory</button><button id="contract">${icon('book')}Town hall</button>${f?.harbor?`<button id="harbor">${icon('anchor')}Harbor</button>`:''}${f?.stables?`<button id="stables">${icon('horse')}Stables</button>`:''}</div>`:'<p class="card-note">Capture this town to reopen its services.</p>'}
+   ${!owned?`<button class="full ghost danger" id="siege">${icon('swords')}Attack garrison</button>`:''}`
+  :`<button class="primary full" id="travel">${heading?'Travelling here…':`Travel here · about ${travelSeconds(w,townPoint(selected))} s`} ${icon('arrow')}</button>`;
+ return `<section class="town-dossier atlas-card-body" style="--faction:${factionHex(t.NATION)}" aria-label="Selected town">
+   <div class="card-head"><div><span class="eyebrow">${nations[t.NATION].name}</span><h2 class="town-name">${esc(t.NAME)}</h2></div><span class="town-allegiance ${hostile?'hostile':owned?'owned':''}">${owned?'Your banner':hostile?'Hostile':'Neutral'}</span><button class="card-close" id="card-close" aria-label="Hide town details">${icon('close')}</button></div>
+   ${current?`<p class="card-here">${icon('pin')}Your company is here.</p>`:''}
+   ${notes.map(n=>`<p class="card-goal ${n.kind}">${icon(objectiveIcon[n.kind])}${esc(n.text)}</p>`).join('')}
+   ${threatHTML}${services}${actions}
+ </section>`;
+}
+
+export function journeyText(w:WorldState,paused:boolean){
+ if(paused)return 'Journey paused';
+ const to=destinationTown(w);
+ if(w.target)return `${w.sailing?'Sailing':'Travelling'} to ${to?esc(data.towns[to].NAME):'your waypoint'} · about ${travelSeconds(w,w.target)} s`;
+ if(w.town)return `At ${esc(data.towns[w.town].NAME)} · tap a town to see what is there`;
+ return w.sailing?'At sea':'On the road';
+}
+
+export function atlasMarkup(c:Campaign,w:WorldState,selected:string,paused:boolean,threat:ThreatLookup,cardOpen:boolean,labels:boolean){
+ const delivery=w.delivery&&w.delivery.accepted!==false?w.delivery:null;
+ const goals=[...(delivery?[`<button class="atlas-chip delivery" data-focus-town="${delivery.to}">${icon('crate')}<span>Deliver to ${esc(data.towns[delivery.to].NAME)}</span></button>`]:[]),
+  ...w.rewards.filter(r=>r.town!==delivery?.to).map(r=>`<button class="atlas-chip payment" data-focus-town="${r.town}">${icon('coin')}<span>${r.gold.toLocaleString()} gp at ${esc(data.towns[r.town].NAME)}</span></button>`),
+  ...(c.quest?[`<button class="atlas-chip rogues" id="quest-route">${icon('swords')}<span>Track ${c.quest.count} rogues</span></button>`]:[])].join('');
+ return `<section class="map-panel world-map atlas" aria-label="World map">
+  <div class="atlas-toolbar">
+   <div class="atlas-goals"><span class="atlas-chip progress" title="Towns under your banner">${icon('banner')}<span>${c.captured.length} / 32 towns</span></span>${goals}</div>
+   <div class="atlas-tools"><label class="town-picker"><span class="sr-only">Find a town</span><select id="town-select" aria-label="Find a town">${Object.values(data.towns).map(t=>`<option value="${t.ID}" ${t.ID===selected?'selected':''}>${esc(t.NAME)} · ${nations[t.NATION].name}</option>`).join('')}</select></label><button id="map-labels" aria-pressed="${labels}" title="Show every town name">Names</button></div>
+  </div>
+  <div class="atlas-stage${labels?' labels':''}">
+   <div class="atlas-canvas"><div id="game" class="canvas-wrap" role="group" aria-label="World map. Tap a town for details, or tap open ground to set a waypoint."><div class="atlas-markers">${townMarkers(c,w,selected,threat)}</div><div class="atlas-company" id="atlas-company" aria-hidden="true"><span class="company-pin">${icon('hero')}</span><span class="company-label">You</span></div></div></div>
+   <aside class="atlas-card" id="atlas-card" ${cardOpen?'':'hidden'}>${townCard(c,w,selected,threat(selected))}</aside>
+  </div>
+  <div class="journey-bar"><div class="journey-copy"><i id="journey-light"></i><span id="journey-status">${journeyText(w,paused)}</span></div><div class="journey-actions"><button id="pause-world" aria-pressed="${paused}">${paused?'Resume':icon('pause')+'Pause'}</button><button id="stop-world">${icon('stop')}Stop</button></div></div>
+  <details class="atlas-legend-panel"><summary>Map key</summary><div class="atlas-legend">
+   <span><span class="legend-pin">${icon('hero')}</span>Your company</span><span><span class="threat-badge owned">${icon('banner')}</span>Your town</span>
+   <span><span class="threat-badge favorable">${icon('shield')}</span>Favorable</span><span><span class="threat-badge even">${icon('shield')}</span>Even fight</span><span><span class="threat-badge hard">${icon('shield')}</span>Very hard</span><span><span class="threat-badge overwhelming">${icon('shield')}</span>Overwhelming</span>
+   <span><span class="goal-badge delivery">${icon('crate')}</span>Delivery</span><span><span class="goal-badge payment">${icon('coin')}</span>Payment</span><span>${icon('anchor')}Harbor</span><span>${icon('horse')}Stables</span><span>${icon('castle')}Throne room</span>
+   <p>Shield numbers are garrison sizes. Strength is estimated from simulated battles against your current company with your hero held back.</p>
+  </div></details>
+ </section>`;
 }

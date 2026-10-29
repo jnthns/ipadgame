@@ -169,3 +169,101 @@ body:has(.app-shell[data-view="world"]){background:#18272c;color:#ede6d1}
  .atlas-side{display:grid;grid-template-columns:minmax(0,1fr) 220px;align-items:start}
  .town-vignette{height:150px}
 }
+
+/* ── Integrated atlas: town markers, on-map town card and threat estimates ── */
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.app-shell[data-view="world"] .atlas{margin-top:16px}
+.atlas .atlas-toolbar{flex-wrap:wrap;row-gap:6px}
+.atlas-goals,.atlas-tools{display:flex;align-items:center;gap:6px;flex-wrap:wrap;min-width:0}
+.atlas-tools{flex-wrap:nowrap}
+.atlas-tools{margin-left:auto}
+.atlas-tools .town-picker select{min-height:44px;max-width:200px;font-size:12px}
+.atlas-chip{display:inline-flex;align-items:center;gap:6px;min-height:36px;padding:5px 11px;border-radius:999px;border:1px solid #5d7276;background:#2c454b;color:#eadfc0;font-size:11px;font-weight:600;box-shadow:none;white-space:nowrap}
+.atlas-chip .ui-icon{width:15px;height:15px}
+button.atlas-chip{min-height:44px;cursor:pointer}
+.atlas-chip.delivery{background:#f1d27f;color:#3a3a24;border-color:#f1d27f}
+.atlas-chip.payment{background:#e7c56d;color:#3a3a24;border-color:#e7c56d}
+.atlas-chip.rogues{background:#8d2d2d;color:#fff3e6;border-color:#b45a4a}
+.atlas-stage{position:relative;background:linear-gradient(135deg,#4eafc1,#258eb4 45%,#277d9b)}
+.atlas .atlas-canvas{display:flex;justify-content:center;background:transparent}
+.atlas .atlas-canvas .canvas-wrap{width:min(100%,calc((100dvh - 285px)*806/601));min-width:min(100%,300px)}
+.atlas-markers{position:absolute;inset:0;z-index:3;pointer-events:none}
+.atlas-town{position:absolute;width:0;height:0;padding:0;margin:0;border:0;background:none;box-shadow:none;min-height:0;pointer-events:none;color:inherit}
+.atlas-town .town-hit{position:absolute;left:-22px;top:-50px;width:44px;height:52px;border-radius:12px;pointer-events:auto;cursor:pointer}
+.atlas-town:focus-visible .town-hit,.atlas-town:hover .town-hit{outline:2px solid #fff3b8}
+.atlas-town.selected .town-hit{outline:3px solid #fff3b8;box-shadow:0 0 0 5px #243e4655}
+.atlas-town.owned .town-hit{background:radial-gradient(circle at 50% 70%,#f8d97766,transparent 70%)}
+.town-tag{position:absolute;left:0;top:4px;transform:translateX(-50%);display:flex;align-items:center;gap:3px;pointer-events:auto;cursor:pointer;white-space:nowrap}
+.town-label{display:none;font:600 10px/1 system-ui,sans-serif;color:#fff8dc;background:#284a52e6;border-radius:4px;padding:3px 5px}
+.atlas-stage.labels .town-label,.atlas-town.selected .town-label,.atlas-town.here .town-label,.atlas-town.goal .town-label{display:inline-block}
+.atlas-town.selected .town-label{background:#fff3b8;color:#243e46;font-size:11px}
+.service-badges{display:none;gap:1px;color:#fff8dc;background:#284a52cc;border-radius:4px;padding:2px 3px}
+.atlas-town.selected .service-badges:not(:empty){display:inline-flex}
+.service-badges .ui-icon{width:11px;height:11px}
+.threat-badge{display:inline-flex;align-items:center;gap:1px;height:18px;padding:0 4px 0 2px;border-radius:9px;border:1.5px solid #fff8;font:700 10px/1 system-ui,sans-serif;color:#fff;background:#6b7a7c;box-shadow:0 1px 2px #0005}
+.threat-badge .ui-icon{width:12px;height:12px;stroke-width:2}
+.threat-badge.owned{background:#e2b54e;color:#3a3020}
+.threat-badge.favorable{background:#3f8a4f}
+.threat-badge.even{background:#c58a1f}
+.threat-badge.hard{background:#c4532c}
+.threat-badge.overwhelming{background:#8e2433}
+.threat-badge.pending{opacity:.7}
+.goal-badge{display:inline-grid;place-items:center;width:20px;height:20px;border-radius:50%;background:#f1d27f;color:#3a3a24;border:1.5px solid #fff;box-shadow:0 0 0 0 #f1d27f}
+.goal-badge .ui-icon{width:13px;height:13px;stroke-width:2}
+.goal-badge.rogues{background:#8d2d2d;color:#fff}
+.atlas-town .goal-badge{animation:goal-pulse 1.8s ease-out infinite}
+@keyframes goal-pulse{0%{box-shadow:0 0 0 0 #f1d27fcc}100%{box-shadow:0 0 0 10px #f1d27f00}}
+@media(prefers-reduced-motion:reduce){.atlas-town .goal-badge{animation:none}}
+.atlas-card{position:absolute;z-index:5;width:290px;max-height:calc(100% - 16px);overflow:auto;border-radius:10px;box-shadow:0 14px 40px #0b151b66}
+.atlas-card[hidden]{display:none}
+.atlas-card.sheet{position:static;width:auto;max-height:none;border-radius:0;box-shadow:none;border-top:1px solid #71817a}
+.atlas-card .town-dossier{border:0;border-top:5px solid var(--faction);border-radius:inherit;padding:14px 16px 16px;box-shadow:none}
+.atlas-card.sheet .town-dossier{border-radius:0}
+.card-head{display:flex;align-items:flex-start;gap:8px}
+.card-head>div{flex:1;min-width:0}
+.card-head .eyebrow{color:#667471;font-size:9px;letter-spacing:1.3px}
+.card-head .town-name{font:28px/1.1 Georgia,serif;color:#2d474d;margin:4px 0 0;overflow-wrap:anywhere}
+.card-head .town-allegiance{margin-top:3px;padding:3px 7px;border-radius:999px;background:#e5dcc4}
+.card-head .town-allegiance.owned{background:#f2d88b;color:#5a4516}
+.card-head .town-allegiance.hostile{background:#f3d3c8}
+.card-close{min-height:36px;min-width:36px;padding:6px;background:transparent;border:0;box-shadow:none;color:#6b776d;margin:-6px -8px 0 0}
+.card-close .ui-icon{width:18px;height:18px}
+.card-here,.card-goal{display:flex;align-items:flex-start;gap:7px;font-size:12px;line-height:1.45;margin:10px 0 0;padding:8px 10px;border-radius:6px;background:#e9e1cb;color:#3c4e4a}
+.card-goal.delivery,.card-goal.payment{background:#f6e2a6}
+.card-goal.rogues{background:#f1d0c8}
+.card-here .ui-icon,.card-goal .ui-icon{width:16px;height:16px;flex:none;margin-top:1px}
+.card-threat{margin:12px 0 0;padding:10px 12px;border-radius:7px;background:#e8e1cd;border-left:5px solid #6b7a7c;color:#3a4b48}
+.card-threat .row{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;font-size:11px}
+.card-threat p{font-size:12px;line-height:1.5;margin:6px 0 0;color:#4d5d59}
+.threat-pill{display:inline-flex;align-items:center;gap:5px;font-weight:700;font-size:13px}
+.threat-pill .ui-icon{width:16px;height:16px;stroke-width:2}
+.card-threat.favorable{border-color:#3f8a4f}.card-threat.favorable .threat-pill{color:#2f6d3c}
+.card-threat.even{border-color:#c58a1f}.card-threat.even .threat-pill{color:#8f6212}
+.card-threat.hard{border-color:#c4532c}.card-threat.hard .threat-pill{color:#a2401e}
+.card-threat.overwhelming{border-color:#8e2433;background:#f2dcd8}.card-threat.overwhelming .threat-pill{color:#8e2433}
+.dialog .card-threat{margin:14px 0 4px}
+.dialog .card-threat p{font-size:13px;color:#4d5d59}
+.card-services{list-style:none;padding:0;margin:12px 0;display:grid;grid-template-columns:1fr 1fr;gap:6px 10px;font-size:11px;color:#4f625d}
+.card-services li{display:flex;align-items:center;gap:6px}
+.card-services li.absent{opacity:.45}
+.card-services .ui-icon{width:16px;height:16px;color:#9c7b3c;flex:none}
+.card-note{font-size:12px;color:#6b776d}
+.atlas-card .town-services{margin-top:8px}
+.atlas-card .town-services button{min-height:56px}
+.atlas-legend-panel{background:#253a40;border-top:1px solid #71817a;color:#c3cdc6;font-size:11px}
+.atlas-legend-panel summary{cursor:pointer;padding:10px 15px;min-height:44px;display:flex;align-items:center}
+.atlas-legend-panel .atlas-legend{padding:0 15px 12px;gap:10px 16px;font-size:11px}
+.atlas-legend-panel .atlas-legend>span .ui-icon{width:15px;height:15px}
+.atlas-legend-panel .atlas-legend p{flex-basis:100%;margin:2px 0 0;color:#9fb0ab;font-size:10px}
+.unit.unmet .unit-copy b{color:#8a5a4a}
+.requirement.unmet{color:#a2401e!important;font-weight:600}
+.requirement.met{color:#3f7a4b!important}
+.dialog button.danger{background:#a2401e;color:#fff;border-color:#8a3418}
+@media(min-width:681px) and (max-height:900px){.atlas .atlas-canvas .canvas-wrap{width:min(100%,calc((100dvh - 250px)*806/601))}.app-shell[data-view="world"] .atlas{margin-top:10px}}
+@media(max-width:680px){.atlas .atlas-canvas .canvas-wrap{width:100%;min-width:0}.atlas-tools{margin-left:0;width:100%}.atlas-tools .town-picker{flex:1}.atlas-tools .town-picker select{max-width:none;width:100%}.atlas-town .town-hit{left:-18px;top:-40px;width:36px;height:44px}}
+.atlas-company{position:absolute;z-index:4;width:0;height:0;pointer-events:none}
+.company-pin{position:absolute;left:-14px;top:-40px;width:28px;height:28px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:#ffed92;border:3px solid #243e46;box-shadow:0 2px 6px #0007;display:grid;place-items:center}
+.company-pin .ui-icon{width:15px;height:15px;transform:rotate(45deg);color:#243e46;stroke-width:2.2}
+.atlas-company.sailing .company-pin{background:#bfe6f5}
+.company-label{position:absolute;left:0;top:-58px;transform:translateX(-50%);font:800 10px/1 system-ui,sans-serif;color:#243e46;background:#ffed92;border:2px solid #243e46;border-radius:999px;padding:2px 6px}
+.legend-pin{display:inline-grid;place-items:center;width:18px;height:18px;border-radius:50%;background:#ffed92;color:#243e46}.legend-pin .ui-icon{width:12px;height:12px}
