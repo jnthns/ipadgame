@@ -1,6 +1,7 @@
 import {data,nations,type Campaign,type Nation} from './model';
 import {characterPortraitMarkup} from './character-portraits';
 import {VISUAL_IDENTITY} from './render-presets';
+import {syncRoster,rankOf,fallenRoll,heroKills,type Soldier} from './soldiers';
 
 const esc=(s:unknown)=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]!));
 
@@ -22,16 +23,16 @@ export function recordChronicle(c:Campaign,label:string,fallen=0){
  (c as WithChronicle).chronicle=list.slice(-MAX_ENTRIES);
 }
 
-/** The company standing together on open ground: hero in front, soldiers in ranks behind, grouped by type. */
+/** The company standing together on open ground: hero in front, veterans in the front rank, named soldiers behind. */
 export function musterMarkup(c:Campaign,backdrop:string,limit=48){
- const keys=Object.entries(armyCounts(c.army)).sort((a,b)=>(data.units[b[0]].price??0)-(data.units[a[0]].price??0)).flatMap(([k,n])=>Array(n).fill(k) as string[]);
- const shown=keys.slice(0,limit),perRank=Math.max(6,Math.ceil(shown.length/3));
- const figures=shown.map((k,i)=>{const rank=Math.floor(i/perRank),file=i%perRank,inRank=Math.min(perRank,shown.length-rank*perRank);
+ const roster=[...syncRoster(c)].sort((a,b)=>rankOf(b).level-rankOf(a).level||b.kills-a.kills||(data.units[b.key].price??0)-(data.units[a.key].price??0));
+ const keys=roster.map(s=>s.key),shown=roster.slice(0,limit),perRank=Math.max(6,Math.ceil(shown.length/3));
+ const figures=shown.map((s,i)=>{const rank=Math.floor(i/perRank),file=i%perRank,inRank=Math.min(perRank,shown.length-rank*perRank),honour=rankOf(s);
   const spacing=Math.min(9,84/Math.max(inRank,1)),left=50+(file-(inRank-1)/2)*spacing+(rank%2)*spacing/2,bottom=40-rank*11+(file%2)*2;
-  return `<span class="muster-figure" style="left:${left.toFixed(1)}%;bottom:${bottom}%;z-index:${10-rank}" title="${esc(data.units[k].NAME)}">${characterPortraitMarkup(data.units[k],k,{size:'company',decorative:true})}</span>`;}).join('');
+  return `<span class="muster-figure rank-${honour.level}" style="left:${left.toFixed(1)}%;bottom:${bottom}%;z-index:${10-rank}" title="${esc(s.name)} · ${honour.title} ${esc(data.units[s.key].NAME)} · ${s.kills} kills">${characterPortraitMarkup(data.units[s.key],s.key,{size:'company',decorative:true})}${honour.level>=2&&i<3?`<span class="muster-tag">${esc(s.name.split(' ')[0])}</span>`:''}${honour.level?`<span class="rank-pips" aria-hidden="true">${'▲'.repeat(honour.level)}</span>`:''}</span>`;}).join('');
  return `<div class="muster" style="background-image:url('${backdrop}')" role="img" aria-label="${esc(c.hero.NAME)} with ${c.army.length} soldiers">
   ${figures}
-  <span class="muster-figure hero" style="left:50%;bottom:6%">${characterPortraitMarkup(c.hero,undefined,{size:'hud',decorative:true})}<span class="muster-name">${esc(c.hero.NAME)} · Lv ${c.hero.LEVEL}</span></span>
+  <span class="muster-figure hero" style="left:50%;bottom:6%">${characterPortraitMarkup(c.hero,undefined,{size:'hud',decorative:true})}<span class="muster-name">${esc(c.hero.NAME)} · Lv ${c.hero.LEVEL}${heroKills(c)?` · ${heroKills(c)} kills`:''}</span></span>
   ${keys.length>limit?`<span class="muster-more">+${keys.length-limit} more</span>`:''}
   ${!keys.length?'<span class="muster-empty">No soldiers yet. Recruit at a barracks.</span>':''}
  </div>`;
@@ -60,4 +61,19 @@ export function conquestMarkup(c:Campaign){
  const lands:Exclude<Nation,'Rog'>[]=['Ger','Rus','Viz','Jap'];
  return `<section class="conquest-board" aria-label="Conquest by land">${lands.map(n=>{const towns=Object.values(data.towns).filter(t=>t.NATION===n),held=towns.filter(t=>c.captured.includes(t.ID)).length;
   return `<div class="conquest-land" style="--land:${VISUAL_IDENTITY.factionColors[n]}"><span class="land-name">${nations[n].name}</span><span class="land-pips">${towns.map(t=>`<i class="${c.captured.includes(t.ID)?'held':''}" title="${esc(t.NAME)}${c.captured.includes(t.ID)?' · yours':''}"></i>`).join('')}</span><span class="land-count">${held}/${towns.length}</span></div>`;}).join('')}</section>`;
+}
+
+/** Every soldier by name, best record first. */
+export function soldierCards(c:Campaign){
+ const roster=[...syncRoster(c)].sort((a,b)=>b.kills-a.kills||b.battles-a.battles||a.id-b.id);
+ if(!roster.length)return '<p class="empty">No soldiers yet. Recruit at a barracks.</p>';
+ return `<div class="soldier-grid">${roster.map(s=>soldierCard(c,s)).join('')}</div>`;
+}
+function soldierCard(_c:Campaign,s:Soldier){const r=rankOf(s);return `<div class="soldier-card rank-${r.level}">${characterPortraitMarkup(data.units[s.key],s.key,{size:'company',decorative:true})}<div><b>${esc(s.name)}</b><small>${r.title} ${esc(data.units[s.key].NAME)}</small><small>${s.kills} ${s.kills===1?'kill':'kills'} · ${s.battles} ${s.battles===1?'battle':'battles'}</small></div></div>`;}
+
+/** Names of those who fell, most recent first. */
+export function fallenMarkup(c:Campaign,limit=20){
+ const fallen=fallenRoll(c).slice(-limit).reverse();
+ if(!fallen.length)return '';
+ return `<section class="fallen-roll"><h3>Roll of the fallen</h3><ul>${fallen.map(f=>`<li><b>${esc(f.name)}</b> <span>${rankOf(f).title} ${esc(data.units[f.key]?.NAME??'soldier')} · ${f.kills} ${f.kills===1?'kill':'kills'} in ${f.battles} ${f.battles===1?'battle':'battles'} · ${esc(f.fell)}</span></li>`).join('')}</ul></section>`;
 }

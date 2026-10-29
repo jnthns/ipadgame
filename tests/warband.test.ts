@@ -22,7 +22,7 @@ test('chronicle chart draws one column per entry and marks hero level-ups',()=>{
 
 test('muster shows the hero and every soldier up to the limit',()=>{
  const c=newCampaign(0),html=musterMarkup(c,'field.webp');
- assert.equal(html.match(/class="muster-figure"/g)?.length,c.army.length);assert.match(html,/muster-figure hero/);
+ assert.equal(html.match(/class="muster-figure rank-/g)?.length,c.army.length);assert.match(html,/muster-figure hero/);
  c.army=Array(60).fill(c.army[0]);assert.match(musterMarkup(c,'field.webp',48),/\+12 more/);
  assert.deepEqual(armyCounts(['a','b','a']),{a:2,b:1});
 });

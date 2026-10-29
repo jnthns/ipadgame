@@ -347,3 +347,26 @@ nav button .nav-badge{display:inline-grid;place-items:center;min-width:18px;heig
 .own-flag::after{content:"";position:absolute;left:3px;top:0;width:18px;height:13px;background:var(--own);clip-path:polygon(0 0,100% 0,78% 50%,100% 100%,0 100%);box-shadow:0 0 0 1px #fff8}
 @media(max-width:680px){.muster{height:200px}.muster-figure .character-portrait{--portrait-height:52px;width:42px}.muster-figure.hero .character-portrait{--portrait-height:84px;width:66px}.land-name{flex-basis:84px}.land-pips i{width:11px;height:15px}}
 @media(max-width:760px){.conquest-board{grid-template-columns:1fr}}
+
+/* ── Named soldiers, ranks and honours ── */
+.rank-pips{position:absolute;left:50%;top:-6px;transform:translateX(-50%);font-size:8px;letter-spacing:-1px;color:#ffd56b;text-shadow:0 1px 1px #000a;white-space:nowrap}
+.muster-figure.rank-3 .rank-pips,.muster-figure.rank-4 .rank-pips{color:#fff1a8;font-size:9px}
+.muster-tag{position:absolute;left:50%;bottom:-6px;transform:translateX(-50%);font:700 9px system-ui,sans-serif;color:#243e46;background:#fff4d6;border-radius:999px;padding:1px 6px;white-space:nowrap;box-shadow:0 1px 2px #0005}
+.soldier-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px;margin:12px 0 4px}
+.soldier-card{display:flex;align-items:center;gap:10px;padding:8px 10px;border:1px solid #e0d5b8;border-radius:10px;background:#fffdf6}
+.soldier-card b{display:block;font-size:13px;color:#263d4a}
+.soldier-card small{display:block;font-size:11px;color:#6c7b78;line-height:1.4}
+.soldier-card.rank-2{border-color:#d9b65c;background:#fff8e1}
+.soldier-card.rank-3,.soldier-card.rank-4{border-color:#c08a2e;background:linear-gradient(135deg,#fff3c8,#fffdf6);box-shadow:0 0 0 2px #f2d27a55}
+.roll-face.rank-2 .character-portrait,.roll-face.rank-3 .character-portrait,.roll-face.rank-4 .character-portrait{box-shadow:inset 0 -3px #d9a52e}
+.honours{list-style:none;margin:8px 0 4px;padding:0;display:flex;flex-direction:column;gap:6px}
+.honour{display:flex;align-items:flex-start;gap:8px;font-size:13px;line-height:1.45;color:#3c4e4a;padding:7px 10px;border-radius:8px;background:#f4eedc}
+.honour .ui-icon{width:16px;height:16px;flex:none;margin-top:1px;color:#9c7b3c}
+.honour.promoted{background:#fff1bf}
+.honour.fallen{background:#efe3df}.honour.fallen .ui-icon{color:#8a4a3a}
+.fallen-roll{margin:18px 0;padding:14px 16px;border-radius:10px;background:#f3ede0;border:1px solid #e0d5b8}
+.fallen-roll h3{margin:0 0 8px;font:18px Georgia,serif;color:#3c4e4a}
+.fallen-roll ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.fallen-roll li{font-size:12px;color:#4f625d}
+.fallen-roll li b{color:#263d4a}
+.fallen-roll li span{color:#6c7b78}
