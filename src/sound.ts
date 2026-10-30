@@ -2,14 +2,14 @@
  * Small synthesized sound set. Everything is generated with Web Audio, so it works offline and adds no assets.
  * Purely presentational: nothing here reads or changes game state.
  */
-export type Sound='hit'|'crit'|'miss'|'arrow'|'death'|'victory'|'defeat'|'coin'|'levelup'|'recruit'|'click'|'march';
+export type Sound='hit'|'crit'|'miss'|'arrow'|'death'|'victory'|'defeat'|'coin'|'levelup'|'recruit'|'click'|'march'|'thunder';
 
 const STORE='feudalism-sound-v1';
 let context:AudioContext|null=null,master:GainNode|null=null,noise:AudioBuffer|null=null;
 let enabled=(()=>{try{return localStorage.getItem(STORE)!=='off';}catch{return true;}})();
 const lastPlayed=new Map<Sound,number>();
 // Massed battles produce many events per tick; a short per-sound gap keeps the mix readable.
-const MIN_GAP:Partial<Record<Sound,number>>={hit:55,crit:90,miss:120,arrow:70,death:120};
+const MIN_GAP:Partial<Record<Sound,number>>={hit:55,crit:90,miss:120,arrow:70,death:120,thunder:300};
 
 export function soundEnabled(){return enabled;}
 export function setSoundEnabled(on:boolean){enabled=on;try{localStorage.setItem(STORE,on?'on':'off');}catch{/* preference only */}if(on)unlockAudio();}
@@ -48,6 +48,7 @@ export function play(sound:Sound){
   case 'levelup':[523,659,784,1047,1319].forEach((f,i)=>tone(ctx,t+i*.08,f,.35,{type:'triangle',gain:.18}));burst(ctx,t+.35,.5,{freq:6000,q:.5,gain:.06,type:'highpass'});break;
   case 'recruit':tone(ctx,t,330,.1,{type:'triangle',gain:.2});tone(ctx,t+.1,440,.25,{type:'triangle',gain:.2});burst(ctx,t,.08,{freq:300,gain:.2,type:'lowpass'});break;
   case 'click':tone(ctx,t,700,.04,{type:'triangle',gain:.08});break;
+  case 'thunder':burst(ctx,t,.08,{freq:5000,q:.4,gain:.35,type:'highpass'});burst(ctx,t+.05,.4,{freq:180,q:.6,gain:.65,type:'lowpass'});burst(ctx,t+.25,.4,{freq:110,q:.5,gain:.4,type:'lowpass'});break;
   case 'march':for(let i=0;i<3;i++)burst(ctx,t+i*.11,.07,{freq:250,q:1,gain:.3,type:'lowpass'});break;
  }
 }

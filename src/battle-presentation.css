@@ -111,3 +111,23 @@ body:has(.app-shell[data-view="battle"]){background:#18282d;color:#efe6cd}
 @media(orientation:portrait) and (min-width:681px) and (max-width:900px){.battle-layout{grid-template-columns:1fr}.battle-canvas-shell .canvas-wrap{width:100%}.battle-command-rail{grid-template-columns:1fr 1fr}.battle-supply-drawer{grid-column:1/-1}.battle-input-copy{display:flex}.battle-ground-instruction{display:flex!important}}
 @media(orientation:landscape) and (max-height:650px){.app-shell[data-view="battle"]{padding-top:6px;padding-bottom:8px}.app-shell[data-view="battle"] .header{padding-bottom:6px}.app-shell[data-view="battle"] .brand h1{font-size:23px}.app-shell[data-view="battle"] .brand .eyebrow{display:none}.app-shell[data-view="battle"] .crest{width:27px;height:34px}.app-shell[data-view="battle"] .resource{font-size:14px}.app-shell[data-view="battle"] .resources .resource small{font-size:7px}.app-shell[data-view="battle"] .preset-control>span{display:none}.battle-topline{padding:8px 0;gap:10px}.battle-topline .eyebrow{display:none}.battle-topline h2{font-size:21px;margin:0}.battle-top-actions button{font-size:10px;padding:8px}.battle-canvas-shell .canvas-wrap{width:min(100%,calc((100dvh - 324px)*806/601));min-width:0}.battle-input-copy{display:none}.battle-manual-bar.manual-controls{padding:6px 9px;gap:10px;margin-top:8px}.battle-hero-card{padding:10px}.battle-hero-heading{margin-bottom:9px}.battle-hero-portrait{width:34px;height:43px}.battle-hero-heading h3{font-size:20px}.battle-roster-counts{margin-top:10px;gap:6px}.battle-order-card{padding:10px}.battle-command-rail{gap:8px}.battle-hero-separate{font-size:7px}.battle-field-summary{min-height:31px;padding:6px 10px}.battle-ground-hint{min-height:26px;padding:6px 10px}.battle-state-line{margin-top:7px;font-size:9px}}
 @media(prefers-reduced-motion:reduce){.battle-health-bar i{transition:none}}
+/* Auto battle and battlefield conditions. */
+.battle-manual-bar .hero-actions .battle-auto{min-width:118px}
+.battle-manual-bar .hero-actions .battle-auto[aria-pressed="true"]{background:#7fb6a0;border-color:#a9d8c2;color:#16302c;box-shadow:0 0 0 2px #a9d8c255}
+.battle-presentation.hero-auto .hero-dpad,.battle-presentation.hero-auto .battle-attack,.battle-presentation.hero-auto .battle-switch{opacity:.38;pointer-events:none}
+.battle-condition-chip{position:absolute;top:10px;left:10px;z-index:2;pointer-events:none;font-size:11px;letter-spacing:.4px;padding:6px 11px;border-radius:999px;background:#1d3644de;color:#f3e3b4;border:1px solid #8ea08f}
+.battle-condition-chip[data-favors="you"]{border-color:#9fd3a4;color:#d9f4cf}
+.battle-condition-chip[data-favors="enemy"]{border-color:#e39a86;color:#ffd9cc}
+.battle-condition-card{padding:14px 15px;background:#2a3f3a;border:1px solid #6a8270;border-left:4px solid #c9b16f;border-radius:7px;color:#dfe4d2}
+.battle-condition-card[data-favors="you"]{border-left-color:#8fcf95}
+.battle-condition-card[data-favors="enemy"]{border-left-color:#e08a74}
+.battle-condition-card .battle-card-heading{margin-bottom:6px}
+.battle-condition-card .condition-favors{font-size:9px;color:#b9c9bd}
+.battle-condition-card h3{font:19px Georgia,serif;color:#f1e1b6;margin:0 0 4px}
+.battle-condition-card p{font-size:10px;line-height:1.5;color:#b5c5bb;margin:0 0 8px;font-style:italic}
+.battle-condition-card ul{margin:0;padding-left:16px;display:grid;gap:3px;font-size:10px;line-height:1.45;color:#e2e6d6}
+/* The forecast reuses the card inside the light siege dialog. */
+.dialog .battle-condition-card{margin:12px 0}
+.dialog .battle-condition-card p{font-size:12px}
+.dialog .battle-condition-card ul{font-size:12px}
+@media(max-width:680px){.battle-condition-chip{font-size:9px;padding:4px 8px;top:6px;left:6px}}
