@@ -27,7 +27,8 @@ import {musterMarkup,chronicleChart,conquestMarkup,recordChronicle,chronicle} fr
 import {itemThumb,itemRequirement,itemComparison,itemSummary} from './item-cards';
 import {play,unlockAudio,soundEnabled,setSoundEnabled} from './sound';
 import {battleBackdropURL,drawBattleScenery} from './battle-scenery';
-import {atlasMarkup,townCard,townMarkers,journeyText} from './world-presentation';
+import {atlasMarkup,townCard,townMarkers,journeyText,recommendationMarkup} from './world-presentation';
+import {recommendNext} from './recommendation';
 import {cachedThreat,estimateSiege,warmThreats,THREAT_LABELS} from './threat';
 import {chooseBattleMap,battleLayout,battlefieldObjects} from './battle-layout';
 import {HeroControls,type TouchAction} from './hero-controls';
@@ -89,7 +90,8 @@ function bindTown(){bind('[data-hire]',e=>{const key=(e.currentTarget as HTMLEle
 function renderWorld(){
  const c=campaign!,w=world(c),generation=++atlasGeneration;
  if(!c.captured.includes(selected))estimateSiege(c,selected);
- document.querySelector('#content')!.innerHTML=atlasMarkup(c,w,selected,worldPaused,town=>cachedThreat(c,town),atlasCardOpen,showTownNames);
+ document.querySelector('#content')!.innerHTML=atlasMarkup(c,w,selected,worldPaused,town=>cachedThreat(c,town),atlasCardOpen,showTownNames,recommendation());
+ document.querySelector('#atlas-recommend')!.addEventListener('click',e=>{if((e.target as HTMLElement).closest('#follow-recommendation'))followRecommendation();});
  bindAtlasCard();
  bind('#map-labels',e=>{showTownNames=!showTownNames;(e.currentTarget as HTMLElement).setAttribute('aria-pressed',String(showTownNames));document.querySelector('.atlas-stage')?.classList.toggle('labels',showTownNames);});
  document.querySelector('.atlas-markers')!.addEventListener('click',e=>{const town=(e.target as HTMLElement).closest<HTMLElement>('[data-town]')?.dataset.town;if(town)selectTown(town);});
@@ -104,7 +106,14 @@ function renderWorld(){
 }
 /** Selecting a town only refreshes the markers and card; the map scene keeps running. */
 function selectTown(town:string){if(!Object.hasOwn(data.towns,town))return;selected=town;atlasCardOpen=true;if(!campaign!.captured.includes(town))estimateSiege(campaign!,town);refreshAtlas();const select=document.querySelector<HTMLSelectElement>('#town-select');if(select)select.value=town;if(document.querySelector('#atlas-card.sheet'))document.querySelector('#atlas-card')!.scrollIntoView({block:'nearest',behavior:'smooth'});}
-function refreshAtlas(card=true){const c=campaign!,w=world(c),markers=document.querySelector('.atlas-markers'),panel=document.querySelector<HTMLElement>('#atlas-card');if(!markers||!panel)return;markers.innerHTML=townMarkers(c,w,selected,town=>cachedThreat(c,town));if(card||!panel.querySelector('.card-threat:not(.pending)')){panel.innerHTML=townCard(c,w,selected,cachedThreat(c,selected));panel.hidden=!atlasCardOpen;bindAtlasCard();}positionAtlasCard();}
+function recommendation(){const c=campaign!;return recommendNext(c,town=>cachedThreat(c,town));}
+/** Travels to the suggested destination, or opens the matching action when the company is already there. */
+function followRecommendation(){const rec=recommendation();if(!rec)return;play('click');
+ if(!rec.town){new WorldTravel(campaign!,rootClock).moveTo(rec.point);worldPaused=false;save();render();notify(rec.title+'.');return;}
+ selected=rec.town;
+ if(!rec.here){travelToTown(rec.town);notify(`Marching to ${data.towns[rec.town].NAME}.`);return;}
+ if(rec.kind==='collect'||rec.kind==='delivery')claimPayment();else if(rec.kind==='siege'){refreshAtlas();confirmBattle();}else if(rec.kind==='recruit'){view='army';render();}else offerContract();}
+function refreshAtlas(card=true){const c=campaign!,w=world(c),markers=document.querySelector('.atlas-markers'),panel=document.querySelector<HTMLElement>('#atlas-card');if(!markers||!panel)return;const rec=recommendation(),banner=document.querySelector<HTMLElement>('#atlas-recommend');if(banner){const html=recommendationMarkup(rec,w);if(banner.innerHTML!==html)banner.innerHTML=html;banner.hidden=!rec;}markers.innerHTML=townMarkers(c,w,selected,town=>cachedThreat(c,town),rec?.town??null);if(card||!panel.querySelector('.card-threat:not(.pending)')){panel.innerHTML=townCard(c,w,selected,cachedThreat(c,selected));panel.hidden=!atlasCardOpen;bindAtlasCard();}positionAtlasCard();}
 function bindAtlasCard(){bindTown();bind('#card-close',()=>{atlasCardOpen=false;document.querySelector<HTMLElement>('#atlas-card')!.hidden=true;});}
 /** Docked at the map edge away from the selected town when the sea margin has room; otherwise a sheet directly below the map. */
 function positionAtlasCard(){const stage=document.querySelector<HTMLElement>('.atlas-stage'),card=document.querySelector<HTMLElement>('#atlas-card'),canvas=document.querySelector<HTMLElement>('#game'),marker=document.querySelector<HTMLElement>('.atlas-town.selected');if(!stage||!card||!canvas)return;const s=stage.getBoundingClientRect(),c=canvas.getBoundingClientRect(),margin=Math.min(c.left-s.left,s.right-c.right);const sheet=margin<180;card.classList.toggle('sheet',sheet);if(sheet){card.style.left=card.style.top='';return;}const m=marker?.getBoundingClientRect(),onRight=!!m&&m.left>c.left+c.width/2,cw=card.offsetWidth,ch=card.offsetHeight;card.style.left=`${onRight?8:s.width-cw-8}px`;const my=m?m.top-s.top:s.height/2;card.style.top=`${Math.max(8,Math.min(my-ch/2,s.height-ch-8))}px`;}

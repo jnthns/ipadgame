@@ -4,6 +4,7 @@ import {geometry} from './world-geometry';
 import {icon} from './interface-icons';
 import {VISUAL_IDENTITY} from './render-presets';
 import {THREAT_LABELS,type ThreatEstimate} from './threat';
+import type {Recommendation} from './recommendation';
 const factionHex=(n:string)=>VISUAL_IDENTITY.factionColors[n as keyof typeof VISUAL_IDENTITY.factionColors]??'#897d70';
 
 const esc=(s:unknown)=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]!));
@@ -34,9 +35,9 @@ function threatBadge(t:ThreatEstimate|null){
 }
 
 /** One accessible button per town, positioned over the painted map in map-space percentages. */
-export function townMarkers(c:Campaign,w:WorldState,selected:string,threat:ThreatLookup){
+export function townMarkers(c:Campaign,w:WorldState,selected:string,threat:ThreatLookup,recommended:string|null=null){
  return Object.values(data.towns).map(t=>{const p=townPoint(t.ID),owned=c.captured.includes(t.ID),hostile=c.hostile.includes(t.NATION)&&!owned,f=townFacilities(t.ID),goals=objectives(c,w,t.ID).filter(o=>o.kind!=='here');
-  const classes=['atlas-town',owned?'owned':'',hostile?'hostile':'',t.ID===selected?'selected':'',w.town===t.ID?'here':'',goals.length?'goal':''].filter(Boolean).join(' ');
+  const classes=['atlas-town',owned?'owned':'',hostile?'hostile':'',t.ID===selected?'selected':'',w.town===t.ID?'here':'',goals.length?'goal':'',t.ID===recommended?'recommended':''].filter(Boolean).join(' ');
   return `<button type="button" class="${classes}" data-town="${t.ID}" style="left:${(p.x/MAP_WIDTH*100).toFixed(2)}%;top:${(p.y/MAP_HEIGHT*100).toFixed(2)}%;z-index:${Math.round(p.y)};--faction:${factionHex(t.NATION)}" aria-label="${esc(t.NAME)}, ${nations[t.NATION].name}${owned?', your town':hostile?', hostile':''}" aria-pressed="${t.ID===selected}">
    <span class="town-hit" aria-hidden="true"></span>${owned?`<span class="own-flag" aria-hidden="true" style="--own:${factionHex(c.hero.NATION)}"></span>`:''}
    <span class="town-tag" aria-hidden="true">${threatBadge(threat(t.ID))}<span class="town-label">${esc(t.NAME)}</span>${goals.map(g=>`<span class="goal-badge ${g.kind}">${icon(objectiveIcon[g.kind])}</span>`).join('')}<span class="service-badges">${f?.harbor?icon('anchor'):''}${f?.stables?icon('horse'):''}${t.adv_defenders.length?icon('castle'):''}</span></span>
@@ -67,6 +68,16 @@ export function townCard(c:Campaign,w:WorldState,selected:string,threat:ThreatEs
  </section>`;
 }
 
+const recommendationIcon={collect:'coin',delivery:'crate',rogues:'swords',siege:'castle',recruit:'banner',contract:'book'} as const;
+/** The single suggested next step, with one button that goes there (or acts, if the company is already there). */
+export function recommendationMarkup(rec:Recommendation|null,w:WorldState){
+ if(!rec)return '';
+ const travelling=!!rec.town&&destinationTown(w)===rec.town;
+ // A company in town is drawn at the gate; measure from there, as travel will.
+ const origin=w.town?townPoint(w.town):w,eta=!rec.here&&!travelling?` · about ${travelSeconds({...w,x:origin.x,y:origin.y},rec.point)} s`:'';
+ return `<div class="atlas-recommend-body" data-kind="${rec.kind}"><span class="recommend-icon" aria-hidden="true">${icon(recommendationIcon[rec.kind])}</span><div class="recommend-copy"><span class="eyebrow">Recommended next</span><b>${esc(rec.title)}</b><small>${esc(rec.reason)}</small></div><button class="primary" id="follow-recommendation" ${travelling?'disabled':''}>${travelling?'On the way…':`${esc(rec.cta)}${eta}`} ${icon('arrow')}</button></div>`;
+}
+
 export function journeyText(w:WorldState,paused:boolean){
  if(paused)return 'Journey paused';
  const to=destinationTown(w);
@@ -75,7 +86,7 @@ export function journeyText(w:WorldState,paused:boolean){
  return w.sailing?'At sea':'On the road';
 }
 
-export function atlasMarkup(c:Campaign,w:WorldState,selected:string,paused:boolean,threat:ThreatLookup,cardOpen:boolean,labels:boolean){
+export function atlasMarkup(c:Campaign,w:WorldState,selected:string,paused:boolean,threat:ThreatLookup,cardOpen:boolean,labels:boolean,rec:Recommendation|null=null){
  const delivery=w.delivery&&w.delivery.accepted!==false?w.delivery:null;
  const goals=[...(delivery?[`<button class="atlas-chip delivery" data-focus-town="${delivery.to}">${icon('crate')}<span>Deliver to ${esc(data.towns[delivery.to].NAME)}</span></button>`]:[]),
   ...w.rewards.filter(r=>r.town!==delivery?.to).map(r=>`<button class="atlas-chip payment" data-focus-town="${r.town}">${icon('coin')}<span>${r.gold.toLocaleString()} gp at ${esc(data.towns[r.town].NAME)}</span></button>`),
@@ -85,8 +96,9 @@ export function atlasMarkup(c:Campaign,w:WorldState,selected:string,paused:boole
    <div class="atlas-goals"><span class="atlas-chip progress" title="Towns under your banner">${icon('banner')}<span>${c.captured.length} / 32 towns</span></span>${goals}</div>
    <div class="atlas-tools"><label class="town-picker"><span class="sr-only">Find a town</span><select id="town-select" aria-label="Find a town">${Object.values(data.towns).map(t=>`<option value="${t.ID}" ${t.ID===selected?'selected':''}>${esc(t.NAME)} · ${nations[t.NATION].name}</option>`).join('')}</select></label><button id="map-labels" aria-pressed="${labels}" title="Show every town name">Names</button></div>
   </div>
+  <section class="atlas-recommend" id="atlas-recommend" aria-label="Recommended next step" ${rec?'':'hidden'}>${recommendationMarkup(rec,w)}</section>
   <div class="atlas-stage${labels?' labels':''}">
-   <div class="atlas-canvas"><div id="game" class="canvas-wrap" role="group" aria-label="World map. Tap a town for details, or tap open ground to set a waypoint."><div class="atlas-markers">${townMarkers(c,w,selected,threat)}</div><div class="atlas-company" id="atlas-company" aria-hidden="true"><span class="company-pin">${icon('hero')}</span><span class="company-label">You</span></div></div></div>
+   <div class="atlas-canvas"><div id="game" class="canvas-wrap" role="group" aria-label="World map. Tap a town for details, or tap open ground to set a waypoint."><div class="atlas-markers">${townMarkers(c,w,selected,threat,rec?.town??null)}</div><div class="atlas-company" id="atlas-company" aria-hidden="true"><span class="company-pin">${icon('hero')}</span><span class="company-label">You</span></div></div></div>
    <aside class="atlas-card" id="atlas-card" ${cardOpen?'':'hidden'}>${townCard(c,w,selected,threat(selected))}</aside>
   </div>
   <div class="journey-bar"><div class="journey-copy"><i id="journey-light"></i><span id="journey-status">${journeyText(w,paused)}</span></div><div class="journey-actions"><button id="pause-world" aria-pressed="${paused}">${paused?'Resume':icon('pause')+'Pause'}</button><button id="stop-world">${icon('stop')}Stop</button></div></div>

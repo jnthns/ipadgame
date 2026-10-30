@@ -347,3 +347,20 @@ nav button .nav-badge{display:inline-grid;place-items:center;min-width:18px;heig
 .own-flag::after{content:"";position:absolute;left:3px;top:0;width:18px;height:13px;background:var(--own);clip-path:polygon(0 0,100% 0,78% 50%,100% 100%,0 100%);box-shadow:0 0 0 1px #fff8}
 @media(max-width:680px){.muster{height:200px}.muster-figure .character-portrait{--portrait-height:52px;width:42px}.muster-figure.hero .character-portrait{--portrait-height:84px;width:66px}.land-name{flex-basis:84px}.land-pips i{width:11px;height:15px}}
 @media(max-width:760px){.conquest-board{grid-template-columns:1fr}}
+/* Recommended next step: one call to action between the toolbar and the map. */
+.atlas-recommend{background:#2f4a3f;border-bottom:1px solid #6f8a72}
+.atlas-recommend[hidden]{display:none}
+.atlas-recommend-body{display:flex;align-items:center;gap:12px;padding:9px 14px}
+.recommend-icon{flex:none;display:grid;place-items:center;width:38px;height:38px;border-radius:50%;background:#efce83;color:#263b41}
+.recommend-icon .ui-icon{width:19px;height:19px}
+.recommend-copy{display:flex;flex-direction:column;gap:2px;min-width:0;flex:1}
+.recommend-copy .eyebrow{font-size:8px;letter-spacing:1.4px;color:#cfe0b8}
+.recommend-copy b{color:#f4e6bf;font:16px/1.25 Georgia,serif}
+.recommend-copy small{color:#bdcdbd;font-size:11px;line-height:1.4}
+.atlas-recommend-body .primary{flex:none;min-height:44px;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.atlas-recommend-body .primary .ui-icon{width:15px;height:15px}
+.atlas-town.recommended .town-hit{animation:recommend-pulse 1.6s ease-out infinite}
+.atlas-town.recommended .town-label{display:inline-block;background:#efce83;color:#243e46}
+@keyframes recommend-pulse{0%{box-shadow:0 0 0 0 #efce83cc}100%{box-shadow:0 0 0 14px #efce8300}}
+@media(prefers-reduced-motion:reduce){.atlas-town.recommended .town-hit{animation:none;box-shadow:0 0 0 4px #efce83}}
+@media(max-width:680px){.atlas-recommend-body{flex-wrap:wrap}.atlas-recommend-body .primary{width:100%;justify-content:center}}
