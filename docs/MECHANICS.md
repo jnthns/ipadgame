@@ -81,3 +81,9 @@ See [roaming units and quest replacement](ENCOUNTER_PARITY.md) for the completed
 ## Hands-on testing candidate
 
 The suite now contains149 passing checks. Integrated campaign scenarios cover real simulated quests through level2, equipment/recruitment, deliveries, upgrades, two-stage foreign conquest and defeat/checkpoint data. Original reinforcement command bytes match675 usable-edge cases and the152-draw retry boundary. Fully blocked edges deliberately defer spawning rather than copying the original overlap bug. PWA checks cover scope-isolated/current-build caching, query-string offline navigation, renamed-asset revision changes and manifest/icons. See [device handoff](DEVICE_TEST.md). These checks support an alpha testing candidate; they do not close full-runtime or physical-device acceptance.
+
+## Weapon skill clarity
+
+The hero sheet and equipment cards now expose the actual item `skill` mapping instead of showing unexplained raw keys. Sieg's recovered starting loadout has FarEast 70, Sword 0, and Fist 100. Both Short Ninja-To and Shuriken use FarEast; raising Sword or Fist does not change either weapon's accuracy or critical chance. Fist applies to unarmed attacks. This is an interface clarification, with no starting-stat rebalance or save migration.
+
+The hero sheet explains every skill, marks the equipped weapons using each proficiency, shows base accuracy and critical chance, and exposes the INT-based leadership caps. Shop/inventory comparisons show the hero's proficiency with the candidate weapon, including a warning at zero. Displayed weapon accuracy precedes target dodge, shields, and applicable dual-wield penalties; ranged accuracy controls projectile scatter. Existing combat formulas, source item exceptions, upgrade costs, and saved skill keys are unchanged.

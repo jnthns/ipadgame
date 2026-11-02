@@ -1,3 +1,4 @@
+import {skillLabel,weaponSkill} from './hero-skills';
 import {weaponAppearance} from './character-appearance';
 import {equipmentImageURL} from './character-equipment';
 import {icon} from './interface-icons';
@@ -26,11 +27,12 @@ export function itemComparison(hero:Hero,item:Item){
  if(isArmor(item)){const current=item.TYPE==='Helmet'?hero.HELMET:hero.ARMOR,delta=(item.value??0)-(current?.value??0);return delta?`<span class="delta ${delta>0?'up':'down'}">${delta>0?'+':''}${delta} defense vs ${esc(current?.NAME??'nothing')}</span>`:'';}
  if(item.TYPE==='Shield')return hero.WEAPON_SEC?.TYPE==='Shield'?'':'<span class="delta up">Adds a shield</span>';
  const current=hero.WEAPON_PRI,delta=Math.round(averageDamage(item)-averageDamage(current));
- return delta?`<span class="delta ${delta>0?'up':'down'}">${delta>0?'+':''}${delta} avg damage vs ${esc(current?.NAME??'bare hands')}</span>`:'';
+ const key=weaponSkill(item)!,proficiency=hero.SKILL[key]??0;
+ return `${delta?`<span class="delta ${delta>0?'up':'down'}">${delta>0?'+':''}${delta} avg damage vs ${esc(current?.NAME??'bare hands')}</span> · `:''}${esc(skillLabel(key))}: ${proficiency} / 100${proficiency===0?' · No proficiency':''}`;
 }
 
 export function itemSummary(item:Item){
  if(isArmor(item))return `${item.value??0} defense · ${item.TYPE==='Helmet'?'helmet':'body armor'}`;
  if(item.TYPE==='Shield')return 'Shield · makes you harder to hit';
- return `${item.dmg??0}–${(item.dmg??0)+(item.rnd??0)} damage · ${item.rng?'ranged':'melee'}`;
+ return `${item.dmg??0}–${(item.dmg??0)+(item.rnd??0)} damage · ${item.rng?'ranged':'melee'} · ${esc(skillLabel(weaponSkill(item)!))}`;
 }
