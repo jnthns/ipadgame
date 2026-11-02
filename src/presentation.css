@@ -347,3 +347,14 @@ nav button .nav-badge{display:inline-grid;place-items:center;min-width:18px;heig
 .own-flag::after{content:"";position:absolute;left:3px;top:0;width:18px;height:13px;background:var(--own);clip-path:polygon(0 0,100% 0,78% 50%,100% 100%,0 100%);box-shadow:0 0 0 1px #fff8}
 @media(max-width:680px){.muster{height:200px}.muster-figure .character-portrait{--portrait-height:52px;width:42px}.muster-figure.hero .character-portrait{--portrait-height:84px;width:66px}.land-name{flex-basis:84px}.land-pips i{width:11px;height:15px}}
 @media(max-width:760px){.conquest-board{grid-template-columns:1fr}}
+
+/* Skill explanations stay visible on touch devices instead of relying on hover. */
+.hero-skill-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:12px}
+.hero-skill-card{border:1px solid var(--line);border-radius:12px;padding:14px;min-width:0}
+.hero-skill-card.equipped{border-color:var(--gold,#c49443)}
+.hero-skill-card h4{margin:0;font-size:14px}
+.hero-skill-card p{font-size:13px;line-height:1.5;margin:8px 0}
+.skill-equipped{font-weight:600;color:var(--gold,#c49443)}
+.weapon-skill-summary{padding:12px 0;border-bottom:1px solid var(--line)}
+.weapon-skill-summary p{font-size:13px;margin:6px 0}
+.skill-warning{color:#9a471e}
